@@ -1,0 +1,6 @@
+framework module Pods_lentochkaSharedCart {
+  umbrella header "Pods-lentochkaSharedCart-umbrella.h"
+
+  export *
+  module * { export * }
+}

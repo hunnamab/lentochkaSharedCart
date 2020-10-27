@@ -1,0 +1,456 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D5DEA9225479013009C1C6F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEA9125479013009C1C6F /* CustomButton.swift */; };
+		2D5DEAAA25484AB0009C1C6F /* ButtonsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAA925484AB0009C1C6F /* ButtonsSettings.swift */; };
+		2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEABF25485263009C1C6F /* FriendsVC.swift */; };
+		2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC225485270009C1C6F /* CartVC.swift */; };
+		2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC525485282009C1C6F /* ProfileVC.swift */; };
+		2D94776825476CA8007971A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D94776725476CA8007971A3 /* GoogleService-Info.plist */; };
+		2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744D825475F9400532B99 /* AppDelegate.swift */; };
+		2DF744DB25475F9400532B99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744DA25475F9400532B99 /* SceneDelegate.swift */; };
+		2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744DC25475F9400532B99 /* LoginVC.swift */; };
+		2DF744E025475F9400532B99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744DE25475F9400532B99 /* Main.storyboard */; };
+		2DF744E225475F9800532B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744E125475F9800532B99 /* Assets.xcassets */; };
+		2DF744E525475F9800532B99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744E325475F9800532B99 /* LaunchScreen.storyboard */; };
+		576451A82513CE5017C3DFB5 /* Pods_lentochkaSharedCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lentochkaSharedCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D5DEA9125479013009C1C6F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		2D5DEAA925484AB0009C1C6F /* ButtonsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsSettings.swift; sourceTree = "<group>"; };
+		2D5DEABF25485263009C1C6F /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
+		2D5DEAC225485270009C1C6F /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
+		2D5DEAC525485282009C1C6F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		2D94776725476CA8007971A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2DF744D525475F9400532B99 /* lentochkaSharedCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lentochkaSharedCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DF744D825475F9400532B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2DF744DA25475F9400532B99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2DF744DC25475F9400532B99 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		2DF744DF25475F9400532B99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2DF744E125475F9800532B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2DF744E425475F9800532B99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2DF744E625475F9800532B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53C15BD4EA560F8EB2B77393 /* Pods-lentochkaSharedCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lentochkaSharedCart.release.xcconfig"; path = "Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart.release.xcconfig"; sourceTree = "<group>"; };
+		A06624344103DE8FA41C94BD /* Pods-lentochkaSharedCart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lentochkaSharedCart.debug.xcconfig"; path = "Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2DF744D225475F9400532B99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				576451A82513CE5017C3DFB5 /* Pods_lentochkaSharedCart.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D5DEAB8254850DD009C1C6F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2DF744DC25475F9400532B99 /* LoginVC.swift */,
+				2D5DEABF25485263009C1C6F /* FriendsVC.swift */,
+				2D5DEAC225485270009C1C6F /* CartVC.swift */,
+				2D5DEAC525485282009C1C6F /* ProfileVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2D5DEABA25485116009C1C6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D5DEAA925484AB0009C1C6F /* ButtonsSettings.swift */,
+				2D5DEA9125479013009C1C6F /* CustomButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2DF744CC25475F9400532B99 = {
+			isa = PBXGroup;
+			children = (
+				2DF744D725475F9400532B99 /* lentochkaSharedCart */,
+				2DF744D625475F9400532B99 /* Products */,
+				BCFDA779C2981917C5074A4C /* Pods */,
+				2ECC900E682462834AD43A0B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2DF744D625475F9400532B99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2DF744D525475F9400532B99 /* lentochkaSharedCart.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2DF744D725475F9400532B99 /* lentochkaSharedCart */ = {
+			isa = PBXGroup;
+			children = (
+				2D5DEABA25485116009C1C6F /* View */,
+				2DF744D825475F9400532B99 /* AppDelegate.swift */,
+				2DF744DA25475F9400532B99 /* SceneDelegate.swift */,
+				2D5DEAB8254850DD009C1C6F /* Controller */,
+				2DF744DE25475F9400532B99 /* Main.storyboard */,
+				2DF744E125475F9800532B99 /* Assets.xcassets */,
+				2DF744E325475F9800532B99 /* LaunchScreen.storyboard */,
+				2DF744E625475F9800532B99 /* Info.plist */,
+				2D94776725476CA8007971A3 /* GoogleService-Info.plist */,
+			);
+			path = lentochkaSharedCart;
+			sourceTree = "<group>";
+		};
+		2ECC900E682462834AD43A0B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCFDA779C2981917C5074A4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A06624344103DE8FA41C94BD /* Pods-lentochkaSharedCart.debug.xcconfig */,
+				53C15BD4EA560F8EB2B77393 /* Pods-lentochkaSharedCart.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2DF744D425475F9400532B99 /* lentochkaSharedCart */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DF744E925475F9800532B99 /* Build configuration list for PBXNativeTarget "lentochkaSharedCart" */;
+			buildPhases = (
+				6BC9F2F72A23880A63B2768A /* [CP] Check Pods Manifest.lock */,
+				2DF744D125475F9400532B99 /* Sources */,
+				2DF744D225475F9400532B99 /* Frameworks */,
+				2DF744D325475F9400532B99 /* Resources */,
+				05B76C8F29E23C9145057736 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lentochkaSharedCart;
+			productName = lentochkaSharedCart;
+			productReference = 2DF744D525475F9400532B99 /* lentochkaSharedCart.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2DF744CD25475F9400532B99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					2DF744D425475F9400532B99 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+				};
+			};
+			buildConfigurationList = 2DF744D025475F9400532B99 /* Build configuration list for PBXProject "lentochkaSharedCart" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2DF744CC25475F9400532B99;
+			productRefGroup = 2DF744D625475F9400532B99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2DF744D425475F9400532B99 /* lentochkaSharedCart */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2DF744D325475F9400532B99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DF744E525475F9800532B99 /* LaunchScreen.storyboard in Resources */,
+				2D94776825476CA8007971A3 /* GoogleService-Info.plist in Resources */,
+				2DF744E225475F9800532B99 /* Assets.xcassets in Resources */,
+				2DF744E025475F9400532B99 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05B76C8F29E23C9145057736 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BC9F2F72A23880A63B2768A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lentochkaSharedCart-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2DF744D125475F9400532B99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */,
+				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
+				2D5DEAAA25484AB0009C1C6F /* ButtonsSettings.swift in Sources */,
+				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
+				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
+				2DF744DB25475F9400532B99 /* SceneDelegate.swift in Sources */,
+				2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */,
+				2D5DEA9225479013009C1C6F /* CustomButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2DF744DE25475F9400532B99 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DF744DF25475F9400532B99 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2DF744E325475F9800532B99 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DF744E425475F9800532B99 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2DF744E725475F9800532B99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2DF744E825475F9800532B99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2DF744EA25475F9800532B99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A06624344103DE8FA41C94BD /* Pods-lentochkaSharedCart.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = THHTRZW98J;
+				INFOPLIST_FILE = lentochkaSharedCart/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = hunnamab.lentochkaSharedCart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2DF744EB25475F9800532B99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53C15BD4EA560F8EB2B77393 /* Pods-lentochkaSharedCart.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = THHTRZW98J;
+				INFOPLIST_FILE = lentochkaSharedCart/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = hunnamab.lentochkaSharedCart;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2DF744D025475F9400532B99 /* Build configuration list for PBXProject "lentochkaSharedCart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF744E725475F9800532B99 /* Debug */,
+				2DF744E825475F9800532B99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DF744E925475F9800532B99 /* Build configuration list for PBXNativeTarget "lentochkaSharedCart" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DF744EA25475F9800532B99 /* Debug */,
+				2DF744EB25475F9800532B99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2DF744CD25475F9400532B99 /* Project object */;
+}
