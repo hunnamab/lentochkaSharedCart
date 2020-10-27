@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,19 +43,21 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="7xU-EE-5Pp">
                                         <rect key="frame" x="62.5" y="140" width="150" height="118"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQn-rf-KZ5" customClass="CustomButton" customModule="lentochkaSharedCart" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQn-rf-KZ5" customClass="CustomButton" customModule="lentochkaSharedCart" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="RZP-BQ-rng"/>
                                                     <constraint firstAttribute="height" constant="45" id="cCo-VU-nJD"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                <state key="normal" title="Войти"/>
+                                                <state key="normal" title="Войти">
+                                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="loginButtonWasPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lta-HW-DlI"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-N6-wUw">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-N6-wUw">
                                                 <rect key="frame" x="0.0" y="85" width="150" height="33"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                 <state key="normal" title="Забыли пароль?">
@@ -71,14 +73,14 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="DAt-4p-C1L" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="LLg-ML-3Z4"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KPF-G0-nTR" secondAttribute="trailing" constant="50" id="Rn9-I3-VgO"/>
                             <constraint firstItem="KPF-G0-nTR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SGV-qh-h5q"/>
                             <constraint firstItem="KPF-G0-nTR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="x0M-m3-EUt"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="FQn-rf-KZ5" id="CdK-oL-pFL"/>
@@ -138,7 +140,6 @@
                                 <state key="normal" image="magnifyingglass" catalog="system"/>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="ahc-QX-ssM"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fVc-31-NLY" firstAttribute="leading" secondItem="ahc-QX-ssM" secondAttribute="leading" constant="20" id="7gC-S7-qiJ"/>
@@ -148,12 +149,13 @@
                             <constraint firstItem="ahc-QX-ssM" firstAttribute="trailing" secondItem="fVc-31-NLY" secondAttribute="trailing" constant="60" id="bY2-31-20S"/>
                             <constraint firstItem="fVc-31-NLY" firstAttribute="top" secondItem="ahc-QX-ssM" secondAttribute="top" constant="20" id="gP5-ok-t1P"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="ahc-QX-ssM"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Каталог" image="square.grid.3x3.fill" catalog="system" id="Ueo-Wl-55b"/>
+                    <tabBarItem key="tabBarItem" title="Каталог" id="Ueo-Wl-55b"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEo-Yr-WY5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-270" y="749"/>
+            <point key="canvasLocation" x="-436" y="927"/>
         </scene>
         <!--FriendsVC-->
         <scene sceneID="3rP-v5-rG4">
@@ -176,7 +178,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sHv-qk-pnL" secondAttribute="height" multiplier="1:1" id="Ra5-pd-KoF"/>
                                 </constraints>
-                                <state key="normal" image="person.fill.badge.plus" catalog="system"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавляйте людей и совершайте покупки вместе" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="gkQ-VR-sy0">
                                 <rect key="frame" x="20" y="20" width="335" height="52"/>
@@ -186,7 +187,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tdH-1f-kNR">
                                 <rect key="frame" x="0.0" y="147" width="375" height="451"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="W1t-aa-KU3">
                                         <rect key="frame" x="0.0" y="28" width="375" height="65"/>
@@ -196,7 +197,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Логин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzn-yt-gxh">
-                                                    <rect key="frame" x="16" y="18.5" width="56" height="28"/>
+                                                    <rect key="frame" x="15" y="18.5" width="56" height="28"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -211,7 +212,6 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="8N0-BW-SoT"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8N0-BW-SoT" firstAttribute="bottom" secondItem="tdH-1f-kNR" secondAttribute="bottom" id="8KU-4P-7dz"/>
@@ -228,12 +228,13 @@
                             <constraint firstItem="tdH-1f-kNR" firstAttribute="trailing" secondItem="8N0-BW-SoT" secondAttribute="trailing" id="qB8-JR-YzS"/>
                             <constraint firstItem="8N0-BW-SoT" firstAttribute="trailing" secondItem="sHv-qk-pnL" secondAttribute="trailing" constant="20" id="tTa-LP-jte"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="8N0-BW-SoT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Люди" image="person.3.fill" catalog="system" id="44H-LY-MC3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ts-3p-QWJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="448.80000000000001" y="748.87556221889065"/>
+            <point key="canvasLocation" x="442" y="1066"/>
         </scene>
         <!--CartVC-->
         <scene sceneID="cf7-OF-SeW">
@@ -242,14 +243,14 @@
                     <view key="view" contentMode="scaleToFill" id="yjC-qD-OeR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="7Su-sO-Iv6"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="7Su-sO-Iv6"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Корзина" image="cart.fill" catalog="system" id="K6e-Nk-daW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDq-lb-YpP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1166" y="749"/>
+            <point key="canvasLocation" x="1166" y="895"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="sN7-yr-4ER">
@@ -258,14 +259,14 @@
                     <view key="view" contentMode="scaleToFill" id="UiT-rr-eW0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="UEu-Nz-QzI"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="UEu-Nz-QzI"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Профиль" image="person.circle" catalog="system" id="qJz-0W-FcD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="weI-xM-QF9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1865" y="749"/>
+            <point key="canvasLocation" x="1884" y="854"/>
         </scene>
     </scenes>
     <resources>
@@ -273,10 +274,5 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <image name="person.fill.badge.plus" catalog="system" width="128" height="124"/>
-        <image name="square.grid.3x3.fill" catalog="system" width="128" height="112"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

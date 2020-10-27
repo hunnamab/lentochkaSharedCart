@@ -14,7 +14,6 @@
 		2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */; };
 		2D94776825476CA8007971A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D94776725476CA8007971A3 /* GoogleService-Info.plist */; };
 		2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744D825475F9400532B99 /* AppDelegate.swift */; };
-		2DF744DB25475F9400532B99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744DA25475F9400532B99 /* SceneDelegate.swift */; };
 		2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744DC25475F9400532B99 /* LoginVC.swift */; };
 		2DF744E025475F9400532B99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744DE25475F9400532B99 /* Main.storyboard */; };
 		2DF744E225475F9800532B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744E125475F9800532B99 /* Assets.xcassets */; };
@@ -32,7 +31,6 @@
 		2D94776725476CA8007971A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2DF744D525475F9400532B99 /* lentochkaSharedCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lentochkaSharedCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF744D825475F9400532B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2DF744DA25475F9400532B99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2DF744DC25475F9400532B99 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		2DF744DF25475F9400532B99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2DF744E125475F9800532B99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 			children = (
 				2D5DEABA25485116009C1C6F /* View */,
 				2DF744D825475F9400532B99 /* AppDelegate.swift */,
-				2DF744DA25475F9400532B99 /* SceneDelegate.swift */,
 				2D5DEAB8254850DD009C1C6F /* Controller */,
 				2DF744DE25475F9400532B99 /* Main.storyboard */,
 				2DF744E125475F9800532B99 /* Assets.xcassets */,
@@ -244,7 +241,6 @@
 				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
-				2DF744DB25475F9400532B99 /* SceneDelegate.swift in Sources */,
 				2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */,
 				2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */,
 				2D5DEA9225479013009C1C6F /* CustomButton.swift in Sources */,
@@ -324,7 +320,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -379,7 +375,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
