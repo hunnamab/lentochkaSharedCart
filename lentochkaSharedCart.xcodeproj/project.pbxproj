@@ -11,6 +11,7 @@
 		2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEABF25485263009C1C6F /* FriendsVC.swift */; };
 		2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC225485270009C1C6F /* CartVC.swift */; };
 		2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC525485282009C1C6F /* ProfileVC.swift */; };
+		2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */; };
 		2D94776825476CA8007971A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D94776725476CA8007971A3 /* GoogleService-Info.plist */; };
 		2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744D825475F9400532B99 /* AppDelegate.swift */; };
 		2DF744DB25475F9400532B99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744DA25475F9400532B99 /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		2D5DEABF25485263009C1C6F /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		2D5DEAC225485270009C1C6F /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		2D5DEAC525485282009C1C6F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogVC.swift; sourceTree = "<group>"; };
 		2D94776725476CA8007971A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2DF744D525475F9400532B99 /* lentochkaSharedCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lentochkaSharedCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF744D825475F9400532B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				2DF744DC25475F9400532B99 /* LoginVC.swift */,
+				2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */,
 				2D5DEABF25485263009C1C6F /* FriendsVC.swift */,
 				2D5DEAC225485270009C1C6F /* CartVC.swift */,
 				2D5DEAC525485282009C1C6F /* ProfileVC.swift */,
@@ -243,6 +246,7 @@
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2DF744DB25475F9400532B99 /* SceneDelegate.swift in Sources */,
 				2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */,
+				2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */,
 				2D5DEA9225479013009C1C6F /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

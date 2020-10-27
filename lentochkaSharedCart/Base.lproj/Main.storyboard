@@ -117,7 +117,7 @@
         <!--CatalogVC-->
         <scene sceneID="fuu-Hk-G0g">
             <objects>
-                <viewController title="CatalogVC" modalPresentationStyle="fullScreen" id="g2E-VA-WEj" customClass="HomeVC" customModule="lentochkaSharedCart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CatalogVC" modalPresentationStyle="fullScreen" id="g2E-VA-WEj" customClass="CatalogVC" customModule="lentochkaSharedCart" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BEe-CH-8kt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
