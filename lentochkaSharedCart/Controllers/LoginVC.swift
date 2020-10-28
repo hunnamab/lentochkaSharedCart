@@ -15,30 +15,23 @@ class LoginVC: UIViewController {
     var loginButton = UIButton()
     var forgotPasswordLabel = UILabel()
     
+    var viewModel: LoginVM!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setConstraints()
+        let user = User(login: loginTextField.text ?? "", password: passwordTextField.text ?? "", cart: [], group: [])
+        viewModel = LoginVM(user: user)
         loginButton.addTarget(self, action: #selector(presentTabBar), for: .touchUpInside)
     }
-    
-    func authoriseUser(login: UITextField, password: UITextField) {
-        
-        guard let login = login.text else { return }
-        guard let password = password.text else { return }
-        
-        Auth.auth().signIn(withEmail: login, password: password) { (result, error) in
-            if let err = error {
-                print(err.localizedDescription)
-            } else {
-                print("Successfully logged in")
-            }
-        }
-    }
+}
+
+extension LoginVC {
     
     @objc func presentTabBar() {
-        authoriseUser(login: loginTextField, password: passwordTextField)
+        viewModel.loginUser(login: viewModel.user.login, password: viewModel.user.password)
         let tabBarVC = UITabBarController()
         
         let catalogVC = CatalogVC()
@@ -63,6 +56,10 @@ class LoginVC: UIViewController {
         UITabBar.appearance().tintColor = UIColor(red: 0.168627451, green: 0.1294117647, blue: 0.5764705882, alpha: 1)
         present(tabBarVC, animated: true)
     }
+    
+}
+
+extension LoginVC {
     
     private func setUI() {
         view.backgroundColor = .white
@@ -100,6 +97,10 @@ class LoginVC: UIViewController {
         forgotPasswordLabel.textColor = .black
     }
     
+}
+
+extension LoginVC {
+    
     private func setConstraints() {
         let loginStackView = UIStackView(arrangedSubviews: [loginTextField, passwordTextField])
         loginStackView.axis = .vertical
@@ -129,5 +130,5 @@ class LoginVC: UIViewController {
             //stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
         ])
     }
+    
 }
-
