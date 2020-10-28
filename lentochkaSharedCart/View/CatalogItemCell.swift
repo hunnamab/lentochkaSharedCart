@@ -13,7 +13,7 @@ class CatalogItemCell: UITableViewCell {
     let itemImageView = UIImageView()
     let itemNameLabel = UILabel()
     let itemPriceLabel = UILabel()
-    let button = UIButton(type: .system)
+    let button = CatalogButton(currentState: .add, title: "+")
     
     func setUp(withItem item: CatalogItemCellModel) {
         itemImageView.image = UIImage(data: item.image)
@@ -26,24 +26,28 @@ class CatalogItemCell: UITableViewCell {
     
     private func setUpElements() {
         accessoryType = .disclosureIndicator
-        button.setTitle("Add", for: .normal)
-        itemImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.layer.cornerRadius = 6
         itemImageView.contentMode = .scaleAspectFit
         itemNameLabel.numberOfLines = 0
+        itemNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        itemPriceLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
     
     private func setUpConstraints() {
+        itemImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemImageView)
         
         let buttonStackView = UIStackView(arrangedSubviews: [itemPriceLabel, button])
+        button.widthAnchor.constraint(equalToConstant: 35).isActive = true
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .fillProportionally
         buttonStackView.alignment = .center
         
         let itemStackView = UIStackView(arrangedSubviews: [itemNameLabel, buttonStackView])
         itemStackView.axis = .vertical
-        itemStackView.distribution = .equalSpacing
         itemStackView.alignment = .fill
+        itemStackView.spacing = 7
         itemStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemStackView)
         

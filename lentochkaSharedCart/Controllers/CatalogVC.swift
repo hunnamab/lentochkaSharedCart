@@ -60,7 +60,13 @@ class CatalogVC: UITableViewController {
         for item in extendedCatalogItems {
             guard let imageUrl = URL(string: item.imageSmallURL) else { return }
             let imageData = try! Data(contentsOf: imageUrl)
-            let catalogItem = CatalogItemCellModel(name: item.name, price: item.goodsUnitList[0].price, image: imageData, unitName: item.goodsUnitList[0].unitName)
+            let name = item.name.components(separatedBy: "   ")[0]
+            let catalogItem = CatalogItemCellModel(
+                name: name,
+                price: item.goodsUnitList[0].price,
+                image: imageData,
+                unitName: item.goodsUnitList[0].unitName
+            )
             self.catalogItems.append(catalogItem)
         }
     }
