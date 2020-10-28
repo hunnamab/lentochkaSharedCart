@@ -19,6 +19,33 @@ class LoginVC: UIViewController {
         
         setUI()
         setConstraints()
+        loginButton.addTarget(self, action: #selector(presentTabBar), for: .touchUpInside)
+    }
+    
+    @objc func presentTabBar() {
+        let tabBarVC = UITabBarController()
+        
+        let catalogVC = CatalogVC()
+        catalogVC.view.backgroundColor = .systemPink
+        let navVC = UINavigationController(rootViewController: catalogVC)
+        navVC.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(), tag: 0)
+        
+        let friendsVC = FriendsVC()
+        friendsVC.view.backgroundColor = .systemTeal
+        friendsVC.tabBarItem = UITabBarItem(title: "Люди", image: UIImage(), tag: 1)
+        
+        let cartVC = CartVC()
+        cartVC.view.backgroundColor = .systemBlue
+        cartVC.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(), tag: 2)
+        
+        let profileVC = ProfileVC()
+        profileVC.view.backgroundColor = .systemYellow
+        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(), tag: 3)
+        
+        tabBarVC.viewControllers = [navVC, friendsVC, cartVC, profileVC]
+        tabBarVC.modalPresentationStyle = .fullScreen
+        UITabBar.appearance().tintColor = .purple
+        present(tabBarVC, animated: true)
     }
     
     private func setUI() {
