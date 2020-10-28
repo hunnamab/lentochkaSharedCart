@@ -28,23 +28,23 @@ class LoginVC: UIViewController {
         let catalogVC = CatalogVC()
         catalogVC.view.backgroundColor = .systemPink
         let navVC = UINavigationController(rootViewController: catalogVC)
-        navVC.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(), tag: 0)
+        navVC.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(named: "Catalog"), tag: 0)
         
         let friendsVC = FriendsVC()
         friendsVC.view.backgroundColor = .systemTeal
-        friendsVC.tabBarItem = UITabBarItem(title: "Люди", image: UIImage(), tag: 1)
-        
+        friendsVC.tabBarItem = UITabBarItem(title: "Люди", image: UIImage(named: "Friends"), tag: 1)
+
         let cartVC = CartVC()
         cartVC.view.backgroundColor = .systemBlue
-        cartVC.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(), tag: 2)
-        
+        cartVC.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(named: "Cart"), tag: 2)
+
         let profileVC = ProfileVC()
         profileVC.view.backgroundColor = .systemYellow
-        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(), tag: 3)
-        
+        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "Profile"), tag: 3)
+
         tabBarVC.viewControllers = [navVC, friendsVC, cartVC, profileVC]
         tabBarVC.modalPresentationStyle = .fullScreen
-        UITabBar.appearance().tintColor = .purple
+        UITabBar.appearance().tintColor = UIColor(red: 0.168627451, green: 0.1294117647, blue: 0.5764705882, alpha: 1)
         present(tabBarVC, animated: true)
     }
     
@@ -70,11 +70,15 @@ class LoginVC: UIViewController {
         passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         loginButton.setTitle("Войти", for: .normal)
-        loginButton.setTitleColor(.purple, for: .normal)
-        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        loginButton.setTitleColor(.white, for: .normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        loginButton.layer.cornerRadius = 6.0
+        loginButton.backgroundColor = UIColor(red: 0.168627451, green: 0.1294117647, blue: 0.5764705882, alpha: 1)
+        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         
         forgotPasswordLabel.text = "Забыли пароль?"
-        forgotPasswordLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        forgotPasswordLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         forgotPasswordLabel.textColor = .black
     }
     
@@ -88,12 +92,13 @@ class LoginVC: UIViewController {
         let buttonStackView = UIStackView(arrangedSubviews: [loginButton, forgotPasswordLabel])
         buttonStackView.axis = .vertical
         buttonStackView.distribution = .fillEqually
-        buttonStackView.spacing = 50
+        buttonStackView.spacing = 40
         buttonStackView.alignment = .center
         
         let stackView = UIStackView(arrangedSubviews: [loginStackView, buttonStackView])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
+        stackView.spacing = 30
         stackView.alignment = .fill
         
         view.addSubview(stackView)
@@ -103,7 +108,7 @@ class LoginVC: UIViewController {
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
+            //stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
         ])
     }
 }
