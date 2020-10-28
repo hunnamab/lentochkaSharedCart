@@ -12,7 +12,7 @@ class LoginVC: UIViewController {
 
     var loginTextField = UITextField()
     var passwordTextField = UITextField()
-    var loginButton = UIButton()
+    var loginButton = UIButton(type: .system)
     var forgotPasswordLabel = UILabel()
     
     var viewModel: LoginVM!
@@ -35,8 +35,9 @@ extension LoginVC {
         let tabBarVC = UITabBarController()
         
         let catalogVC = CatalogVC()
-        catalogVC.view.backgroundColor = .systemPink
         let navVC = UINavigationController(rootViewController: catalogVC)
+        navVC.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         navVC.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(named: "Catalog"), tag: 0)
         
         let friendsVC = FriendsVC()

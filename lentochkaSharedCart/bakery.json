@@ -1,0 +1,476 @@
+[
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4672\/467284H.png?mtime=5db96ed5",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/4672\/467284H.png?mtime=5db96ed5",
+    "Expired" : false,
+    "Count" : "992",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "67",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "467284",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : "Сладкая",
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/4672\/467284H.png?mtime=5db96ed5",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/4672\/467284H.png?mtime=5db96ed5",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Донат с карамельной начинкой и с карамельным покрытием   67г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/4672\/467284H.png?mtime=5db96ed5",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4672\/467284H.png?mtime=5db96ed5",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4672\/467284B.png?mtime=5db96ed5",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4672\/467284S.png?mtime=5db96ed5"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "OldPrice" : null,
+        "UnitName" : "шт",
+        "Price" : 68,
+        "Type" : "basic",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103455,
+    "Slug" : "donat-s-karamelnoj-nachinkoj-i-s-karamelnym-pokrytiem",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 992,
+    "OriginalId" : "467284",
+    "InCartCount" : 0,
+    "NetWeight" : "67",
+    "Price" : "68",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  },
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4672\/467286H.png?mtime=5db96de6",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/4672\/467286H.png?mtime=5db96de6",
+    "Expired" : false,
+    "Count" : "1000",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "67",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "467286",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : "Сладкая",
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/4672\/467286H.png?mtime=5db96de6",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/4672\/467286H.png?mtime=5db96de6",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Донат с клубничной начинкой и с разноцветной посыпкой   67г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/4672\/467286H.png?mtime=5db96de6",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4672\/467286H.png?mtime=5db96de6",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4672\/467286B.png?mtime=5db96de6",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4672\/467286S.png?mtime=5db96de6"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "OldPrice" : null,
+        "UnitName" : "шт",
+        "Price" : 68,
+        "Type" : "basic",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103457,
+    "Slug" : "donat-s-klubnichnoj-nachinkoj-i-s-raznocvetnoj-posypkoj",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 1000,
+    "OriginalId" : "467286",
+    "InCartCount" : 0,
+    "NetWeight" : "67",
+    "Price" : "68",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  },
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4672\/467285H.png?mtime=5db96d8e",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/4672\/467285H.png?mtime=5db96d8e",
+    "Expired" : false,
+    "Count" : "993",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "71",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "467285",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : "Сладкая",
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/4672\/467285H.png?mtime=5db96d8e",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/4672\/467285H.png?mtime=5db96d8e",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Донат с Ореховой начинкой покрытый дробленым орехом   71г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/4672\/467285H.png?mtime=5db96d8e",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4672\/467285H.png?mtime=5db96d8e",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4672\/467285B.png?mtime=5db96d8e",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4672\/467285S.png?mtime=5db96d8e"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "OldPrice" : null,
+        "UnitName" : "шт",
+        "Price" : 68,
+        "Type" : "basic",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103456,
+    "Slug" : "donat-s-orekhovoj-nachinkoj-pokrytyj-droblenym-orekhom",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 993,
+    "OriginalId" : "467285",
+    "InCartCount" : 0,
+    "NetWeight" : "71",
+    "Price" : "68",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  },
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/5083\/508354H.png?mtime=5db2f082",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/5083\/508354H.png?mtime=5db2f082",
+    "Expired" : false,
+    "Count" : "805",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "60",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "508354",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : "Сладкая",
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/5083\/508354H.png?mtime=5db2f082",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/5083\/508354H.png?mtime=5db2f082",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Капкейк с маскарпоне   60г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/5083\/508354H.png?mtime=5db2f082",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/5083\/508354H.png?mtime=5db2f082",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508354B.png?mtime=5db2f082",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508354S.png?mtime=5db2f082"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "OldPrice" : null,
+        "UnitName" : "шт",
+        "Price" : 34,
+        "Type" : "basic",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103467,
+    "Slug" : "kapkejk-s-maskarpone",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 805,
+    "Purchased" : "2020-10-05 10:47:53",
+    "InCartCount" : 0,
+    "OriginalId" : "508354",
+    "Price" : "34",
+    "NetWeight" : "0",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  },
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/5083\/508355H.png?mtime=5d7776ea",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/5083\/508355H.png?mtime=5d7776ea",
+    "Expired" : false,
+    "Count" : "510",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "60",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "508355",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : "Сладкая",
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/5083\/508355H.png?mtime=5d7776ea",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/5083\/508355H.png?mtime=5d7776ea",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Капкейк творожно-сливочный   60г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/5083\/508355H.png?mtime=5d7776ea",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/5083\/508355H.png?mtime=5d7776ea",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508355B.png?mtime=5d7776ea",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508355S.png?mtime=5d7776ea"
+      },
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/5083\/508355_1H.png?mtime=5d7754e0",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508355_1B.png?mtime=5d7754e0",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508355_1S.png?mtime=5d7754e0"
+      },
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/5083\/508355_2H.png?mtime=5d7754e4",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508355_2B.png?mtime=5d7754e4",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/5083\/508355_2S.png?mtime=5d7754e4"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "Price" : 42,
+        "OldPrice" : null,
+        "Type" : "basic",
+        "UnitName" : "шт",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103468,
+    "Slug" : "kapkejk-tvorozhno-slivochnyj",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 510,
+    "Purchased" : "2020-09-22 21:44:31",
+    "InCartCount" : 0,
+    "OriginalId" : "508355",
+    "Price" : "42",
+    "NetWeight" : "0",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  },
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4337\/433755H.png?mtime=5db2f086",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/4337\/433755H.png?mtime=5db2f086",
+    "Expired" : false,
+    "Count" : "991",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "350",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "433755",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : null,
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/4337\/433755H.png?mtime=5db2f086",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/4337\/433755H.png?mtime=5db2f086",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Лепешка узбекская из тандыра   350г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/4337\/433755H.png?mtime=5db2f086",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/4337\/433755H.png?mtime=5db2f086",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4337\/433755B.png?mtime=5db2f086",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/4337\/433755S.png?mtime=5db2f086"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "Price" : 34,
+        "OldPrice" : null,
+        "Type" : "basic",
+        "UnitName" : "шт",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103449,
+    "Slug" : "lepeshka-uzbekskaja-iz-tandyra",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 991,
+    "OriginalId" : "433755",
+    "InCartCount" : 0,
+    "NetWeight" : "300",
+    "Price" : "34",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  },
+  {
+    "ImageUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/2139\/213916H.png?mtime=5dcaca76",
+    "Ads" : null,
+    "SubscribeSMS" : false,
+    "IsTree" : false,
+    "ImagePreviewUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/500x500\/images\/photo\/2139\/213916H.png?mtime=5dcaca76",
+    "Expired" : false,
+    "Count" : "1000",
+    "SizeLength" : "0",
+    "Manufacturer" : "",
+    "BruttoWeight" : "55",
+    "IsTobacco" : false,
+    "SubscribeEmail" : false,
+    "Id" : "213916",
+    "IsAllowHomeDelivery" : true,
+    "DefaultCategoryName" : "Сладкая",
+    "Preorder" : false,
+    "IsWeight" : false,
+    "SuggestsGoodsIds" : [
+
+    ],
+    "FavoriteCategoryId" : null,
+    "IsAlcohol" : false,
+    "ImageSmallUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/100x100\/images\/photo\/2139\/213916H.png?mtime=5dcaca76",
+    "ImageHighUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/900x900\/images\/photo\/2139\/213916H.png?mtime=5dcaca76",
+    "CrosslinksGoodsIds" : [
+
+    ],
+    "SizeWidth" : "0",
+    "Name" : "Пончик Ванильный   50г",
+    "ImageBigUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/250x250\/images\/photo\/2139\/213916H.png?mtime=5dcaca76",
+    "Brand" : "",
+    "SaleUnit" : "ST",
+    "Images" : [
+      {
+        "ResampleUrl" : "https:\/\/lentatest.utkonos.ru\/resample\/{size}\/images\/photo\/2139\/213916H.png?mtime=5dcaca76",
+        "SmallUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/2139\/213916B.png?mtime=5dcaca76",
+        "BigUrl" : "https:\/\/lentatest.utkonos.ru\/images\/photo\/2139\/213916S.png?mtime=5dcaca76"
+      }
+    ],
+    "GoodsUnitList" : [
+      {
+        "Price" : 44.189999999999998,
+        "OldPrice" : null,
+        "Type" : "basic",
+        "UnitName" : "шт",
+        "UnitType" : "ST"
+      }
+    ],
+    "ModelId" : 2103436,
+    "Slug" : "ponchik-vanilnyj",
+    "AlternativesGoodsIds" : [
+
+    ],
+    "ShowAlcoholNotDelivered" : false,
+    "MaxSaleQuantity" : 1000,
+    "OriginalId" : "213916",
+    "InCartCount" : 0,
+    "NetWeight" : "50",
+    "Price" : "44.19",
+    "SizeHeight" : "0",
+    "GoodsCategoryId" : null,
+    "Videos" : [
+
+    ]
+  }
+]

@@ -7,12 +7,11 @@
 
 import Foundation
 
-struct ProductModel {
+struct CatalogItemModel: Decodable {
     let imageURL: String
     let imagePreviewURL: String
     let id: String
     let isAllowHomeDelivery: Bool
-    let defaultCategoryName: String?
     let count, manufacturer, bruttoWeight: String
     let imageSmallURL, imageHighURL: String
     let name: String

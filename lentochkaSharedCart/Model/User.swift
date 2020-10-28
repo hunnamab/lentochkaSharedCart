@@ -10,6 +10,6 @@ import Foundation
 struct User {
     var login: String
     var password: String
-    var cart: [ProductModel]
+    var cart: [CatalogItemModel]
     var group: [User]
 }
