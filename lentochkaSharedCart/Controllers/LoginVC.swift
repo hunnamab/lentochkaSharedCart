@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController {
 
@@ -14,15 +15,23 @@ class LoginVC: UIViewController {
     var loginButton = UIButton()
     var forgotPasswordLabel = UILabel()
     
+    var viewModel: LoginVM!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUI()
         setConstraints()
+        let user = User(login: loginTextField.text ?? "", password: passwordTextField.text ?? "", cart: [], group: [])
+        viewModel = LoginVM(user: user)
         loginButton.addTarget(self, action: #selector(presentTabBar), for: .touchUpInside)
     }
+}
+
+extension LoginVC {
     
     @objc func presentTabBar() {
+        viewModel.loginUser(login: viewModel.user.login, password: viewModel.user.password)
         let tabBarVC = UITabBarController()
         
         let catalogVC = CatalogVC()
@@ -48,10 +57,15 @@ class LoginVC: UIViewController {
         present(tabBarVC, animated: true)
     }
     
+}
+
+extension LoginVC {
+    
     private func setUI() {
         view.backgroundColor = .white
         
         loginTextField.placeholder = "Логин"
+        loginTextField.autocapitalizationType = .none
         loginTextField.textAlignment = .center
         loginTextField.textColor = .black
         loginTextField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
@@ -61,6 +75,7 @@ class LoginVC: UIViewController {
         loginTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         passwordTextField.placeholder = "Пароль"
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.textAlignment = .center
         passwordTextField.textColor = .black
         passwordTextField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
@@ -81,6 +96,10 @@ class LoginVC: UIViewController {
         forgotPasswordLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         forgotPasswordLabel.textColor = .black
     }
+    
+}
+
+extension LoginVC {
     
     private func setConstraints() {
         let loginStackView = UIStackView(arrangedSubviews: [loginTextField, passwordTextField])
@@ -111,5 +130,5 @@ class LoginVC: UIViewController {
             //stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
         ])
     }
+    
 }
-

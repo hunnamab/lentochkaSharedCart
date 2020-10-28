@@ -11,6 +11,10 @@
 		2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC225485270009C1C6F /* CartVC.swift */; };
 		2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC525485282009C1C6F /* ProfileVC.swift */; };
 		2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */; };
+		2D92FDC62549AD2200E777EF /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92FDC52549AD2200E777EF /* LoginVM.swift */; };
+		2D92FDCC2549B26F00E777EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92FDCB2549B26F00E777EF /* User.swift */; };
+		2D92FDD92549C2E900E777EF /* CatalogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92FDD82549C2E900E777EF /* CatalogItemCell.swift */; };
+		2D92FDDC2549C33600E777EF /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D92FDDB2549C33600E777EF /* FriendCell.swift */; };
 		2D94776825476CA8007971A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D94776725476CA8007971A3 /* GoogleService-Info.plist */; };
 		2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744D825475F9400532B99 /* AppDelegate.swift */; };
 		2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF744DC25475F9400532B99 /* LoginVC.swift */; };
@@ -27,6 +31,10 @@
 		2D5DEAC225485270009C1C6F /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		2D5DEAC525485282009C1C6F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogVC.swift; sourceTree = "<group>"; };
+		2D92FDC52549AD2200E777EF /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		2D92FDCB2549B26F00E777EF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2D92FDD82549C2E900E777EF /* CatalogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogItemCell.swift; sourceTree = "<group>"; };
+		2D92FDDB2549C33600E777EF /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		2D94776725476CA8007971A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2DF744D525475F9400532B99 /* lentochkaSharedCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lentochkaSharedCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF744D825475F9400532B99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +60,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D5DEAB8254850DD009C1C6F /* Controller */ = {
+		2D5DEAB8254850DD009C1C6F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D92FDC52549AD2200E777EF /* LoginVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2D5DEABA25485116009C1C6F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D92FDD82549C2E900E777EF /* CatalogItemCell.swift */,
+				2D92FDDB2549C33600E777EF /* FriendCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2D92FDBF2549A95B00E777EF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				2DF744DC25475F9400532B99 /* LoginVC.swift */,
@@ -61,14 +86,14 @@
 				2D5DEAC225485270009C1C6F /* CartVC.swift */,
 				2D5DEAC525485282009C1C6F /* ProfileVC.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		2D5DEABA25485116009C1C6F /* View */ = {
+		2D92FDC02549A9FF00E777EF /* Network */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = View;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		2DF744CC25475F9400532B99 = {
@@ -92,11 +117,13 @@
 		2DF744D725475F9400532B99 /* lentochkaSharedCart */ = {
 			isa = PBXGroup;
 			children = (
+				2D92FDC02549A9FF00E777EF /* Network */,
+				2D92FDBF2549A95B00E777EF /* Controllers */,
 				E52464AD25497367004E76CF /* Model */,
 				2D5DEABA25485116009C1C6F /* View */,
-				2DF744D825475F9400532B99 /* AppDelegate.swift */,
-				2D5DEAB8254850DD009C1C6F /* Controller */,
+				2D5DEAB8254850DD009C1C6F /* ViewModel */,
 				2DF744DE25475F9400532B99 /* Main.storyboard */,
+				2DF744D825475F9400532B99 /* AppDelegate.swift */,
 				2DF744E125475F9800532B99 /* Assets.xcassets */,
 				2DF744E325475F9800532B99 /* LaunchScreen.storyboard */,
 				2DF744E625475F9800532B99 /* Info.plist */,
@@ -126,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				E52464AE25497405004E76CF /* ProductModel.swift */,
+				2D92FDCB2549B26F00E777EF /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -245,12 +273,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D92FDDC2549C33600E777EF /* FriendCell.swift in Sources */,
 				2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */,
 				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
+				2D92FDD92549C2E900E777EF /* CatalogItemCell.swift in Sources */,
+				2D92FDC62549AD2200E777EF /* LoginVM.swift in Sources */,
 				2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */,
 				E52464AF25497405004E76CF /* ProductModel.swift in Sources */,
+				2D92FDCC2549B26F00E777EF /* User.swift in Sources */,
 				2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
