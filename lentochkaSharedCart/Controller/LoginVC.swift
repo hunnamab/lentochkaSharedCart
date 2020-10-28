@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController {
 
@@ -22,7 +23,22 @@ class LoginVC: UIViewController {
         loginButton.addTarget(self, action: #selector(presentTabBar), for: .touchUpInside)
     }
     
+    func authoriseUser(login: UITextField, password: UITextField) {
+        
+        guard let login = login.text else { return }
+        guard let password = password.text else { return }
+        
+        Auth.auth().signIn(withEmail: login, password: password) { (result, error) in
+            if let err = error {
+                print(err.localizedDescription)
+            } else {
+                print("Successfully logged in")
+            }
+        }
+    }
+    
     @objc func presentTabBar() {
+        authoriseUser(login: loginTextField, password: passwordTextField)
         let tabBarVC = UITabBarController()
         
         let catalogVC = CatalogVC()
@@ -52,6 +68,7 @@ class LoginVC: UIViewController {
         view.backgroundColor = .white
         
         loginTextField.placeholder = "Логин"
+        loginTextField.autocapitalizationType = .none
         loginTextField.textAlignment = .center
         loginTextField.textColor = .black
         loginTextField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
@@ -61,6 +78,7 @@ class LoginVC: UIViewController {
         loginTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         passwordTextField.placeholder = "Пароль"
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.textAlignment = .center
         passwordTextField.textColor = .black
         passwordTextField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
