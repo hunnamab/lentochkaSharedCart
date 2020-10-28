@@ -18,6 +18,7 @@
 		2DF744E225475F9800532B99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744E125475F9800532B99 /* Assets.xcassets */; };
 		2DF744E525475F9800532B99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF744E325475F9800532B99 /* LaunchScreen.storyboard */; };
 		576451A82513CE5017C3DFB5 /* Pods_lentochkaSharedCart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */; };
+		E52464AF25497405004E76CF /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52464AE25497405004E76CF /* ProductModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2DF744E625475F9800532B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53C15BD4EA560F8EB2B77393 /* Pods-lentochkaSharedCart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lentochkaSharedCart.release.xcconfig"; path = "Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart.release.xcconfig"; sourceTree = "<group>"; };
 		A06624344103DE8FA41C94BD /* Pods-lentochkaSharedCart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lentochkaSharedCart.debug.xcconfig"; path = "Target Support Files/Pods-lentochkaSharedCart/Pods-lentochkaSharedCart.debug.xcconfig"; sourceTree = "<group>"; };
+		E52464AE25497405004E76CF /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		2DF744D725475F9400532B99 /* lentochkaSharedCart */ = {
 			isa = PBXGroup;
 			children = (
+				E52464AD25497367004E76CF /* Model */,
 				2D5DEABA25485116009C1C6F /* View */,
 				2DF744D825475F9400532B99 /* AppDelegate.swift */,
 				2D5DEAB8254850DD009C1C6F /* Controller */,
@@ -117,6 +120,14 @@
 				53C15BD4EA560F8EB2B77393 /* Pods-lentochkaSharedCart.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E52464AD25497367004E76CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E52464AE25497405004E76CF /* ProductModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +250,7 @@
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */,
+				E52464AF25497405004E76CF /* ProductModel.swift in Sources */,
 				2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
