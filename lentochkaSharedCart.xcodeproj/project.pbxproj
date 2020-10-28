@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D5DEA9225479013009C1C6F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEA9125479013009C1C6F /* CustomButton.swift */; };
 		2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEABF25485263009C1C6F /* FriendsVC.swift */; };
 		2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC225485270009C1C6F /* CartVC.swift */; };
 		2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC525485282009C1C6F /* ProfileVC.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lentochkaSharedCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D5DEA9125479013009C1C6F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		2D5DEABF25485263009C1C6F /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		2D5DEAC225485270009C1C6F /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		2D5DEAC525485282009C1C6F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 		2D5DEABA25485116009C1C6F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2D5DEA9125479013009C1C6F /* CustomButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,7 +240,6 @@
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */,
 				2D5DEACC2548A1FC009C1C6F /* CatalogVC.swift in Sources */,
-				2D5DEA9225479013009C1C6F /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
