@@ -13,7 +13,7 @@ class CatalogItemCell: UITableViewCell {
     let itemImageView = UIImageView()
     let itemNameLabel = UILabel()
     let itemPriceLabel = UILabel()
-    let button = CatalogButton(currentState: .add, title: "+")
+    let button = CatalogButton(currentState: .add(.small), title: "+")
     
     func setUp(withItem item: CatalogItemCellModel) {
         itemImageView.image = UIImage(data: item.image)
@@ -24,12 +24,20 @@ class CatalogItemCell: UITableViewCell {
         setUpConstraints()
     }
     
+    func toggleState() {
+        print("HERE")
+        button.setTitle("-", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        layoutIfNeeded()
+    }
+    
     private func setUpElements() {
         accessoryType = .disclosureIndicator
-        
         button.layer.cornerRadius = 6
         itemImageView.contentMode = .scaleAspectFit
-        itemNameLabel.numberOfLines = 0
+        itemNameLabel.numberOfLines = 3
+        itemNameLabel.adjustsFontSizeToFitWidth = true
+        itemNameLabel.minimumScaleFactor = 0.3
         itemNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         itemPriceLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }

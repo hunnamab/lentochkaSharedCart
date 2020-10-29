@@ -40,6 +40,7 @@ class CatalogVC: UITableViewController {
     
     private func setUpSearchBar() {
         let searchController = UISearchController()
+        searchController.searchBar.tintColor = .blue
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -50,6 +51,7 @@ class CatalogVC: UITableViewController {
 }
 
 // MARK: - TableViewDataSource:
+
 extension CatalogVC {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -62,19 +64,28 @@ extension CatalogVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CatalogItemCell.reuseID) as! CatalogItemCell
         let item = isSearching ? filteredItems[indexPath.row] : catalogItems[indexPath.row]
+        // создать в фабрике модель (добавить в нее поле "добавлено в корзину"
+        // - отдельный метод, который берет инфу с сервера и проверяет)
         cell.setUp(withItem: item)
+        cell.button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         
         return cell
+    }
+    
+    @objc func addButtonTapped(_ sender: CatalogButton) {
+        sender.toggleState()
     }
 }
 
 // MARK: - TableViewDelegate:
+
 extension CatalogVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let item = isSearching ? filteredExtendedItems[indexPath.row] : extendedCatalogItems[indexPath.row]
         let detailCatalogItemVC = DetailCatalogItemVC(withItem: item)
         present(detailCatalogItemVC, animated: true)
@@ -83,6 +94,7 @@ extension CatalogVC {
 }
 
 // MARK: - SearchResultsUpdating, SearchBarDelegate
+
 extension CatalogVC: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }

@@ -13,7 +13,7 @@ class DetailCatalogItemVC: UIViewController {
     let itemNameLabel = UILabel()
     let weightLabel = UILabel()
     let itemPriceLabel = UILabel()
-    let button = CatalogButton(currentState: .add, title: "Добавить")
+    let button = CatalogButton(currentState: .add(.large), title: "Добавить")
     
     init(withItem item: CatalogItemModel) {
         super.init(nibName: .none, bundle: .none)
@@ -44,17 +44,29 @@ class DetailCatalogItemVC: UIViewController {
         let imageHeight = view.bounds.size.height / 3
         itemImageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         
-        itemNameLabel.numberOfLines = 0
+        itemNameLabel.numberOfLines = 4
+        itemNameLabel.adjustsFontSizeToFitWidth = true
+        itemPriceLabel.minimumScaleFactor = 0.5
         itemNameLabel.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         itemPriceLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    @objc func addButtonTapped(_ sender: CatalogButton) {
+        sender.toggleState()
     }
     
     private func setUpConstraints() {
-        let stackView = UIStackView(arrangedSubviews: [itemImageView, itemNameLabel, weightLabel, itemPriceLabel])
+        let bottomStackView = UIStackView(arrangedSubviews: [weightLabel, itemPriceLabel])
+        bottomStackView.axis = .vertical
+        bottomStackView.alignment = .leading
+        bottomStackView.spacing = 5
+        
+        let stackView = UIStackView(arrangedSubviews: [itemImageView, itemNameLabel, bottomStackView])
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
         stackView.alignment = .leading
+        stackView.setCustomSpacing(30, after: itemImageView)
+        stackView.setCustomSpacing(20, after: itemNameLabel)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
@@ -66,7 +78,6 @@ class DetailCatalogItemVC: UIViewController {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -buttonHeight),
-            stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor),

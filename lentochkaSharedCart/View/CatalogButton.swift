@@ -9,16 +9,21 @@ import UIKit
 
 class CatalogButton: UIButton {
     
+    enum ButtonSize {
+        case small
+        case large
+    }
+    
     enum ButtonState {
-        case add
-        case remove
+        case add(ButtonSize)
+        case remove(ButtonSize)
     }
     
     var currentState: ButtonState
-    let title: String!
+    var title: String
 
     override init(frame: CGRect) {
-        self.currentState = .add
+        self.currentState = .add(.small)
         self.title = ""
         super.init(frame: frame)
     }
@@ -31,21 +36,34 @@ class CatalogButton: UIButton {
         self.currentState = currentState
         self.title = title
         super.init(frame: .zero)
-        
+        setUp()
+    }
+    
+    func toggleState() {
+        switch currentState {
+        case .add(let size):
+            currentState = .remove(size)
+            title = (size == .small) ? "-" : "Удалить"
+        case .remove(let size):
+            currentState = .add(size)
+            title = (size == .small) ? "+" : "Добавить"
+        }
         setUp()
     }
     
     private func setUp() {
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        
+        var fontSize: CGFloat = 0
         switch currentState {
-        case .add:
+        case .add(let size):
+            fontSize = (size == .small) ? 16 : 24
             backgroundColor = .systemGreen
-        case .remove:
-            backgroundColor = .systemRed
+        case .remove(let size):
+            fontSize = (size == .small) ? 16 : 24
+            backgroundColor = .systemOrange
         }
+        titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
     }
     
 
