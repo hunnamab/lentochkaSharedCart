@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D497409254A949D001253C2 /* CatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D497408254A949D001253C2 /* CatalogVM.swift */; };
 		2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEABF25485263009C1C6F /* FriendsVC.swift */; };
 		2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC225485270009C1C6F /* CartVC.swift */; };
 		2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC525485282009C1C6F /* ProfileVC.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lentochkaSharedCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D497408254A949D001253C2 /* CatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogVM.swift; sourceTree = "<group>"; };
 		2D5DEABF25485263009C1C6F /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		2D5DEAC225485270009C1C6F /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		2D5DEAC525485282009C1C6F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				2D92FDC52549AD2200E777EF /* LoginVM.swift */,
+				2D497408254A949D001253C2 /* CatalogVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
 				E52464B32549D155004E76CF /* CatalogItemCellModel.swift in Sources */,
+				2D497409254A949D001253C2 /* CatalogVM.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2D92FDD92549C2E900E777EF /* CatalogItemCell.swift in Sources */,
 				2D92FDC62549AD2200E777EF /* LoginVM.swift in Sources */,

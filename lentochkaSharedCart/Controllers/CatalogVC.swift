@@ -8,6 +8,7 @@
 import UIKit
 
 class CatalogVC: UITableViewController {
+    
     var extendedCatalogItems = [CatalogItemModel]()
     var filteredExtendedItems = [CatalogItemModel]()
     
@@ -15,6 +16,8 @@ class CatalogVC: UITableViewController {
     var filteredItems = [CatalogItemCellModel]()
 
     var isSearching = false
+    
+    var viewModel: CatalogVM!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +25,10 @@ class CatalogVC: UITableViewController {
         
 //        setUpViewController()
         setUpSearchBar()
-        parseJSON()
+        viewModel = CatalogVM(extendedCatalogItems: extendedCatalogItems, catalogItems: catalogItems)
+        viewModel.parseJSON()
+        extendedCatalogItems = viewModel.extendedCatalogItems
+        catalogItems = viewModel.catalogItems
     }
     
     private func setUpViewController() {
@@ -40,36 +46,7 @@ class CatalogVC: UITableViewController {
         searchController.searchBar.placeholder = "Поиск по каталогу"
         navigationItem.searchController = searchController
     }
-    
-    private func parseJSON() {
-        if let path = Bundle.main.path(forResource: "bakery", ofType: "json")
-        {
-            let pathUrl = URL(fileURLWithPath: path)
-            do {
-                let data = try Data(contentsOf: pathUrl)
-                let decoder = JSONDecoder()
-                extendedCatalogItems = try decoder.decode([CatalogItemModel].self, from: data)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        createCatalogItemViewModels()
-    }
-    
-    private func createCatalogItemViewModels() {
-        for item in extendedCatalogItems {
-            guard let imageUrl = URL(string: item.imageSmallURL) else { return }
-            let imageData = try! Data(contentsOf: imageUrl)
-            let name = item.name.components(separatedBy: "   ")[0]
-            let catalogItem = CatalogItemCellModel(
-                name: name,
-                price: item.goodsUnitList[0].price,
-                image: imageData,
-                unitName: item.goodsUnitList[0].unitName
-            )
-            self.catalogItems.append(catalogItem)
-        }
-    }
+
 }
 
 // MARK: - TableViewDataSource:
