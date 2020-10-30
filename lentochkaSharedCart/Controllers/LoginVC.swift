@@ -10,52 +10,61 @@ import Firebase
 
 class LoginVC: UIViewController {
 
-    var loginTextField = UITextField()
-    var passwordTextField = UITextField()
-    var loginButton = UIButton(type: .system)
-    var forgotPasswordLabel = UILabel()
+    private var loginTextField = UITextField()
+    private var passwordTextField = UITextField()
+    private var loginButton = UIButton(type: .system)
+    private var forgotPasswordLabel = UILabel()
     
     var viewModel: LoginVM!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loginTextField.text = "alex"
+        passwordTextField.text = "123456"
+        self.modalPresentationStyle = .fullScreen
         setUI()
         setConstraints()
-        let user = User(login: loginTextField.text ?? "", password: passwordTextField.text ?? "", cart: [], group: [])
-        viewModel = LoginVM(user: user)
-        loginButton.addTarget(self, action: #selector(presentTabBar), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonWasTapped), for: .touchUpInside)
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    @objc private func loginButtonWasTapped () {
+        guard let login = loginTextField.text, let password = passwordTextField.text, !login.isEmpty, !password.isEmpty, password.count >= 6 else {
+            alertUserLoginError()
+            return
+        }
+        let email = login + "@mail.ru"
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard let strongSelf = self else { return }
+            guard result != nil, error == nil else {
+                print("Failed to log in.")
+                return
+            }
+            DatabaseManager.shared.addUser(with: User(login: login,
+                                                      cart: [], group: []))
+            strongSelf.self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    private func alertUserLoginError() {
+        let alert = UIAlertController(title: "Что-то пошло не так",
+                                      message: "Вы ввели неправильный логин или пароль",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Попробовать снова", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
 }
 
-extension LoginVC {
+extension LoginVC: UITextFieldDelegate {
     
-    @objc func presentTabBar() {
-        viewModel.loginUser(login: viewModel.user.login, password: viewModel.user.password)
-        let tabBarVC = UITabBarController()
-        
-        let catalogVC = CatalogVC()
-        let navVC = UINavigationController(rootViewController: catalogVC)
-        navVC.navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navVC.tabBarItem = UITabBarItem(title: "Каталог", image: UIImage(named: "Catalog"), tag: 0)
-        
-        let friendsVC = FriendsVC()
-        friendsVC.view.backgroundColor = .systemTeal
-        friendsVC.tabBarItem = UITabBarItem(title: "Люди", image: UIImage(named: "Friends"), tag: 1)
-
-        let cartVC = CartVC()
-        cartVC.view.backgroundColor = .systemBlue
-        cartVC.tabBarItem = UITabBarItem(title: "Корзина", image: UIImage(named: "Cart"), tag: 2)
-
-        let profileVC = ProfileVC()
-        profileVC.view.backgroundColor = .systemYellow
-        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "Profile"), tag: 3)
-
-        tabBarVC.viewControllers = [navVC, friendsVC, cartVC, profileVC]
-        tabBarVC.modalPresentationStyle = .fullScreen
-        UITabBar.appearance().tintColor = UIColor(red: 0.168627451, green: 0.1294117647, blue: 0.5764705882, alpha: 1)
-        present(tabBarVC, animated: true)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginTextField {
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            loginButtonWasTapped()
+        }
+        return true
     }
     
 }
@@ -74,6 +83,7 @@ extension LoginVC {
         loginTextField.layer.borderWidth = 1
         loginTextField.layer.cornerRadius = 8
         loginTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginTextField.returnKeyType = .continue
         
         passwordTextField.placeholder = "Пароль"
         passwordTextField.isSecureTextEntry = true
@@ -84,12 +94,16 @@ extension LoginVC {
         passwordTextField.layer.borderWidth = 1
         passwordTextField.layer.cornerRadius = 8
         passwordTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        passwordTextField.returnKeyType = .done
         
         loginButton.setTitle("Войти", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         loginButton.layer.cornerRadius = 6.0
-        loginButton.backgroundColor = UIColor(red: 0.168627451, green: 0.1294117647, blue: 0.5764705882, alpha: 1)
+        loginButton.backgroundColor = UIColor(red: 0.168627451,
+                                              green: 0.1294117647,
+                                              blue: 0.5764705882,
+                                              alpha: 1)
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         

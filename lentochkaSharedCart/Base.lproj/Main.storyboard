@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5MS-Xv-3nM">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -87,7 +87,6 @@
                         <outlet property="loginButton" destination="FQn-rf-KZ5" id="CdK-oL-pFL"/>
                         <outlet property="loginTextField" destination="rUC-U1-iSQ" id="XYb-C2-ddt"/>
                         <outlet property="passwordTextField" destination="DAt-4p-C1L" id="SbZ-NS-agH"/>
-                        <segue destination="5MS-Xv-3nM" kind="show" identifier="TabBarSegue" id="glV-lL-Y5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -97,7 +96,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="TF6-ZO-msO">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="5MS-Xv-3nM" sceneMemberID="viewController">
+                <tabBarController id="5MS-Xv-3nM" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Lkr-c3-ZYa"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2TX-5n-qdU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -120,9 +119,9 @@
         <!--CatalogVC-->
         <scene sceneID="fuu-Hk-G0g">
             <objects>
-                <viewController title="CatalogVC" modalPresentationStyle="fullScreen" id="g2E-VA-WEj" customClass="CatalogVC" customModule="lentochkaSharedCart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CatalogVC" id="g2E-VA-WEj" customClass="CatalogVC" customModule="lentochkaSharedCart" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BEe-CH-8kt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Искать.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-31-NLY">
@@ -161,9 +160,9 @@
         <!--FriendsVC-->
         <scene sceneID="3rP-v5-rG4">
             <objects>
-                <viewController title="FriendsVC" modalPresentationStyle="fullScreen" id="W6w-5v-yll" sceneMemberID="viewController">
+                <viewController title="FriendsVC" id="W6w-5v-yll" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Li0-ZR-gB0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqW-m2-nu5">
@@ -187,7 +186,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tdH-1f-kNR">
-                                <rect key="frame" x="0.0" y="147" width="375" height="451"/>
+                                <rect key="frame" x="0.0" y="147" width="375" height="471"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="W1t-aa-KU3">
@@ -240,9 +239,9 @@
         <!--CartVC-->
         <scene sceneID="cf7-OF-SeW">
             <objects>
-                <viewController title="CartVC" modalPresentationStyle="fullScreen" id="TQd-43-PDF" sceneMemberID="viewController">
+                <viewController title="CartVC" id="TQd-43-PDF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yjC-qD-OeR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="7Su-sO-Iv6"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -256,9 +255,9 @@
         <!--ProfileVC-->
         <scene sceneID="sN7-yr-4ER">
             <objects>
-                <viewController title="ProfileVC" modalPresentationStyle="fullScreen" id="8fT-K9-Zif" sceneMemberID="viewController">
+                <viewController title="ProfileVC" id="8fT-K9-Zif" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UiT-rr-eW0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="UEu-Nz-QzI"/>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

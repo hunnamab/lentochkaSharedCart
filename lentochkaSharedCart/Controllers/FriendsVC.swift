@@ -11,6 +11,7 @@ class FriendsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.modalPresentationStyle = .fullScreen
         
         //tableViewCell
     }

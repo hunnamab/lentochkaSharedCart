@@ -6,24 +6,26 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CatalogVC: UITableViewController {
     
-    var extendedCatalogItems = [CatalogItemModel]()
-    var filteredExtendedItems = [CatalogItemModel]()
+    private var extendedCatalogItems = [CatalogItemModel]()
+    private var filteredExtendedItems = [CatalogItemModel]()
     
-    var catalogItems = [CatalogItemCellModel]()
-    var filteredItems = [CatalogItemCellModel]()
+    private var catalogItems = [CatalogItemCellModel]()
+    private var filteredItems = [CatalogItemCellModel]()
 
-    var isSearching = false
+    private var isSearching = false
     
-    var viewModel: CatalogVM!
+    private var viewModel: CatalogVM!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.modalPresentationStyle = .fullScreen
         tableView.register(CatalogItemCell.self, forCellReuseIdentifier: CatalogItemCell.reuseID)
         
-//        setUpViewController()
+        //setUpViewController()
         setUpSearchBar()
         viewModel = CatalogVM(extendedCatalogItems: extendedCatalogItems, catalogItems: catalogItems)
         viewModel.parseJSON()
@@ -73,6 +75,7 @@ extension CatalogVC {
     }
     
     @objc func addButtonTapped(_ sender: CatalogButton) {
+        print("tapped add button")
         sender.toggleState()
     }
 }

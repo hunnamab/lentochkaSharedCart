@@ -14,14 +14,4 @@ class LoginVM {
     init(user: User) {
         self.user = user
     }
-
-    func loginUser(login: String, password: String) {
-        Auth.auth().signIn(withEmail: login, password: password) { (result, error) in
-            if let err = error {
-                print(err.localizedDescription)
-            } else {
-                print("Successfully logged in")
-            }
-        }
-    }
 }
