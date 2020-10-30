@@ -12,4 +12,5 @@ struct CatalogItemCellModel {
     let price: Double
     let image: Data
     let unitName: String
+    let id: String
 }

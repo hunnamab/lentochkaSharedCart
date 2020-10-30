@@ -9,6 +9,6 @@ import Foundation
 
 struct User {
     var login: String
-    var cart: [CatalogItemModel]? // пока сделала опциональным
+    var cart: [CatalogItemCellModel]? // пока сделала опциональным
     var group: [User]? // same
 }

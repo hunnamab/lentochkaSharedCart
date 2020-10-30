@@ -41,7 +41,8 @@ class CatalogVM {
                 name: name,
                 price: item.goodsUnitList[0].price,
                 image: imageData,
-                unitName: item.goodsUnitList[0].unitName
+                unitName: item.goodsUnitList[0].unitName,
+                id: item.id
             )
             self.catalogItems.append(catalogItem)
         }
