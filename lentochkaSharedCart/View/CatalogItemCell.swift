@@ -25,19 +25,15 @@ class CatalogItemCell: UITableViewCell {
     }
     
     func toggleState() {
-        print("HERE")
         button.setTitle("-", for: .normal)
         button.setTitleColor(.red, for: .normal)
-        layoutIfNeeded()
     }
     
     private func setUpElements() {
         accessoryType = .disclosureIndicator
         button.layer.cornerRadius = 6
         itemImageView.contentMode = .scaleAspectFit
-        itemNameLabel.numberOfLines = 3
-        itemNameLabel.adjustsFontSizeToFitWidth = true
-        itemNameLabel.minimumScaleFactor = 0.3
+        itemNameLabel.numberOfLines = 0
         itemNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         itemPriceLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
@@ -66,11 +62,10 @@ class CatalogItemCell: UITableViewCell {
             itemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             itemImageView.widthAnchor.constraint(equalToConstant: imageSize),
             
-            itemStackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            itemStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             itemStackView.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: padding),
-            itemStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding)
+            itemStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            itemStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
         ])
-        
     }
-    
 }

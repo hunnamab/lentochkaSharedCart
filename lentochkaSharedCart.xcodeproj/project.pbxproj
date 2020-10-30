@@ -142,9 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				2D5F24CF254C32AF00742B73 /* Resources */,
+				E52464AD25497367004E76CF /* Model */,
 				2D5DEAB8254850DD009C1C6F /* ViewModel */,
 				2D92FDBF2549A95B00E777EF /* Controllers */,
-				E52464AD25497367004E76CF /* Model */,
 				2D5DEABA25485116009C1C6F /* View */,
 				2DF744DE25475F9400532B99 /* Main.storyboard */,
 				2DF744E125475F9800532B99 /* Assets.xcassets */,

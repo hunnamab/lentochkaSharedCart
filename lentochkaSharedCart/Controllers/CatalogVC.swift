@@ -23,9 +23,8 @@ class CatalogVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
-        tableView.register(CatalogItemCell.self, forCellReuseIdentifier: CatalogItemCell.reuseID)
         
-        //setUpViewController()
+        setUpViewController()
         setUpSearchBar()
         viewModel = CatalogVM(extendedCatalogItems: extendedCatalogItems, catalogItems: catalogItems)
         viewModel.parseJSON()
@@ -38,6 +37,10 @@ class CatalogVC: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = "Каталог"
+        
+        tableView.register(CatalogItemCell.self, forCellReuseIdentifier: CatalogItemCell.reuseID)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
     private func setUpSearchBar() {
@@ -64,7 +67,7 @@ extension CatalogVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CatalogItemCell.reuseID) as! CatalogItemCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CatalogItemCell.reuseID, for: indexPath) as! CatalogItemCell
         let item = isSearching ? filteredItems[indexPath.row] : catalogItems[indexPath.row]
         // создать в фабрике модель (добавить в нее поле "добавлено в корзину"
         // - отдельный метод, который берет инфу с сервера и проверяет)
@@ -84,7 +87,7 @@ extension CatalogVC {
 
 extension CatalogVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

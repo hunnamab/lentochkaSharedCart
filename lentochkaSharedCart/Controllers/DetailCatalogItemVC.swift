@@ -41,12 +41,12 @@ class DetailCatalogItemVC: UIViewController {
     
     private func setUpUI() {
         itemImageView.contentMode = .scaleAspectFit
-        let imageHeight = view.bounds.size.height / 3
+        let imageHeight = view.bounds.size.height / 4
         itemImageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
         
         itemNameLabel.numberOfLines = 4
         itemNameLabel.adjustsFontSizeToFitWidth = true
-        itemPriceLabel.minimumScaleFactor = 0.5
+        itemPriceLabel.minimumScaleFactor = 0.4
         itemNameLabel.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         itemPriceLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
         button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
@@ -59,14 +59,14 @@ class DetailCatalogItemVC: UIViewController {
     private func setUpConstraints() {
         let bottomStackView = UIStackView(arrangedSubviews: [weightLabel, itemPriceLabel])
         bottomStackView.axis = .vertical
-        bottomStackView.alignment = .leading
+        bottomStackView.distribution = .equalSpacing
         bottomStackView.spacing = 5
+        bottomStackView.alignment = .leading
         
         let stackView = UIStackView(arrangedSubviews: [itemImageView, itemNameLabel, bottomStackView])
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.setCustomSpacing(30, after: itemImageView)
-        stackView.setCustomSpacing(20, after: itemNameLabel)
+        stackView.distribution = .equalSpacing
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
@@ -75,15 +75,17 @@ class DetailCatalogItemVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         
+        let padding: CGFloat = 50
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -buttonHeight),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            button.heightAnchor.constraint(equalToConstant: buttonHeight)
+            button.heightAnchor.constraint(equalToConstant: buttonHeight),
+            
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            stackView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -padding),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
     }
 }

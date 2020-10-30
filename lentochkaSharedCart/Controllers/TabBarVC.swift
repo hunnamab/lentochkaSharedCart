@@ -31,17 +31,15 @@ class TabBarVC: UITabBarController {
     func presentTabBar() {
         let catalogVC = CatalogVC()
         let navVC = UINavigationController(rootViewController: catalogVC)
-        navVC.navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.prefersLargeTitles = true
         navVC.tabBarItem = UITabBarItem(title: "Каталог",
                                         image: UIImage(named: "Catalog"),
                                         tag: 0)
         
         let friendsVC = FriendsVC()
-        friendsVC.view.backgroundColor = .systemTeal
-        friendsVC.tabBarItem = UITabBarItem(title: "Люди",
-                                            image: UIImage(named: "Friends"),
-                                            tag: 1)
+        let secondNavVC = UINavigationController(rootViewController: friendsVC)
+        secondNavVC.tabBarItem = UITabBarItem(title: "Люди",
+                                        image: UIImage(named: "Friends"),
+                                        tag: 1)
 
         let cartVC = CartVC()
         cartVC.view.backgroundColor = .systemBlue
@@ -55,7 +53,7 @@ class TabBarVC: UITabBarController {
                                             image: UIImage(named: "Profile"),
                                             tag: 3)
 
-        self.viewControllers = [navVC, friendsVC, cartVC, profileVC]
+        self.viewControllers = [navVC, secondNavVC, cartVC, profileVC]
         self.modalPresentationStyle = .fullScreen
         UITabBar.appearance().tintColor = UIColor(red: 0.168627451,
                                                   green: 0.1294117647,

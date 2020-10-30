@@ -14,9 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
         FirebaseApp.configure()
+        
+        UINavigationBar.appearance().tintColor = .purple // для вкладки "Люди"
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         let tabBarVC = TabBarVC()
