@@ -28,9 +28,31 @@ class FriendsVC: UITableViewController {
     }
     
     func configureBarButtonItems() {
+        guard let navigationBar = navigationController?.navigationBar else { return }
+        
         let image = UIImage(named: "AddFriend")
-        let rightBarButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addFriendTapped))
-        navigationItem.rightBarButtonItem = rightBarButton
+        let imageView = UIImageView(image: image)
+        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+        imageView.tintColor = UIColor(red: 0.168627451,
+                                      green: 0.1294117647,
+                                      blue: 0.5764705882,
+                                      alpha: 1)
+        navigationBar.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let rightPadding: CGFloat = 20
+        let bottomPadding: CGFloat = 12
+        let imageSize: CGFloat = 25
+        NSLayoutConstraint.activate([
+            imageView.rightAnchor.constraint(equalTo: navigationController!.navigationBar.rightAnchor, constant: -rightPadding),
+            imageView.bottomAnchor.constraint(equalTo: navigationController!.navigationBar.bottomAnchor, constant: -bottomPadding),
+            imageView.heightAnchor.constraint(equalToConstant: imageSize),
+            imageView.widthAnchor.constraint(equalToConstant: imageSize)
+        ])
+        
+        imageView.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(addFriendTapped))
+        imageView.addGestureRecognizer(tapRecognizer)
     }
     
     @objc func addFriendTapped() {

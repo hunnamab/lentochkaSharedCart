@@ -22,15 +22,19 @@ class LoginVC: UIViewController {
         loginTextField.text = "alex"
         passwordTextField.text = "123456"
         self.modalPresentationStyle = .fullScreen
-        setUI()
-        setConstraints()
+        setUpUI()
+        setUpConstraints()
         loginButton.addTarget(self, action: #selector(loginButtonWasTapped), for: .touchUpInside)
         loginTextField.delegate = self
         passwordTextField.delegate = self
     }
     
     @objc private func loginButtonWasTapped () {
-        guard let login = loginTextField.text, let password = passwordTextField.text, !login.isEmpty, !password.isEmpty, password.count >= 6 else {
+        guard let login = loginTextField.text,
+            let password = passwordTextField.text,
+            !login.isEmpty,
+            !password.isEmpty,
+            password.count >= 6 else {
             alertUserLoginError()
             return
         }
@@ -72,7 +76,7 @@ extension LoginVC: UITextFieldDelegate {
 
 extension LoginVC {
     
-    private func setUI() {
+    private func setUpUI() {
         view.backgroundColor = .white
         
         loginTextField.placeholder = "Логин"
@@ -117,7 +121,7 @@ extension LoginVC {
 
 extension LoginVC {
     
-    private func setConstraints() {
+    private func setUpConstraints() {
         let loginStackView = UIStackView(arrangedSubviews: [loginTextField, passwordTextField])
         loginStackView.axis = .vertical
         loginStackView.distribution = .equalSpacing

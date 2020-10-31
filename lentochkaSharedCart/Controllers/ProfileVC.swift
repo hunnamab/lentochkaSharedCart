@@ -10,6 +10,14 @@ import FirebaseAuth
 
 class ProfileVC: UIViewController {
 
+    private var avatarImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 50
+        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    let addAvatarButton = UIButton(type: .system)
     private var logoutButton = UIButton(type: .system)
     
     override func viewDidLoad() {
@@ -45,11 +53,35 @@ class ProfileVC: UIViewController {
             present(rootVC, animated: false)
         }
     }
+    
+    @objc private func addAvatar() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
 }
 
 extension ProfileVC {
+    
     private func setUpUI() {
         view.backgroundColor = .white
+
+        addAvatarButton.setTitle("Изменить фото", for: .normal)
+        addAvatarButton.setTitleColor(.blue, for: .normal)
+        addAvatarButton.addTarget(self, action: #selector(addAvatar), for: .touchUpInside)
+        addAvatarButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        
+//        avatarImageView.image = UIImage(named: "Friends") // поменять дефолтную фотку в placeholder'е
+        avatarImageView.backgroundColor = UIColor(red: 0.168627451,
+        green: 0.1294117647,
+        blue: 0.5764705882,
+        alpha: 1)
+        avatarImageView.contentMode = .scaleAspectFit
+        avatarImageView.layer.cornerRadius = 100
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.clipsToBounds = true
         
         logoutButton.setTitle("Выйти", for: .normal)
         logoutButton.setTitleColor(.white, for: .normal)
@@ -62,26 +94,45 @@ extension ProfileVC {
         logoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         logoutButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
     }
+    
 }
 
 extension ProfileVC {
     
     private func setUpConstraints() {
-        let buttonStackView = UIStackView(arrangedSubviews: [logoutButton])
-        buttonStackView.axis = .vertical
-        buttonStackView.distribution = .fillEqually
-        buttonStackView.spacing = 40
-        buttonStackView.alignment = .center
+        let stackView = UIStackView(arrangedSubviews: [addAvatarButton, logoutButton])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 40
+        stackView.alignment = .center
         
-        view.addSubview(buttonStackView)
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(avatarImageView)
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            buttonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
+            avatarImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 200),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 200),
+            avatarImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
+            
+            stackView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])
     }
     
 }
 
+extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        avatarImageView.image = image
+        dismiss(animated: true, completion: nil)
+        // надо будет хранить image data на сервере, чтобы подгружать все время?
+    }
+    
+}

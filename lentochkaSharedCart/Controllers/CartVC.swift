@@ -39,7 +39,13 @@ class CartVC: UITableViewController {
     }
     
     private func setUpViewController() {
-        navigationController?.navigationBar.backgroundColor = .white // status bar не белый
+        navigationController?.navigationBar.backgroundColor = .white
+        // status bar не белый -> костыль:
+        let statusBar =  UIView()
+        statusBar.frame = UIApplication.shared.statusBarFrame
+        statusBar.backgroundColor = .white
+        UIApplication.shared.keyWindow?.addSubview(statusBar)
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = "Корзина"
