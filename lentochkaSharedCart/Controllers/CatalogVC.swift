@@ -84,7 +84,13 @@ extension CatalogVC {
     
     @objc func addButtonTapped(_ sender: CatalogButton) {
         let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
-        DatabaseManager.shared.addItemInCart(with: item.id, to: "alex")
+        switch sender.currentState {
+        case .add:
+            DatabaseManager.shared.addItemInCart(with: item.id, to: "alex")
+        case .remove:
+            break
+            // удаляем из базы товар
+        }
         sender.toggleState()
     }
     
