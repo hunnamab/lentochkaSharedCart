@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        UINavigationBar.appearance().tintColor = .purple // для вкладки "Люди"
+        UINavigationBar.appearance().tintColor = UIColor(red: 0.168627451,
+        green: 0.1294117647,
+        blue: 0.5764705882,
+        alpha: 1) // для вкладки "Люди"
+        
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         let tabBarVC = TabBarVC()

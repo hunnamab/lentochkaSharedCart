@@ -54,10 +54,11 @@ class LoginVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Попробовать снова", style: .cancel, handler: nil))
         present(alert, animated: true)
     }
+    
 }
 
 extension LoginVC: UITextFieldDelegate {
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == loginTextField {
             passwordTextField.becomeFirstResponder()
@@ -141,8 +142,7 @@ extension LoginVC {
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            //stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])
     }
     

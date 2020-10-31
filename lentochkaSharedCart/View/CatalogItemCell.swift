@@ -68,4 +68,5 @@ class CatalogItemCell: UITableViewCell {
             itemStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
         ])
     }
+    
 }

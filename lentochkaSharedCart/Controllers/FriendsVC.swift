@@ -28,9 +28,8 @@ class FriendsVC: UITableViewController {
     }
     
     func configureBarButtonItems() {
-        let leftBarButton = UIBarButtonItem(title: "Изменить", style: .plain, target: self, action: #selector(editFriendTapped))
-        navigationItem.leftBarButtonItem = leftBarButton
-        let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriendTapped))
+        let image = UIImage(named: "AddFriend")
+        let rightBarButton = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(addFriendTapped))
         navigationItem.rightBarButtonItem = rightBarButton
     }
     
@@ -59,15 +58,12 @@ class FriendsVC: UITableViewController {
         present(alertController, animated: true)
     }
     
-    @objc func editFriendTapped() {
-        tableView.isEditing = !tableView.isEditing
-        navigationItem.leftBarButtonItem?.title = tableView.isEditing ? "Готово" : "Изменить"
-    }
 }
 
 // MARK: - TableViewDataSource:
 
 extension FriendsVC {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
@@ -78,11 +74,13 @@ extension FriendsVC {
         cell.isUserInteractionEnabled = false
         return cell
     }
+    
 }
 
 // MARK: - TableViewDelegate:
 
 extension FriendsVC {
+    
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] action, sourceView, completionHandler in
             guard let self = self else { return }
@@ -95,10 +93,4 @@ extension FriendsVC {
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            friends.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
 }

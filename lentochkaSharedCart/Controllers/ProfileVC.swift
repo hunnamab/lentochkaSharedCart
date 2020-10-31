@@ -16,9 +16,17 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
         
-        setUI()
-        setConstraints()
+        setUpViewController()
+        setUpUI()
+        setUpConstraints()
         logoutButton.addTarget(self, action: #selector(logoutButtonWasTapped), for: .touchUpInside)
+    }
+    
+    private func setUpViewController() {
+        view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.title = "Профиль"
     }
     
     @objc private func logoutButtonWasTapped () {
@@ -31,15 +39,16 @@ class ProfileVC: UIViewController {
         if FirebaseAuth.Auth.auth().currentUser == nil {
             let rootVC = LoginVC()
             rootVC.modalPresentationStyle = .fullScreen
+            guard let tabBarController = tabBarController,
+                tabBarController.viewControllers != nil else { return }
+            tabBarController.selectedViewController = tabBarController.viewControllers![0] //
             present(rootVC, animated: false)
         }
     }
-
 }
 
 extension ProfileVC {
-    
-    private func setUI() {
+    private func setUpUI() {
         view.backgroundColor = .white
         
         logoutButton.setTitle("Выйти", for: .normal)
@@ -53,13 +62,11 @@ extension ProfileVC {
         logoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         logoutButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
     }
-    
 }
 
 extension ProfileVC {
     
-    private func setConstraints() {
-        
+    private func setUpConstraints() {
         let buttonStackView = UIStackView(arrangedSubviews: [logoutButton])
         buttonStackView.axis = .vertical
         buttonStackView.distribution = .fillEqually
@@ -72,8 +79,7 @@ extension ProfileVC {
         NSLayoutConstraint.activate([
             buttonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            //stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
+            buttonStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])
     }
     

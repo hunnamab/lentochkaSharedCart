@@ -41,19 +41,19 @@ class TabBarVC: UITabBarController {
                                         image: UIImage(named: "Friends"),
                                         tag: 1)
 
-        let cartVC = CartVC()
-        cartVC.view.backgroundColor = .systemBlue
-        cartVC.tabBarItem = UITabBarItem(title: "Корзина",
+        let cartVC = CartVC(style: .grouped)
+        let thirdNavVC = UINavigationController(rootViewController: cartVC)
+        thirdNavVC.tabBarItem = UITabBarItem(title: "Корзина",
                                          image: UIImage(named: "Cart"),
                                          tag: 2)
 
         let profileVC = ProfileVC()
-        profileVC.view.backgroundColor = .systemYellow
-        profileVC.tabBarItem = UITabBarItem(title: "Профиль",
+        let fourthNavVC = UINavigationController(rootViewController: profileVC)
+        fourthNavVC.tabBarItem = UITabBarItem(title: "Профиль",
                                             image: UIImage(named: "Profile"),
                                             tag: 3)
 
-        self.viewControllers = [navVC, secondNavVC, cartVC, profileVC]
+        self.viewControllers = [navVC, secondNavVC, thirdNavVC, fourthNavVC]
         self.modalPresentationStyle = .fullScreen
         UITabBar.appearance().tintColor = UIColor(red: 0.168627451,
                                                   green: 0.1294117647,

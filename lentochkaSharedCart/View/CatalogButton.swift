@@ -65,6 +65,5 @@ class CatalogButton: UIButton {
         }
         titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
     }
-    
 
 }

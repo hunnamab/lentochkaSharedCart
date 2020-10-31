@@ -47,5 +47,4 @@ class CatalogVM {
             self.catalogItems.append(catalogItem)
         }
     }
-    
 }

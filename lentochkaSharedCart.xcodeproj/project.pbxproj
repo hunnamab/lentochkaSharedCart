@@ -31,6 +31,7 @@
 		E52464B32549D155004E76CF /* CatalogItemCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52464B22549D155004E76CF /* CatalogItemCellModel.swift */; };
 		E52464B52549EE7F004E76CF /* DetailCatalogItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52464B42549EE7F004E76CF /* DetailCatalogItemVC.swift */; };
 		E52464B72549F655004E76CF /* CatalogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52464B62549F655004E76CF /* CatalogButton.swift */; };
+		E5EEF945254DA705004C5EB1 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF944254DA705004C5EB1 /* CartCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		E52464B22549D155004E76CF /* CatalogItemCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogItemCellModel.swift; sourceTree = "<group>"; };
 		E52464B42549EE7F004E76CF /* DetailCatalogItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCatalogItemVC.swift; sourceTree = "<group>"; };
 		E52464B62549F655004E76CF /* CatalogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogButton.swift; sourceTree = "<group>"; };
+		E5EEF944254DA705004C5EB1 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				2D92FDD82549C2E900E777EF /* CatalogItemCell.swift */,
+				E5EEF944254DA705004C5EB1 /* CartCell.swift */,
 				E52464B62549F655004E76CF /* CatalogButton.swift */,
 				2D92FDDB2549C33600E777EF /* FriendCell.swift */,
 			);
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D92FDDC2549C33600E777EF /* FriendCell.swift in Sources */,
+				E5EEF945254DA705004C5EB1 /* CartCell.swift in Sources */,
 				2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */,
 				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,

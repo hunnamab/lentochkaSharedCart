@@ -46,7 +46,10 @@ class CatalogVC: UITableViewController {
     
     private func setUpSearchBar() {
         let searchController = UISearchController()
-        searchController.searchBar.tintColor = .blue
+        searchController.searchBar.tintColor = UIColor(red: 0.168627451,
+        green: 0.1294117647,
+        blue: 0.5764705882,
+        alpha: 1)
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -59,6 +62,7 @@ class CatalogVC: UITableViewController {
 // MARK: - TableViewDataSource:
 
 extension CatalogVC {
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -83,11 +87,13 @@ extension CatalogVC {
         print("tapped add button")
         sender.toggleState()
     }
+    
 }
 
 // MARK: - TableViewDelegate:
 
 extension CatalogVC {
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -99,11 +105,13 @@ extension CatalogVC {
         present(detailCatalogItemVC, animated: true)
 //        navigationController?.pushViewController(detailCatalogItemVC, animated: true)
     }
+    
 }
 
 // MARK: - SearchResultsUpdating, SearchBarDelegate
 
 extension CatalogVC: UISearchResultsUpdating, UISearchBarDelegate {
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
         
@@ -124,4 +132,5 @@ extension CatalogVC: UISearchResultsUpdating, UISearchBarDelegate {
             tableView.reloadData()
         }
     }
+    
 }
