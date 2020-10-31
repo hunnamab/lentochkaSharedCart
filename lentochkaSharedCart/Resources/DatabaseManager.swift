@@ -26,9 +26,9 @@ extension DatabaseManager {
         ])
     }
     
-//    public func addItemInCart(with itemID: String, to login: String) {
-//        database.child(login).child("cart").setValue ([
-//            "\(itemID)":itemID
-//        ])
-//    }
+    public func addItemInCart(with itemID: String, to login: String) {
+        
+        database.child(login).child("cart").child(itemID).setValue(itemID)
+        print("!!! ITEM \(itemID)")
+    }
 }

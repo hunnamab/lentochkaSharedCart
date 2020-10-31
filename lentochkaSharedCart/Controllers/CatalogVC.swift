@@ -17,7 +17,7 @@ class CatalogVC: UITableViewController {
     private var filteredItems = [CatalogItemCellModel]()
 
     private var isSearching = false
-    //private var id: String?
+    private var id: String?
     
     private var viewModel: CatalogVM!
 
@@ -74,17 +74,17 @@ extension CatalogVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CatalogItemCell.reuseID, for: indexPath) as! CatalogItemCell
         let item = isSearching ? filteredItems[indexPath.row] : catalogItems[indexPath.row]
-        //id = item.id
         // создать в фабрике модель (добавить в нее поле "добавлено в корзину"
         // - отдельный метод, который берет инфу с сервера и проверяет)
         cell.setUp(withItem: item)
+        cell.button.tag = indexPath.row
         cell.button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
     
     @objc func addButtonTapped(_ sender: CatalogButton) {
-        //DatabaseManager.shared.addItemInCart(with: id!, to: "alex")
-        print("tapped add button")
+        let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
+        DatabaseManager.shared.addItemInCart(with: item.id, to: "alex")
         sender.toggleState()
     }
     
