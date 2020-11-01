@@ -99,18 +99,26 @@ extension CatalogVC {
     }
     
     @objc func addButtonTapped(_ sender: CatalogButton) {
-        let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
+        var item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         switch sender.currentState {
         case .add:
+            if isSearching {
+                filteredItems[sender.tag].quantity += 1
+            } else {
+                catalogItems[sender.tag].quantity += 1
+            }
             item.quantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
 //            user.personalCart.append(item)
 //            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         case .remove:
-            if item.quantity > 0 {
-                item.quantity -= 1
+            if isSearching {
+                filteredItems[sender.tag].quantity -= 1
+            } else {
+                catalogItems[sender.tag].quantity -= 1
             }
+            item.quantity -= 1
             print(item.quantity)
             tableView.reloadRows(at: [indexPath], with: .automatic)
 //            let itemToRemove = user.personalCart.filter { $0.id == item.id }
