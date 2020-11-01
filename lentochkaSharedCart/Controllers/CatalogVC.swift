@@ -87,25 +87,35 @@ extension CatalogVC {
         cell.setUp(withItem: item)
         cell.button.tag = indexPath.row
         cell.button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+        cell.removeButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+        cell.quantityLabel.text = "\(item.quantity)"
+        if item.quantity > 0 {
+            cell.removeButton.isHidden = false
+        } else {
+            cell.removeButton.isHidden = true
+        }
         return cell
     }
     
     @objc func addButtonTapped(_ sender: CatalogButton) {
         let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
+        let indexPath = IndexPath(row: sender.tag, section: 0)
         switch sender.currentState {
-        case .add(let size):
-//            if size == .small {
-//                let indexPath = IndexPath(row: sender.tag, section: 0)
-//                let cell = tableView(tableView, cellForRowAt: indexPath) as! CatalogItemCell
-//                cell.removeButton.isHidden = false
-//            }
-            user.personalCart.append(item)
-            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
+        case .add:
+            item.quantity += 1
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+//            user.personalCart.append(item)
+//            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         case .remove:
+            if item.quantity > 0 {
+                item.quantity -= 1
+            }
+            print(item.quantity)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
 //            let itemToRemove = user.personalCart.filter { $0.id == item.id }
             DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
         }
-        sender.toggleState()
+//        sender.toggleState()
     }
     
 }

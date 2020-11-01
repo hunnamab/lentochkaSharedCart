@@ -9,7 +9,7 @@ import Foundation
 
 struct User {
     var login: String
-    var personalCart: [CatalogItemCellModel] // пока сделала опциональным
+    var personalCart: [CatalogItemCellModel]
     var sharedCart: [CatalogItemCellModel]
-    var group: [User] // same
+    var group: [User]
 }

@@ -7,10 +7,19 @@
 
 import Foundation
 
-struct CatalogItemCellModel {
+class CatalogItemCellModel {
     let name: String
     let price: Double
     let image: Data
     let unitName: String
     let id: String
+    var quantity: Int = 0
+    
+    init(name: String, price: Double, image: Data, unitName: String, id: String) {
+        self.name = name
+        self.price = price
+        self.image = image
+        self.unitName = unitName
+        self.id = id
+    }
 }
