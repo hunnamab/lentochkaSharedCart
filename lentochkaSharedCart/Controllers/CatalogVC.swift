@@ -86,6 +86,7 @@ extension CatalogVC {
         // - отдельный метод, который берет инфу с сервера и проверяет)
         cell.setUp(withItem: item)
         cell.button.tag = indexPath.row
+        cell.removeButton.tag = indexPath.row
         cell.button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         cell.removeButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         cell.quantityLabel.text = "\(item.quantity)"
