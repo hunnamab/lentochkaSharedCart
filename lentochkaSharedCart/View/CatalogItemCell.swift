@@ -13,6 +13,7 @@ class CatalogItemCell: UITableViewCell {
     let itemImageView = UIImageView()
     let itemNameLabel = UILabel()
     let itemPriceLabel = UILabel()
+    let removeButton = CatalogButton(currentState: .remove(.small), title: "﹣") //
     let button = CatalogButton(currentState: .add(.small), title: "+")
     
     func setUp(withItem item: CatalogItemCellModel) {
@@ -25,12 +26,14 @@ class CatalogItemCell: UITableViewCell {
     }
     
     func toggleState() {
-        button.setTitle("-", for: .normal)
+        button.setTitle("﹣", for: .normal)
         button.setTitleColor(.red, for: .normal)
     }
     
     private func setUpElements() {
         accessoryType = .disclosureIndicator
+        removeButton.layer.cornerRadius = 6 //
+        removeButton.isHidden = true //
         button.layer.cornerRadius = 6
         itemImageView.contentMode = .scaleAspectFit
         itemNameLabel.numberOfLines = 0
@@ -42,8 +45,9 @@ class CatalogItemCell: UITableViewCell {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemImageView)
         
-        let buttonStackView = UIStackView(arrangedSubviews: [itemPriceLabel, button])
+        let buttonStackView = UIStackView(arrangedSubviews: [itemPriceLabel, removeButton, button])
         button.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        removeButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         buttonStackView.axis = .horizontal
         buttonStackView.distribution = .fillProportionally
         buttonStackView.alignment = .center

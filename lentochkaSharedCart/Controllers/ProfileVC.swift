@@ -9,6 +9,17 @@ import UIKit
 import FirebaseAuth
 
 class ProfileVC: UIViewController {
+    
+    let user: User
+    
+    init(withUser user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     private var avatarImageView: UIImageView = {
         let imageView = UIImageView()

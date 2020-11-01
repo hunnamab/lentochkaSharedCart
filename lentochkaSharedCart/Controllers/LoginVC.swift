@@ -14,6 +14,7 @@ class LoginVC: UIViewController {
     private var passwordTextField = UITextField()
     private var loginButton = UIButton(type: .system)
     private var forgotPasswordLabel = UILabel()
+    weak var delegate: CreateUser?
     
     var viewModel: LoginVM!
     
@@ -45,8 +46,9 @@ class LoginVC: UIViewController {
                 print("Failed to log in.")
                 return
             }
-            DatabaseManager.shared.addUser(with: User(login: login,
-                                                      cart: [], group: []))
+            let user = User(login: login, cart: [], group: [])
+            DatabaseManager.shared.addUser(with: user)
+            strongSelf.delegate?.setNewUser(user)
             strongSelf.self.dismiss(animated: true, completion: nil)
         }
     }

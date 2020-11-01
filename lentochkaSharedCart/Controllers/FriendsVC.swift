@@ -11,6 +11,16 @@ class FriendsVC: UITableViewController {
     
     var friends = [User]()
     let reuseIdentifier = "TableViewCell"
+    let user: User
+    
+    init(withUser user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,7 +77,7 @@ class FriendsVC: UITableViewController {
             // пока сделаю просто
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-            let newFriend = User(login: name, cart: nil, group: nil)
+            let newFriend = User(login: name, cart: [], group: [])
             self.friends.append(newFriend)
             self.tableView.reloadData()
         }

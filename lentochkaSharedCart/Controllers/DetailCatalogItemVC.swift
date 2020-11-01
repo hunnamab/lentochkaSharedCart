@@ -37,7 +37,7 @@ class DetailCatalogItemVC: UIViewController {
         view.backgroundColor = UIColor(red: 0.957022086,
                                        green: 0.994606599,
                                        blue: 0.946294983,
-                                       alpha: 1)
+                                       alpha: 1) // сделать константой
         setUpUI()
         setUpConstraints()
     }

@@ -9,6 +9,8 @@ import UIKit
 
 class CartVC: UITableViewController {
     
+    let user: User
+    
     let segmentedControl = UISegmentedControl(items: ["Личная", "Общая"])
     
     override func viewDidLoad() {
@@ -19,6 +21,15 @@ class CartVC: UITableViewController {
         setUpViewController()
     }
     
+    init(style: UITableView.Style, withUser user: User) {
+        self.user = user
+        super.init(style: style)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setUpSegmentedControl()
@@ -26,7 +37,7 @@ class CartVC: UITableViewController {
     
     private func setUpSegmentedControl() {
         segmentedControl.selectedSegmentIndex = 0
-        let color = UIColor(named: "MainColor")
+        let color = UIColor(named: "MainColor") ?? UIColor.blue
         segmentedControl.backgroundColor = color
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .selected)

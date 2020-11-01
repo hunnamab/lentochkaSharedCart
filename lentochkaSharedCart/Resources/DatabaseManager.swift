@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth //
 
 final class DatabaseManager {
     
@@ -40,5 +41,23 @@ extension DatabaseManager {
         
         database.child(login).child("cart").child(itemID).removeValue()
         print("REMOVED \(itemID)")
+    }
+    
+    public func addFriendToCart() {
+        
+    }
+    
+    public func fetchUserData(completion: @escaping (User?) -> Void) {
+        let currentUser = FirebaseAuth.Auth.auth().currentUser
+        let login = String(currentUser?.email?.split(separator: "@")[0] ?? "") // мб по uid делать?
+        var user: User? = nil
+        database.child(login).observeSingleEvent(of: .value) { snapshot in
+            let value = snapshot.value as? NSDictionary
+            let login = value?["email"] as? String ?? ""
+            let cart = value?["cart"] as? [CatalogItemCellModel] ?? []
+            let group = value?["cart"] as? [User] ?? []
+            user = User(login: login, cart: cart, group: group)
+            completion(user)
+        }
     }
 }

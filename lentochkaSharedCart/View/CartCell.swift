@@ -31,10 +31,7 @@ class CartCell: UITableViewCell {
         
         detailTextLabel?.text = detailInfo
         detailTextLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        detailTextLabel?.textColor = UIColor(red: 0.168627451,
-        green: 0.1294117647,
-        blue: 0.5764705882,
-        alpha: 1)
+        detailTextLabel?.textColor = UIColor(named: "MainColor")
     }
     
 }

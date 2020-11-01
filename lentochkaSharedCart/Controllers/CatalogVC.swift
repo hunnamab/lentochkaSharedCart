@@ -20,7 +20,18 @@ class CatalogVC: UITableViewController {
     private var id: String?
     
     private var viewModel: CatalogVM!
-
+    
+    var user: User
+    
+    init(withUser user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
@@ -82,11 +93,17 @@ extension CatalogVC {
     @objc func addButtonTapped(_ sender: CatalogButton) {
         let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
         switch sender.currentState {
-        case .add:
+        case .add(let size):
+//            if size == .small {
+//                let indexPath = IndexPath(row: sender.tag, section: 0)
+//                let cell = tableView(tableView, cellForRowAt: indexPath) as! CatalogItemCell
+//                cell.removeButton.isHidden = false
+//            }
+            user.cart.append(item)
             DatabaseManager.shared.addItemInCart(with: item.id, to: "alex")
         case .remove:
+//            let itemToRemove = user.cart.filter { $0.id == item.id }
             DatabaseManager.shared.removeItemFromCart(with: item.id, from: "alex")
-            break
         }
         sender.toggleState()
     }
