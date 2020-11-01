@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CatalogItemCellModel {
+class CatalogItemCellModel {
     let name: String
     let price: Double
     let image: String

@@ -9,9 +9,9 @@ import UIKit
 
 class FriendsVC: UITableViewController {
     
-    var friends         = [User]()
+    //var friends         = [User]()
     let reuseIdentifier = "TableViewCell"
-    let user: User
+    var user: User
     
     init(withUser user: User) {
         self.user = user
@@ -74,12 +74,14 @@ class FriendsVC: UITableViewController {
             // по идее, если пользователь есть, здесь надо с сервера подтянуть всю информацию о нем в
             // свойство friends
             
-            // пока сделаю просто
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-            let newFriend = User(login: name, personalCart: [], sharedCart: [], group: [])
-            self.friends.append(newFriend)
-            self.tableView.reloadData()
+            DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
+                guard let self = self, let friend = friend else { return }
+                self.user.group.append(friend)
+                DatabaseManager.shared.addFriendToCart(friend: friend, to: "alex")
+                self.tableView.reloadData()
+            }
         }
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
         alertController.addAction(addFriend)
@@ -94,12 +96,13 @@ class FriendsVC: UITableViewController {
 extension FriendsVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return user.group.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = friends[indexPath.row].login
+        cell.textLabel?.text = user.group[indexPath.row].login
+        print(user.group[indexPath.row].login)
         cell.isUserInteractionEnabled = false
         return cell
     }
@@ -113,9 +116,9 @@ extension FriendsVC {
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] action, sourceView, completionHandler in
             guard let self = self else { return }
-            self.friends.remove(at: indexPath.row)
+            DatabaseManager.shared.removeFriendFromCart(friend: self.user.group[indexPath.row], from: "alex")
+            self.user.group.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            // добавить удаление друга из структуры юзера и на сервере
             completionHandler(true)
         }
         deleteAction.backgroundColor = .orange

@@ -46,7 +46,7 @@ class LoginVC: UIViewController {
                 print("Failed to log in.")
                 return
             }
-            DatabaseManager.shared.fetchUserData { [weak self] user in
+            DatabaseManager.shared.fetchUserData(login: login) { [weak self] user in
                 guard let self = self, let user = user else { return }
                 //DatabaseManager.shared.addUser(with: user)
                 strongSelf.delegate?.setNewUser(user)

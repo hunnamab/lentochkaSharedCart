@@ -24,7 +24,7 @@ extension DatabaseManager {
         
         let email = user.login + "@mail.ru"
         database.child(user.login).setValue([
-            "email":email,
+            "login":user.login,
         ])
         
     }
@@ -33,12 +33,12 @@ extension DatabaseManager {
     public func addItemInCart(with item: CatalogItemCellModel, to login: String, cart: String) {
         
         database.child(login).child(cart).child(item.id).setValue([
-            "name" : item.name,
-            "price" : item.price,
-            "image" : item.image,
-            "unitName" : item.unitName,
-            "id" : item.id,
-            "quantity" : item.quantity
+            "name"      : item.name,
+            "price"     : item.price,
+            "image"     : item.image,
+            "unitName"  : item.unitName,
+            "id"        : item.id,
+            "quantity"  : item.quantity
         ])
         print("ADDED \(item.name)")
         
@@ -47,21 +47,32 @@ extension DatabaseManager {
     /// Удаляет позицию из корзины
     public func removeItemFromCart(with item: CatalogItemCellModel, from login: String, cart: String) {
         
-        database.child(login).child(cart).child(item.id).removeValue()
+        if item.quantity < 1 {
+            database.child(login).child(cart).child(item.id).removeValue()
+        } else {
+            addItemInCart(with: item, to: login, cart: cart)
+        }
         print("REMOVED \(item.name)")
     }
     
-    public func addFriendToCart() {
-        
+    public func addFriendToCart(friend: User, to login: String) {
+        database.child(login).child("group").child(friend.login).setValue(friend.login)
+        print("ADDED FRIENDS")
     }
     
-    public func fetchUserData(completion: @escaping (User?) -> Void) {
-        let currentUser = FirebaseAuth.Auth.auth().currentUser
-        let login       = String(currentUser?.email?.split(separator: "@")[0] ?? "") // мб по uid делать?
+    public func removeFriendFromCart(friend: User, from login: String) {
+        
+        database.child(login).child("group").child(friend.login).removeValue()
+        print("REMOVED FRIEND")
+    }
+    
+    public func fetchUserData(login: String, completion: @escaping (User?) -> Void) {
+        //let currentUser = FirebaseAuth.Auth.auth().currentUser
+        //let login = String(currentUser?.email?.split(separator: "@")[0] ?? "") // мб по uid делать?
         var user: User? = nil
         database.child(login).observeSingleEvent(of: .value) { snapshot in
             let value           = snapshot.value as? NSDictionary
-            let login           = value?["email"] as? String ?? ""
+            let login           = value?["login"] as? String ?? ""
             let personalCart    = value?["personalCart"] as? [CatalogItemCellModel] ?? []
             let sharedCart      = value?["sharedCart"] as? [CatalogItemCellModel] ?? []
             let group           = value?["group"] as? [User] ?? []

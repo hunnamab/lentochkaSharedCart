@@ -29,7 +29,9 @@ class TabBarVC: UITabBarController {
             present(rootVC, animated: false)
         } else {
             showLoadingVC()
-            DatabaseManager.shared.fetchUserData { [weak self] user in
+            let currentUser = FirebaseAuth.Auth.auth().currentUser
+            let login = String(currentUser?.email?.split(separator: "@")[0] ?? "")
+            DatabaseManager.shared.fetchUserData(login: login) { [weak self] user in
                 guard let self = self, let user = user else { return }
                 self.user = user
                 self.presentTabBar()

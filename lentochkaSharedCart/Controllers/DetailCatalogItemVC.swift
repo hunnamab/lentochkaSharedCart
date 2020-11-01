@@ -14,16 +14,20 @@ class DetailCatalogItemVC: UIViewController {
     let weightLabel     = UILabel()
     let itemPriceLabel  = UILabel()
     let buttonsView     = UIView()
-    let leftButtonsView = DetailButtonsView(withTitle: "Добавить в личную корзину")
-    let rightButtonsView = DetailButtonsView(withTitle: "Добавить в общую корзину")
+    let leftButtonsView = DetailButtonsView(withTitle: "Личная корзина")
+    let rightButtonsView = DetailButtonsView(withTitle: "Общая корзина")
+
+    var user: User
+    //нужно отделить item для общей и для личной корзины
+    var item: CatalogItemCellModel
     
-    let user: User
-    
-    init(withItem item: CatalogItemModel, forUser user: User) {
+    init(withExtItem extendedItem: CatalogItemModel, with item: CatalogItemCellModel, forUser user: User) {
         self.user = user
+        self.item = item
         super.init(nibName: .none, bundle: .none)
-        setUpElements(withItem: item)
-        print(item)
+        setUpElements(withItem: extendedItem)
+        print(extendedItem.name)
+        print(item.name)
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +44,7 @@ class DetailCatalogItemVC: UIViewController {
         itemImageView.image = UIImage(data: image)
         
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
+        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
     }
     
     override func viewDidLoad() {
@@ -62,20 +67,34 @@ class DetailCatalogItemVC: UIViewController {
         itemNameLabel.font                      = UIFont.systemFont(ofSize: 34, weight: .bold)
         itemPriceLabel.font                     = UIFont.systemFont(ofSize: 30, weight: .medium)
     }
-    
+    // нужно, чтобы кол-во товаров плюсовалось отдельно для общей корзины и для личной
     @objc func addToPersonalCart(_ sender: CatalogButton) {
+        item.quantity += 1
+        user.personalCart.append(item)
+        DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
+        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
         print("ADD TO PERSONAL CART")
     }
     
     @objc func removeFromPersonalCart(_ sender: CatalogButton) {
+        item.quantity -= 1
+        DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
+        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
         print("REMOVE FROM PERSONAL CART")
     }
     
     @objc func addToGroupCart(_ sender: CatalogButton) {
+        item.quantity += 1
+        user.sharedCart.append(item)
+        DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "sharedCart")
+        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
         print("ADD TO GROUP CART")
     }
     
     @objc func removeFromGroupCart(_ sender: CatalogButton) {
+        item.quantity -= 1
+        DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "sharedCart")
+        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
         print("REMOVE FROM GROUP CART")
     }
     

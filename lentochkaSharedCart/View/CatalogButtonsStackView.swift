@@ -11,7 +11,7 @@ class CatalogButtonsStackView: UIStackView {
     
     let removeButton    = CatalogButton(currentState: .remove(.small), title: "﹣") //
     let quantityLabel   = UILabel() //
-    let addButton          = CatalogButton(currentState: .add(.small), title: "+")
+    let addButton       = CatalogButton(currentState: .add(.small), title: "+")
     
     init() {
         super.init(frame: .zero)
@@ -35,7 +35,7 @@ class CatalogButtonsStackView: UIStackView {
         quantityLabel.text              = "0"
         quantityLabel.font              = UIFont.systemFont(ofSize: 15, weight: .bold)
         quantityLabel.textColor         = UIColor(named: "MainColor")
-        addButton.layer.cornerRadius       = 6
+        addButton.layer.cornerRadius    = 6
     }
     
     private func setUpStackView() {

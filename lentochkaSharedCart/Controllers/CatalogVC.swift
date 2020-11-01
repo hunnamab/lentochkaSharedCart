@@ -99,7 +99,7 @@ extension CatalogVC {
     }
     
     @objc func addButtonTapped(_ sender: CatalogButton) {
-        var item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
+        let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
         switch sender.currentState {
         case .add:
@@ -110,7 +110,7 @@ extension CatalogVC {
                 catalogItems[sender.tag].quantity += 1
                 extendedCatalogItems[sender.tag].quantity += 1
             }
-            item.quantity += 1
+            //item.quantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
             user.personalCart.append(item)
             DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
@@ -122,7 +122,7 @@ extension CatalogVC {
                 catalogItems[sender.tag].quantity -= 1
                 extendedCatalogItems[sender.tag].quantity -= 1
             }
-            item.quantity -= 1
+            //item.quantity -= 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
 //            let itemToRemove = user.personalCart.filter { $0.id == item.id }
             DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
@@ -141,8 +141,10 @@ extension CatalogVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = isSearching ? filteredExtendedItems[indexPath.row] : extendedCatalogItems[indexPath.row]
-        let detailCatalogItemVC = DetailCatalogItemVC(withItem: item, forUser: user)
+        let extendedItem = isSearching ? filteredExtendedItems[indexPath.row] :
+            extendedCatalogItems[indexPath.row]
+        let item = isSearching ? filteredItems[indexPath.row] : catalogItems[indexPath.row]
+        let detailCatalogItemVC = DetailCatalogItemVC(withExtItem: extendedItem, with: item, forUser: user)
         present(detailCatalogItemVC, animated: true)
 //        navigationController?.pushViewController(detailCatalogItemVC, animated: true)
     }
