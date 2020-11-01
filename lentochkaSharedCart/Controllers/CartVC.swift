@@ -15,26 +15,28 @@ class CartVC: UITableViewController {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
         
-        setUpSegmentedControl()
+        //setUpSegmentedControl()
         setUpViewController()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setUpSegmentedControl()
     }
     
     private func setUpSegmentedControl() {
         segmentedControl.selectedSegmentIndex = 0
-        let color = UIColor(red: 0.168627451,
-        green: 0.1294117647,
-        blue: 0.5764705882,
-        alpha: 1) // заменить на константу
+        let color = UIColor(named: "MainColor")
         segmentedControl.backgroundColor = color
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .selected)
         
         let controlHeight: CGFloat = 40
         let padding: CGFloat = 20
-        segmentedControl.frame = CGRect(x: 40, y: -controlHeight, width: view.frame.width - 80, height: controlHeight)
+        segmentedControl.frame = CGRect(x: 40, y: -controlHeight, width: tableView.frame.width - 80, height: controlHeight)
         tableView.contentInset = UIEdgeInsets(top: controlHeight + padding, left: 0, bottom: 0, right: 0)
         view.addSubview(segmentedControl)
-        
+        print(segmentedControl.frame)
         segmentedControl.addTarget(self, action: #selector(changeCart), for: .valueChanged)
     }
     

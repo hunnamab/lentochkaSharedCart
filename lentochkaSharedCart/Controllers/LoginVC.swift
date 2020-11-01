@@ -105,10 +105,7 @@ extension LoginVC {
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         loginButton.layer.cornerRadius = 6.0
-        loginButton.backgroundColor = UIColor(red: 0.168627451,
-                                              green: 0.1294117647,
-                                              blue: 0.5764705882,
-                                              alpha: 1)
+        loginButton.backgroundColor = UIColor(named: "MainColor")
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         

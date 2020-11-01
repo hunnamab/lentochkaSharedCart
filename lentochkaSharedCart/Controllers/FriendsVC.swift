@@ -33,10 +33,7 @@ class FriendsVC: UITableViewController {
         let image = UIImage(named: "AddFriend")
         let imageView = UIImageView(image: image)
         imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
-        imageView.tintColor = UIColor(red: 0.168627451,
-                                      green: 0.1294117647,
-                                      blue: 0.5764705882,
-                                      alpha: 1)
+        imageView.tintColor = UIColor(named: "MainColor")
         navigationBar.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         

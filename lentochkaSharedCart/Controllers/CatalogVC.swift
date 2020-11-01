@@ -46,10 +46,7 @@ class CatalogVC: UITableViewController {
     
     private func setUpSearchBar() {
         let searchController = UISearchController()
-        searchController.searchBar.tintColor = UIColor(red: 0.168627451,
-        green: 0.1294117647,
-        blue: 0.5764705882,
-        alpha: 1)
+        searchController.searchBar.tintColor = UIColor(named: "MainColor")
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -88,8 +85,8 @@ extension CatalogVC {
         case .add:
             DatabaseManager.shared.addItemInCart(with: item.id, to: "alex")
         case .remove:
+            DatabaseManager.shared.removeItemFromCart(with: item.id, from: "alex")
             break
-            // удаляем из базы товар
         }
         sender.toggleState()
     }

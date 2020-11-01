@@ -55,10 +55,7 @@ class TabBarVC: UITabBarController {
 
         self.viewControllers = [navVC, secondNavVC, thirdNavVC, fourthNavVC]
         self.modalPresentationStyle = .fullScreen
-        UITabBar.appearance().tintColor = UIColor(red: 0.168627451,
-                                                  green: 0.1294117647,
-                                                  blue: 0.5764705882,
-                                                  alpha: 1)
+        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
     }
 
 }
