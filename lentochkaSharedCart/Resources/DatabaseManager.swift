@@ -37,7 +37,8 @@ extension DatabaseManager {
             "price" : item.price,
             "image" : item.image,
             "unitName" : item.unitName,
-            "id" : item.id
+            "id" : item.id,
+            "quantity" : item.quantity
         ])
         print("ADDED \(item.name)")
         
