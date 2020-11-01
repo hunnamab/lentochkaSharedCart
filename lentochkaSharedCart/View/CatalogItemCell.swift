@@ -14,6 +14,7 @@ class CatalogItemCell: UITableViewCell {
     let itemNameLabel = UILabel()
     let itemPriceLabel = UILabel()
     let removeButton = CatalogButton(currentState: .remove(.small), title: "﹣") //
+    let quantityLabel = UILabel() //
     let button = CatalogButton(currentState: .add(.small), title: "+")
     
     func setUp(withItem item: CatalogItemCellModel) {
@@ -33,7 +34,10 @@ class CatalogItemCell: UITableViewCell {
     private func setUpElements() {
         accessoryType = .disclosureIndicator
         removeButton.layer.cornerRadius = 6 //
-        removeButton.isHidden = true //
+//        removeButton.isHidden = true //
+        quantityLabel.text = "0" //
+        quantityLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium) //
+        quantityLabel.textColor = UIColor(named: "MainColor")
         button.layer.cornerRadius = 6
         itemImageView.contentMode = .scaleAspectFit
         itemNameLabel.numberOfLines = 0
@@ -45,11 +49,11 @@ class CatalogItemCell: UITableViewCell {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemImageView)
         
-        let buttonStackView = UIStackView(arrangedSubviews: [itemPriceLabel, removeButton, button])
+        let buttonStackView = UIStackView(arrangedSubviews: [itemPriceLabel, removeButton, quantityLabel, button])
         button.widthAnchor.constraint(equalToConstant: 35).isActive = true
         removeButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
         buttonStackView.axis = .horizontal
-        buttonStackView.distribution = .fillProportionally
+        buttonStackView.distribution = .equalSpacing
         buttonStackView.alignment = .center
         
         let itemStackView = UIStackView(arrangedSubviews: [itemNameLabel, buttonStackView])
