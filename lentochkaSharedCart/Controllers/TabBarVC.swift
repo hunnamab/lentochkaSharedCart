@@ -38,17 +38,17 @@ class TabBarVC: UITabBarController {
     }
     
     private func showLoadingVC() {
-        let loadingVC = UIViewController()
-        loadingVC.view.backgroundColor = .white
-        loadingVC.modalPresentationStyle = .fullScreen
+        let loadingVC                       = UIViewController()
+        loadingVC.view.backgroundColor      = .white
+        loadingVC.modalPresentationStyle    = .fullScreen
         
-        let activityIndicator = UIActivityIndicatorView()
+        let activityIndicator               = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         loadingVC.view.addSubview(activityIndicator)
         
-        let transfrom = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
-        activityIndicator.transform = transfrom
-        activityIndicator.color = UIColor(named: "MainColor")
+        let transfrom                       = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+        activityIndicator.transform         = transfrom
+        activityIndicator.color             = UIColor(named: "MainColor")
         
         NSLayoutConstraint.activate([
             activityIndicator.centerYAnchor.constraint(equalTo: loadingVC.view.centerYAnchor),

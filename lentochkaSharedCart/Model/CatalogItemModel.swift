@@ -20,19 +20,19 @@ struct CatalogItemModel: Decodable {
     let goodsUnitList: [GoodsUnitList]
     
     enum CodingKeys: String, CodingKey {
-        case imageURL = "ImageUrl"
-        case imagePreviewURL = "ImagePreviewUrl"
-        case count = "Count"
-        case manufacturer = "Manufacturer"
-        case bruttoWeight = "BruttoWeight"
-        case id = "Id"
-        case isAllowHomeDelivery = "IsAllowHomeDelivery"
-        case imageSmallURL = "ImageSmallUrl"
-        case imageHighURL = "ImageHighUrl"
-        case name = "Name"
-        case imageBigURL = "ImageBigUrl"
-        case images = "Images"
-        case goodsUnitList = "GoodsUnitList"
+        case imageURL               = "ImageUrl"
+        case imagePreviewURL        = "ImagePreviewUrl"
+        case count                  = "Count"
+        case manufacturer           = "Manufacturer"
+        case bruttoWeight           = "BruttoWeight"
+        case id                     = "Id"
+        case isAllowHomeDelivery    = "IsAllowHomeDelivery"
+        case imageSmallURL          = "ImageSmallUrl"
+        case imageHighURL           = "ImageHighUrl"
+        case name                   = "Name"
+        case imageBigURL            = "ImageBigUrl"
+        case images                 = "Images"
+        case goodsUnitList          = "GoodsUnitList"
     }
 }
 
@@ -42,8 +42,8 @@ struct GoodsUnitList: Codable {
     let price: Double
 
     enum CodingKeys: String, CodingKey {
-        case unitName = "UnitName"
-        case price = "Price"
+        case unitName   = "UnitName"
+        case price      = "Price"
     }
 }
 
@@ -53,8 +53,8 @@ struct Image: Codable {
     let smallURL, bigURL: String
 
     enum CodingKeys: String, CodingKey {
-        case resampleURL = "ResampleUrl"
-        case smallURL = "SmallUrl"
-        case bigURL = "BigUrl"
+        case resampleURL    = "ResampleUrl"
+        case smallURL       = "SmallUrl"
+        case bigURL         = "BigUrl"
     }
 }

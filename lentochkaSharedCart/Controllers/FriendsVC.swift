@@ -9,7 +9,7 @@ import UIKit
 
 class FriendsVC: UITableViewController {
     
-    var friends = [User]()
+    var friends         = [User]()
     let reuseIdentifier = "TableViewCell"
     let user: User
     
@@ -77,7 +77,7 @@ class FriendsVC: UITableViewController {
             // пока сделаю просто
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-            let newFriend = User(login: name, cart: [], group: [])
+            let newFriend = User(login: name, personalCart: [], sharedCart: [], group: [])
             self.friends.append(newFriend)
             self.tableView.reloadData()
         }

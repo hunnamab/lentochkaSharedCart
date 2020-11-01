@@ -30,17 +30,24 @@ extension DatabaseManager {
     }
     
     /// Добавляет новую позицию товара в корзину
-    public func addItemInCart(with itemID: String, to login: String) {
+    public func addItemInCart(with item: CatalogItemCellModel, to login: String, cart: String) {
         
-        database.child(login).child("cart").child(itemID).setValue(itemID)
-        print("ADDED \(itemID)")
+        database.child(login).child(cart).child(item.id).setValue([
+            "name" : item.name,
+            "price" : item.price,
+            "image" : item.image,
+            "unitName" : item.unitName,
+            "id" : item.id
+        ])
+        print("ADDED \(item.name)")
+        
     }
     
     /// Удаляет позицию из корзины
-    public func removeItemFromCart(with itemID: String, from login: String) {
+    public func removeItemFromCart(with item: CatalogItemCellModel, from login: String, cart: String) {
         
-        database.child(login).child("cart").child(itemID).removeValue()
-        print("REMOVED \(itemID)")
+        database.child(login).child(cart).child(item.id).removeValue()
+        print("REMOVED \(item.name)")
     }
     
     public func addFriendToCart() {
@@ -49,14 +56,18 @@ extension DatabaseManager {
     
     public func fetchUserData(completion: @escaping (User?) -> Void) {
         let currentUser = FirebaseAuth.Auth.auth().currentUser
-        let login = String(currentUser?.email?.split(separator: "@")[0] ?? "") // мб по uid делать?
+        let login       = String(currentUser?.email?.split(separator: "@")[0] ?? "") // мб по uid делать?
         var user: User? = nil
         database.child(login).observeSingleEvent(of: .value) { snapshot in
-            let value = snapshot.value as? NSDictionary
-            let login = value?["email"] as? String ?? ""
-            let cart = value?["cart"] as? [CatalogItemCellModel] ?? []
-            let group = value?["cart"] as? [User] ?? []
-            user = User(login: login, cart: cart, group: group)
+            let value           = snapshot.value as? NSDictionary
+            let login           = value?["email"] as? String ?? ""
+            let personalCart    = value?["personalCart"] as? [CatalogItemCellModel] ?? []
+            let sharedCart      = value?["sharedCart"] as? [CatalogItemCellModel] ?? []
+            let group           = value?["group"] as? [User] ?? []
+            user                = User(login: login,
+                                       personalCart: personalCart,
+                                       sharedCart: sharedCart,
+                                       group: group)
             completion(user)
         }
     }

@@ -23,8 +23,8 @@ class CatalogButton: UIButton {
     var title: String
 
     override init(frame: CGRect) {
-        self.currentState = .add(.small)
-        self.title = ""
+        self.currentState   = .add(.small)
+        self.title          = ""
         super.init(frame: frame)
     }
     
@@ -33,8 +33,8 @@ class CatalogButton: UIButton {
     }
     
     init(currentState: ButtonState, title: String) {
-        self.currentState = currentState
-        self.title = title
+        self.currentState   = currentState
+        self.title          = title
         super.init(frame: .zero)
         setUp()
     }
