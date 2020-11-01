@@ -18,7 +18,9 @@ class CatalogItemCell: UITableViewCell {
     let button          = CatalogButton(currentState: .add(.small), title: "+")
 
     func setUp(withItem item: CatalogItemCellModel) {
-        itemImageView.image = UIImage(data: item.image)
+        guard let imageUrl = URL(string: item.image) else { return }
+        let imageData = try! Data(contentsOf: imageUrl)
+        itemImageView.image = UIImage(data: imageData)
         itemNameLabel.text  = item.name
         itemPriceLabel.text = "\(item.price) ₽ / \(item.unitName)"
         

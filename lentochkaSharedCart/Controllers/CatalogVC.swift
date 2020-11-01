@@ -110,8 +110,8 @@ extension CatalogVC {
             }
             item.quantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
-//            user.personalCart.append(item)
-//            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
+            user.personalCart.append(item)
+            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         case .remove:
             if isSearching {
                 filteredItems[sender.tag].quantity -= 1

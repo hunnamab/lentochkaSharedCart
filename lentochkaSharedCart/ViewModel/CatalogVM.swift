@@ -34,13 +34,11 @@ class CatalogVM {
     
     func createCatalogItemViewModels() {
         for item in extendedCatalogItems {
-            guard let imageUrl = URL(string: item.imageSmallURL) else { return }
-            let imageData = try! Data(contentsOf: imageUrl)
             let name = item.name.components(separatedBy: "   ")[0]
             let catalogItem = CatalogItemCellModel(
                 name: name,
                 price: item.goodsUnitList[0].price,
-                image: imageData,
+                image: item.imageSmallURL,
                 unitName: item.goodsUnitList[0].unitName,
                 id: item.id
             )
