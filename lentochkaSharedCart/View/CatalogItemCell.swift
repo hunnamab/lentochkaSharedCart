@@ -9,16 +9,16 @@ import UIKit
 
 class CatalogItemCell: UITableViewCell {
     
-    static let reuseID = "CatalogItemCell"
-    let itemImageView = UIImageView()
-    let itemNameLabel = UILabel()
-    let itemPriceLabel = UILabel()
-    let removeButton = CatalogButton(currentState: .remove(.small), title: "﹣") //
-    let button = CatalogButton(currentState: .add(.small), title: "+")
+    static let reuseID  = "CatalogItemCell"
+    let itemImageView   = UIImageView()
+    let itemNameLabel   = UILabel()
+    let itemPriceLabel  = UILabel()
+    let removeButton    = CatalogButton(currentState: .remove(.small), title: "﹣") //
+    let button          = CatalogButton(currentState: .add(.small), title: "+")
     
     func setUp(withItem item: CatalogItemCellModel) {
         itemImageView.image = UIImage(data: item.image)
-        itemNameLabel.text = item.name
+        itemNameLabel.text  = item.name
         itemPriceLabel.text = "\(item.price) ₽ / \(item.unitName)"
         
         setUpElements()
@@ -31,14 +31,14 @@ class CatalogItemCell: UITableViewCell {
     }
     
     private func setUpElements() {
-        accessoryType = .disclosureIndicator
+        accessoryType                   = .disclosureIndicator
         removeButton.layer.cornerRadius = 6 //
-        removeButton.isHidden = true //
-        button.layer.cornerRadius = 6
-        itemImageView.contentMode = .scaleAspectFit
-        itemNameLabel.numberOfLines = 0
-        itemNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        itemPriceLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        removeButton.isHidden           = true //
+        button.layer.cornerRadius       = 6
+        itemImageView.contentMode       = .scaleAspectFit
+        itemNameLabel.numberOfLines     = 0
+        itemNameLabel.font              = UIFont.systemFont(ofSize: 18, weight: .medium)
+        itemPriceLabel.font             = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
     
     private func setUpConstraints() {
@@ -48,19 +48,19 @@ class CatalogItemCell: UITableViewCell {
         let buttonStackView = UIStackView(arrangedSubviews: [itemPriceLabel, removeButton, button])
         button.widthAnchor.constraint(equalToConstant: 35).isActive = true
         removeButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
-        buttonStackView.axis = .horizontal
-        buttonStackView.distribution = .fillProportionally
-        buttonStackView.alignment = .center
+        buttonStackView.axis            = .horizontal
+        buttonStackView.distribution    = .fillProportionally
+        buttonStackView.alignment       = .center
         
         let itemStackView = UIStackView(arrangedSubviews: [itemNameLabel, buttonStackView])
-        itemStackView.axis = .vertical
+        itemStackView.axis      = .vertical
         itemStackView.alignment = .fill
-        itemStackView.spacing = 7
+        itemStackView.spacing   = 7
         itemStackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemStackView)
         
-        let padding: CGFloat = 20
-        let imageSize: CGFloat = 70
+        let padding: CGFloat    = 20
+        let imageSize: CGFloat  = 70
         NSLayoutConstraint.activate([
             itemImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             itemImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),

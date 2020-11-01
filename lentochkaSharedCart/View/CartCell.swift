@@ -10,7 +10,7 @@ import UIKit
 class CartCell: UITableViewCell {
     
     enum CellType: String {
-        case price = "Итого"
+        case price  = "Итого"
         case weight = "Вес корзины"
     }
     
@@ -25,13 +25,13 @@ class CartCell: UITableViewCell {
     }
     
     func setUp(cellType: CellType, detailInfo: String) {
-        textLabel?.text = cellType.rawValue
-        textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .regular)
-        textLabel?.textColor = .darkGray
+        textLabel?.text             = cellType.rawValue
+        textLabel?.font             = UIFont.systemFont(ofSize: 20, weight: .regular)
+        textLabel?.textColor        = .darkGray
         
-        detailTextLabel?.text = detailInfo
-        detailTextLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        detailTextLabel?.textColor = UIColor(named: "MainColor")
+        detailTextLabel?.text       = detailInfo
+        detailTextLabel?.font       = UIFont.systemFont(ofSize: 20, weight: .medium)
+        detailTextLabel?.textColor  = UIColor(named: "MainColor")
     }
     
 }

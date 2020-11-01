@@ -22,14 +22,15 @@ class ProfileVC: UIViewController {
     }
 
     private var avatarImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 50
-        imageView.clipsToBounds = true
-        imageView.layer.masksToBounds = true
+        let imageView                   = UIImageView()
+        imageView.layer.cornerRadius    = 50
+        imageView.clipsToBounds         = true
+        imageView.layer.masksToBounds   = true
         return imageView
     }()
-    let addAvatarButton = UIButton(type: .system)
-    private var logoutButton = UIButton(type: .system)
+    
+    private let addAvatarButton = UIButton(type: .system)
+    private var logoutButton    = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +43,10 @@ class ProfileVC: UIViewController {
     }
     
     private func setUpViewController() {
-        view.backgroundColor = .white
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        navigationItem.title = "Профиль"
+        view.backgroundColor                                    = .white
+        navigationController?.navigationBar.prefersLargeTitles  = true
+        navigationItem.largeTitleDisplayMode                    = .always
+        navigationItem.title                                    = "Профиль"
     }
     
     @objc private func logoutButtonWasTapped () {
@@ -66,9 +67,9 @@ class ProfileVC: UIViewController {
     }
     
     @objc private func addAvatar() {
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
+        let picker              = UIImagePickerController()
+        picker.allowsEditing    = true
+        picker.delegate         = self
         present(picker, animated: true)
     }
     
@@ -85,17 +86,17 @@ extension ProfileVC {
         addAvatarButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         
 //        avatarImageView.image = UIImage(named: "Friends") // поменять дефолтную фотку в placeholder'е
-        avatarImageView.backgroundColor = UIColor(named: "MainColor")
-        avatarImageView.contentMode = .scaleAspectFit
-        avatarImageView.layer.cornerRadius = 100
+        avatarImageView.backgroundColor     = UIColor(named: "MainColor")
+        avatarImageView.contentMode         = .scaleAspectFit
+        avatarImageView.layer.cornerRadius  = 100
         avatarImageView.layer.masksToBounds = true
-        avatarImageView.clipsToBounds = true
+        avatarImageView.clipsToBounds       = true
         
         logoutButton.setTitle("Выйти", for: .normal)
         logoutButton.setTitleColor(.white, for: .normal)
-        logoutButton.titleLabel?.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        logoutButton.titleLabel?.font   = UIFont.systemFont(ofSize: 22, weight: .medium)
         logoutButton.layer.cornerRadius = 6.0
-        logoutButton.backgroundColor = UIColor(named: "MainColor")
+        logoutButton.backgroundColor    = UIColor(named: "MainColor")
         logoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         logoutButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
     }
@@ -105,11 +106,12 @@ extension ProfileVC {
 extension ProfileVC {
     
     private func setUpConstraints() {
-        let stackView = UIStackView(arrangedSubviews: [addAvatarButton, logoutButton])
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.spacing = 40
-        stackView.alignment = .center
+        
+        let stackView           = UIStackView(arrangedSubviews: [addAvatarButton, logoutButton])
+        stackView.axis          = .vertical
+        stackView.distribution  = .fillEqually
+        stackView.spacing       = 40
+        stackView.alignment     = .center
         
         view.addSubview(avatarImageView)
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false

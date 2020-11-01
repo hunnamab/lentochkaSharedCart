@@ -10,11 +10,11 @@ import FirebaseAuth
 
 class CatalogVC: UITableViewController {
     
-    private var extendedCatalogItems = [CatalogItemModel]()
-    private var filteredExtendedItems = [CatalogItemModel]()
+    private var extendedCatalogItems    = [CatalogItemModel]()
+    private var filteredExtendedItems   = [CatalogItemModel]()
     
-    private var catalogItems = [CatalogItemCellModel]()
-    private var filteredItems = [CatalogItemCellModel]()
+    private var catalogItems    = [CatalogItemCellModel]()
+    private var filteredItems   = [CatalogItemCellModel]()
 
     private var isSearching = false
     private var id: String?
@@ -99,11 +99,11 @@ extension CatalogVC {
 //                let cell = tableView(tableView, cellForRowAt: indexPath) as! CatalogItemCell
 //                cell.removeButton.isHidden = false
 //            }
-            user.cart.append(item)
-            DatabaseManager.shared.addItemInCart(with: item.id, to: "alex")
+            user.personalCart.append(item)
+            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         case .remove:
-//            let itemToRemove = user.cart.filter { $0.id == item.id }
-            DatabaseManager.shared.removeItemFromCart(with: item.id, from: "alex")
+//            let itemToRemove = user.personalCart.filter { $0.id == item.id }
+            DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
         }
         sender.toggleState()
     }
