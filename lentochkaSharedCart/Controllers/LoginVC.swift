@@ -46,9 +46,11 @@ class LoginVC: UIViewController {
                 print("Failed to log in.")
                 return
             }
-            let user = User(login: login, personalCart: [], sharedCart: [], group: [])
-            DatabaseManager.shared.addUser(with: user)
-            strongSelf.delegate?.setNewUser(user)
+            DatabaseManager.shared.fetchUserData { [weak self] user in
+                guard let self = self, let user = user else { return }
+                //DatabaseManager.shared.addUser(with: user)
+                strongSelf.delegate?.setNewUser(user)
+            }
             strongSelf.self.dismiss(animated: true, completion: nil)
         }
     }
