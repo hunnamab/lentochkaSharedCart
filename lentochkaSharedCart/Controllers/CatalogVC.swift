@@ -85,15 +85,15 @@ extension CatalogVC {
         // создать в фабрике модель (добавить в нее поле "добавлено в корзину"
         // - отдельный метод, который берет инфу с сервера и проверяет)
         cell.setUp(withItem: item)
-        cell.button.tag = indexPath.row
-        cell.removeButton.tag = indexPath.row
-        cell.button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
-        cell.removeButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
-        cell.quantityLabel.text = "\(item.quantity)"
+        cell.buttonStackView.addButton.tag = indexPath.row
+        cell.buttonStackView.removeButton.tag = indexPath.row
+        cell.buttonStackView.addButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+        cell.buttonStackView.removeButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+        cell.buttonStackView.quantityLabel.text = "\(item.quantity)"
         if item.quantity > 0 {
-            cell.removeButton.isHidden = false
+            cell.buttonStackView.removeButton.isHidden = false
         } else {
-            cell.removeButton.isHidden = true
+            cell.buttonStackView.removeButton.isHidden = true
         }
         return cell
     }
@@ -105,8 +105,10 @@ extension CatalogVC {
         case .add:
             if isSearching {
                 filteredItems[sender.tag].quantity += 1
+                filteredExtendedItems[sender.tag].quantity += 1
             } else {
                 catalogItems[sender.tag].quantity += 1
+                extendedCatalogItems[sender.tag].quantity += 1
             }
             item.quantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -115,16 +117,16 @@ extension CatalogVC {
         case .remove:
             if isSearching {
                 filteredItems[sender.tag].quantity -= 1
+                filteredExtendedItems[sender.tag].quantity -= 1
             } else {
                 catalogItems[sender.tag].quantity -= 1
+                extendedCatalogItems[sender.tag].quantity -= 1
             }
             item.quantity -= 1
-            print(item.quantity)
             tableView.reloadRows(at: [indexPath], with: .automatic)
 //            let itemToRemove = user.personalCart.filter { $0.id == item.id }
             DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
         }
-//        sender.toggleState()
     }
     
 }
@@ -140,7 +142,7 @@ extension CatalogVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = isSearching ? filteredExtendedItems[indexPath.row] : extendedCatalogItems[indexPath.row]
-        let detailCatalogItemVC = DetailCatalogItemVC(withItem: item)
+        let detailCatalogItemVC = DetailCatalogItemVC(withItem: item, forUser: user)
         present(detailCatalogItemVC, animated: true)
 //        navigationController?.pushViewController(detailCatalogItemVC, animated: true)
     }

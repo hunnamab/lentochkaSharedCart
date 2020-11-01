@@ -13,11 +13,24 @@ class DetailCatalogItemVC: UIViewController {
     let itemNameLabel   = UILabel()
     let weightLabel     = UILabel()
     let itemPriceLabel  = UILabel()
-    let button          = CatalogButton(currentState: .add(.large), title: "Добавить")
+    let buttonsView     = UIView()
+    let leftButtonsView = DetailButtonsView(withTitle: "Добавить в личную корзину")
+    let rightButtonsView = DetailButtonsView(withTitle: "Добавить в общую корзину")
     
-    init(withItem item: CatalogItemModel) {
+    let user: User
+    
+    init(withItem item: CatalogItemModel, forUser user: User) {
+        self.user = user
         super.init(nibName: .none, bundle: .none)
-        
+        setUpElements(withItem: item)
+        print(item)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setUpElements(withItem item: CatalogItemModel) {
         let fullName        = item.name.components(separatedBy: "   ")
         itemNameLabel.text  = fullName[0]
         weightLabel.text    = "Вес: \(fullName[1])"
@@ -25,10 +38,8 @@ class DetailCatalogItemVC: UIViewController {
         let imageUrl        = URL(string: item.imageHighURL)!
         let image           = try! Data(contentsOf: imageUrl)
         itemImageView.image = UIImage(data: image)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
+        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
     }
     
     override func viewDidLoad() {
@@ -36,6 +47,7 @@ class DetailCatalogItemVC: UIViewController {
         
         view.backgroundColor = UIColor(named: "ItemBackground")
         setUpUI()
+        setUpButtons()
         setUpConstraints()
     }
     
@@ -49,11 +61,29 @@ class DetailCatalogItemVC: UIViewController {
         itemPriceLabel.minimumScaleFactor       = 0.4
         itemNameLabel.font                      = UIFont.systemFont(ofSize: 34, weight: .bold)
         itemPriceLabel.font                     = UIFont.systemFont(ofSize: 30, weight: .medium)
-        button.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
     }
     
-    @objc func addButtonTapped(_ sender: CatalogButton) {
-        sender.toggleState()
+    @objc func addToPersonalCart(_ sender: CatalogButton) {
+        print("ADD TO PERSONAL CART")
+    }
+    
+    @objc func removeFromPersonalCart(_ sender: CatalogButton) {
+        print("REMOVE FROM PERSONAL CART")
+    }
+    
+    @objc func addToGroupCart(_ sender: CatalogButton) {
+        print("ADD TO GROUP CART")
+    }
+    
+    @objc func removeFromGroupCart(_ sender: CatalogButton) {
+        print("REMOVE FROM GROUP CART")
+    }
+    
+    private func setUpButtons() {
+        leftButtonsView.buttonsStackView.addButton.addTarget(self, action: #selector(addToPersonalCart(_:)), for: .touchUpInside)
+        leftButtonsView.buttonsStackView.removeButton.addTarget(self, action: #selector(removeFromPersonalCart(_:)), for: .touchUpInside)
+        rightButtonsView.buttonsStackView.addButton.addTarget(self, action: #selector(addToGroupCart(_:)), for: .touchUpInside)
+        rightButtonsView.buttonsStackView.removeButton.addTarget(self, action: #selector(removeFromGroupCart(_:)), for: .touchUpInside)
     }
     
     private func setUpConstraints() {
@@ -69,25 +99,41 @@ class DetailCatalogItemVC: UIViewController {
         stackView.alignment     = .leading
         stackView.distribution  = .equalSpacing
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
-        
-        let buttonHeight: CGFloat = 70
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
-        
+        view.addSubview(buttonsView)
+        buttonsView.addSubview(leftButtonsView)
+        buttonsView.addSubview(rightButtonsView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        leftButtonsView.translatesAutoresizingMaskIntoConstraints = false
+        leftButtonsView.backgroundColor = .systemYellow //
+        rightButtonsView.translatesAutoresizingMaskIntoConstraints = false
+        rightButtonsView.backgroundColor = .systemTeal //
+
         let padding: CGFloat = 50
+        let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        let buttonHeight: CGFloat = 100 + bottomInset
         NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            button.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            button.heightAnchor.constraint(equalToConstant: buttonHeight),
+            buttonsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            buttonsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            buttonsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            buttonsView.heightAnchor.constraint(equalToConstant: buttonHeight),
             
             stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
-            stackView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -padding),
+            stackView.bottomAnchor.constraint(equalTo: buttonsView.topAnchor, constant: -padding),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            
+            leftButtonsView.leadingAnchor.constraint(equalTo: buttonsView.leadingAnchor),
+            leftButtonsView.trailingAnchor.constraint(equalTo: buttonsView.centerXAnchor),
+            leftButtonsView.topAnchor.constraint(equalTo: buttonsView.topAnchor),
+            leftButtonsView.bottomAnchor.constraint(equalTo: buttonsView.bottomAnchor),
+            
+            rightButtonsView.leadingAnchor.constraint(equalTo: buttonsView.centerXAnchor),
+            rightButtonsView.trailingAnchor.constraint(equalTo: buttonsView.trailingAnchor),
+            rightButtonsView.topAnchor.constraint(equalTo: buttonsView.topAnchor),
+            rightButtonsView.bottomAnchor.constraint(equalTo: buttonsView.bottomAnchor)
         ])
     }
-    
+
 }

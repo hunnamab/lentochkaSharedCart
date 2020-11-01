@@ -39,17 +39,17 @@ class CatalogButton: UIButton {
         setUp()
     }
     
-    func toggleState() {
-        switch currentState {
-        case .add(let size):
-            currentState = .remove(size)
-            title = (size == .small) ? "-" : "Удалить"
-        case .remove(let size):
-            currentState = .add(size)
-            title = (size == .small) ? "+" : "Добавить"
-        }
-        setUp()
-    }
+//    func toggleState() {
+//        switch currentState {
+//        case .add(let size):
+//            currentState = .remove(size)
+//            title = (size == .small) ? "-" : "Удалить"
+//        case .remove(let size):
+//            currentState = .add(size)
+//            title = (size == .small) ? "+" : "Добавить"
+//        }
+//        setUp()
+//    }
     
     private func setUp() {
         setTitle(title, for: .normal)

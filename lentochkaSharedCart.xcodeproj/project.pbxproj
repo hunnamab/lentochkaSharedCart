@@ -32,6 +32,8 @@
 		E52464B52549EE7F004E76CF /* DetailCatalogItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52464B42549EE7F004E76CF /* DetailCatalogItemVC.swift */; };
 		E52464B72549F655004E76CF /* CatalogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52464B62549F655004E76CF /* CatalogButton.swift */; };
 		E5EEF945254DA705004C5EB1 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF944254DA705004C5EB1 /* CartCell.swift */; };
+		E5EEF949254F1C3E004C5EB1 /* CatalogButtonsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF948254F1C3E004C5EB1 /* CatalogButtonsStackView.swift */; };
+		E5EEF94B254F22B2004C5EB1 /* DetailButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF94A254F22B1004C5EB1 /* DetailButtonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		E52464B42549EE7F004E76CF /* DetailCatalogItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCatalogItemVC.swift; sourceTree = "<group>"; };
 		E52464B62549F655004E76CF /* CatalogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogButton.swift; sourceTree = "<group>"; };
 		E5EEF944254DA705004C5EB1 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
+		E5EEF948254F1C3E004C5EB1 /* CatalogButtonsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogButtonsStackView.swift; sourceTree = "<group>"; };
+		E5EEF94A254F22B1004C5EB1 /* DetailButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				2D92FDD82549C2E900E777EF /* CatalogItemCell.swift */,
+				E5EEF94A254F22B1004C5EB1 /* DetailButtonsView.swift */,
+				E5EEF948254F1C3E004C5EB1 /* CatalogButtonsStackView.swift */,
 				E5EEF944254DA705004C5EB1 /* CartCell.swift */,
 				E52464B62549F655004E76CF /* CatalogButton.swift */,
 				2D92FDDB2549C33600E777EF /* FriendCell.swift */,
@@ -307,7 +313,9 @@
 				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
 				E52464B32549D155004E76CF /* CatalogItemCellModel.swift in Sources */,
+				E5EEF94B254F22B2004C5EB1 /* DetailButtonsView.swift in Sources */,
 				2D497409254A949D001253C2 /* CatalogVM.swift in Sources */,
+				E5EEF949254F1C3E004C5EB1 /* CatalogButtonsStackView.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2D92FDD92549C2E900E777EF /* CatalogItemCell.swift in Sources */,
 				2D5F2507254C61A400742B73 /* DatabaseManager.swift in Sources */,
