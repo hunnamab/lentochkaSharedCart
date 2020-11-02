@@ -9,7 +9,6 @@ import UIKit
 
 class FriendsVC: UITableViewController {
     
-    //var friends         = [User]()
     let reuseIdentifier = "TableViewCell"
     var user: User
     
