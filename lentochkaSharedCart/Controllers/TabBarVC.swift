@@ -16,8 +16,8 @@ class TabBarVC: UITabBarController {
     
     var user: User?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         validateAuth()
     }
     
@@ -64,6 +64,8 @@ class TabBarVC: UITabBarController {
     
     func presentTabBar() {
         guard let user = user else { return }
+        
+        print(user)
         
         let catalogVC = CatalogVC(withUser: user)
         let navVC = UINavigationController(rootViewController: catalogVC)

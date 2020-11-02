@@ -10,9 +10,6 @@ import FirebaseAuth
 
 class CatalogVC: UITableViewController {
     
-    private var extendedCatalogItems    = [CatalogItemModel]()
-    private var filteredExtendedItems   = [CatalogItemModel]()
-    
     private var catalogItems    = [CatalogItemCellModel]()
     private var filteredItems   = [CatalogItemCellModel]()
 
@@ -38,9 +35,8 @@ class CatalogVC: UITableViewController {
         
         setUpViewController()
         setUpSearchBar()
-        viewModel = CatalogVM(extendedCatalogItems: extendedCatalogItems, catalogItems: catalogItems)
+        viewModel = CatalogVM(catalogItems: catalogItems, forUser: user)
         viewModel.parseJSON()
-        extendedCatalogItems = viewModel.extendedCatalogItems
         catalogItems = viewModel.catalogItems
     }
     
@@ -103,28 +99,14 @@ extension CatalogVC {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         switch sender.currentState {
         case .add:
-            if isSearching {
-                filteredItems[sender.tag].personalCartQuantity += 1
-                filteredExtendedItems[sender.tag].quantity += 1
-            } else {
-                catalogItems[sender.tag].personalCartQuantity += 1
-                extendedCatalogItems[sender.tag].quantity += 1
-            }
-            //item.quantity += 1
+            item.personalCartQuantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
-            user.personalCart.append(item)
+            user.personalCart.append(item) // нннада?
             DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         case .remove:
-            if isSearching {
-                filteredItems[sender.tag].personalCartQuantity -= 1
-                filteredExtendedItems[sender.tag].quantity -= 1
-            } else {
-                catalogItems[sender.tag].personalCartQuantity -= 1
-                extendedCatalogItems[sender.tag].quantity -= 1
-            }
-            //item.quantity -= 1
+            item.personalCartQuantity -= 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
-//            let itemToRemove = user.personalCart.filter { $0.id == item.id }
+//            let itemToRemove = user.personalCart.filter { $0.id == item.id } // удалить, если кол-во 0
             DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
         }
     }
@@ -141,10 +123,9 @@ extension CatalogVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let extendedItem = isSearching ? filteredExtendedItems[indexPath.row] :
-            extendedCatalogItems[indexPath.row]
         let item = isSearching ? filteredItems[indexPath.row] : catalogItems[indexPath.row]
-        let detailCatalogItemVC = DetailCatalogItemVC(withExtItem: extendedItem, with: item, forUser: user)
+        let detailCatalogItemVC = DetailCatalogItemVC(withItem: item, atIndexPath: indexPath, forUser: user)
+        detailCatalogItemVC.delegate = self
         present(detailCatalogItemVC, animated: true)
 //        navigationController?.pushViewController(detailCatalogItemVC, animated: true)
     }
@@ -160,7 +141,6 @@ extension CatalogVC: UISearchResultsUpdating, UISearchBarDelegate {
         
         isSearching = true
         filteredItems = catalogItems.filter { $0.name.lowercased().contains(filter.lowercased())}
-        filteredExtendedItems = extendedCatalogItems.filter { $0.name.lowercased().contains(filter.lowercased())}
         tableView.reloadData()
     }
     
@@ -176,4 +156,10 @@ extension CatalogVC: UISearchResultsUpdating, UISearchBarDelegate {
         }
     }
     
+}
+
+extension CatalogVC: DismissDetailVC {
+    func detailViewControllerDidDismiss(withItem item: CatalogItemCellModel, atIndexPath indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
 }

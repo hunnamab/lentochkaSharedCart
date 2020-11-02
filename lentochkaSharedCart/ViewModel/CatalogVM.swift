@@ -8,16 +8,16 @@
 import Foundation
 
 class CatalogVM {
-    
-    var extendedCatalogItems: [CatalogItemModel]
     var catalogItems: [CatalogItemCellModel]
+    let user: User
     
-    init(extendedCatalogItems: [CatalogItemModel], catalogItems: [CatalogItemCellModel]) {
-        self.extendedCatalogItems = extendedCatalogItems
+    init(catalogItems: [CatalogItemCellModel], forUser user: User) {
         self.catalogItems = catalogItems
+        self.user = user
     }
     
     func parseJSON() {
+        var extendedCatalogItems = [CatalogItemModel]()
         if let path = Bundle.main.path(forResource: "bakery", ofType: "json")
         {
             let pathUrl = URL(fileURLWithPath: path)
@@ -29,20 +29,41 @@ class CatalogVM {
                 print(error.localizedDescription)
             }
         }
-        createCatalogItemViewModels()
+        createCatalogItemViewModels(fromItems: extendedCatalogItems)
     }
     
-    func createCatalogItemViewModels() {
+    func createCatalogItemViewModels(fromItems extendedCatalogItems: [CatalogItemModel]) {
         for item in extendedCatalogItems {
-            let name = item.name.components(separatedBy: "   ")[0]
+            let fullName = item.name.components(separatedBy: "   ")
+            let name = fullName[0]
+            let weight = fullName[1]
             let catalogItem = CatalogItemCellModel(
                 name: name,
                 price: item.goodsUnitList[0].price,
+                weight: weight,
                 image: item.imageSmallURL,
+                bigImage: item.imageBigURL,
                 unitName: item.goodsUnitList[0].unitName,
                 id: item.id
             )
             self.catalogItems.append(catalogItem)
+            setQuantity(forItems: catalogItems) //
         }
     }
+    
+    private func setQuantity(forItems items: [CatalogItemCellModel]) {
+        for item in items {
+            for personalItem in user.personalCart {
+                if item.id == personalItem.id {
+                    item.personalCartQuantity = personalItem.personalCartQuantity
+                }
+            }
+            for sharedItem in user.sharedCart {
+                if item.id == sharedItem.id {
+                    item.sharedCartQuantity = sharedItem.sharedCartQuantity
+                }
+            }
+        }
+    }
+    
 }

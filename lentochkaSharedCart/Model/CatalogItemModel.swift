@@ -18,7 +18,6 @@ struct CatalogItemModel: Decodable {
     let imageBigURL: String
     let images: [Image]
     let goodsUnitList: [GoodsUnitList]
-    var quantity: Int = 0 //
     
     enum CodingKeys: String, CodingKey {
         case imageURL               = "ImageUrl"

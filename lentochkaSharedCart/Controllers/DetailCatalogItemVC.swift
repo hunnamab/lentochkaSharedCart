@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DismissDetailVC: AnyObject {
+    func detailViewControllerDidDismiss(withItem item: CatalogItemCellModel, atIndexPath indexPath: IndexPath)
+}
+
 class DetailCatalogItemVC: UIViewController {
     
     let itemImageView   = UIImageView()
@@ -16,33 +20,34 @@ class DetailCatalogItemVC: UIViewController {
     let buttonsView     = UIView()
     let leftButtonsView = DetailButtonsView(withTitle: "Личная корзина")
     let rightButtonsView = DetailButtonsView(withTitle: "Общая корзина")
+    
+    weak var delegate: DismissDetailVC?
 
     var user: User
-    //нужно отделить item для общей и для личной корзины
     var item: CatalogItemCellModel
+    let indexPath: IndexPath
     
-    init(withExtItem extendedItem: CatalogItemModel, with item: CatalogItemCellModel, forUser user: User) {
+    init(withItem item: CatalogItemCellModel, atIndexPath indexPath: IndexPath, forUser user: User) {
         self.user = user
         self.item = item
+        self.indexPath = indexPath
         super.init(nibName: .none, bundle: .none)
-        setUpElements(withItem: extendedItem)
-        print(extendedItem.name)
-        print(item.name)
+        setUpElements(withItem: item)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpElements(withItem item: CatalogItemModel) {
-        let fullName        = item.name.components(separatedBy: "   ")
-        itemNameLabel.text  = fullName[0]
-        weightLabel.text    = "Вес: \(fullName[1])"
-        itemPriceLabel.text = "\(item.goodsUnitList[0].price) ₽"
-        let imageUrl        = URL(string: item.imageHighURL)!
+    private func setUpElements(withItem item: CatalogItemCellModel) {
+        itemNameLabel.text  = item.name
+        weightLabel.text    = "Вес: \(item.weight)"
+        itemPriceLabel.text = "\(item.price) ₽"
+        let imageUrl        = URL(string: item.bigImage)!
         let image           = try! Data(contentsOf: imageUrl)
         itemImageView.image = UIImage(data: image)
-        
+//        print(item.personalCartQuantity)
+//        print(item.sharedCartQuantity)
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(self.item.personalCartQuantity)"
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(self.item.sharedCartQuantity)"
     }
@@ -56,6 +61,10 @@ class DetailCatalogItemVC: UIViewController {
         setUpConstraints()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.detailViewControllerDidDismiss(withItem: item, atIndexPath: indexPath)
+    }
+    
     private func setUpUI() {
         itemImageView.contentMode   = .scaleAspectFit
         let imageHeight             = view.bounds.size.height / 4
@@ -67,32 +76,40 @@ class DetailCatalogItemVC: UIViewController {
         itemNameLabel.font                      = UIFont.systemFont(ofSize: 34, weight: .bold)
         itemPriceLabel.font                     = UIFont.systemFont(ofSize: 30, weight: .medium)
     }
-    // нужно, чтобы кол-во товаров плюсовалось отдельно для общей корзины и для личной
+    
     @objc func addToPersonalCart(_ sender: CatalogButton) {
+        if item.personalCartQuantity == 0 {
+            user.personalCart.append(item)
+        }
         item.personalCartQuantity += 1
-        user.personalCart.append(item)
         DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("ADD TO PERSONAL CART")
     }
     
-    @objc func removeFromPersonalCart(_ sender: CatalogButton) {
-        item.personalCartQuantity -= 1
+    @objc func removeFromPersonalCart(_ sender: CatalogButton) { // удалить из юзера, если кол-во 0
+        if item.personalCartQuantity > 0 {
+            item.personalCartQuantity -= 1
+        }
         DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("REMOVE FROM PERSONAL CART")
     }
     
-    @objc func addToGroupCart(_ sender: CatalogButton) {
+    @objc func addToSharedCart(_ sender: CatalogButton) { // удалить из юзера, если кол-во 0
+        if item.sharedCartQuantity == 0 {
+            user.sharedCart.append(item)
+        }
         item.sharedCartQuantity += 1
-        user.sharedCart.append(item)
         DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("ADD TO GROUP CART")
     }
     
-    @objc func removeFromGroupCart(_ sender: CatalogButton) {
-        item.sharedCartQuantity -= 1
+    @objc func removeFromSharedCart(_ sender: CatalogButton) {
+        if item.sharedCartQuantity > 0 {
+            item.sharedCartQuantity -= 1
+        }
         DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("REMOVE FROM GROUP CART")
@@ -101,8 +118,8 @@ class DetailCatalogItemVC: UIViewController {
     private func setUpButtons() {
         leftButtonsView.buttonsStackView.addButton.addTarget(self, action: #selector(addToPersonalCart(_:)), for: .touchUpInside)
         leftButtonsView.buttonsStackView.removeButton.addTarget(self, action: #selector(removeFromPersonalCart(_:)), for: .touchUpInside)
-        rightButtonsView.buttonsStackView.addButton.addTarget(self, action: #selector(addToGroupCart(_:)), for: .touchUpInside)
-        rightButtonsView.buttonsStackView.removeButton.addTarget(self, action: #selector(removeFromGroupCart(_:)), for: .touchUpInside)
+        rightButtonsView.buttonsStackView.addButton.addTarget(self, action: #selector(addToSharedCart(_:)), for: .touchUpInside)
+        rightButtonsView.buttonsStackView.removeButton.addTarget(self, action: #selector(removeFromSharedCart(_:)), for: .touchUpInside)
     }
     
     private func setUpConstraints() {

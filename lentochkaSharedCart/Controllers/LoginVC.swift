@@ -17,7 +17,7 @@ class LoginVC: UIViewController {
     weak    var delegate: CreateUser?
     
     var viewModel: LoginVM!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loginTextField.text         = "alex"
@@ -29,6 +29,7 @@ class LoginVC: UIViewController {
                               for: .touchUpInside)
         loginTextField.delegate = self
         passwordTextField.delegate = self
+        print("")
     }
     
     @objc private func loginButtonWasTapped () {

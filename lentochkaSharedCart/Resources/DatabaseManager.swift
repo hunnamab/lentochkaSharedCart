@@ -38,14 +38,15 @@ extension DatabaseManager {
         database.child(login).child(cart).child(item.id).setValue([
             "name"                  : item.name,
             "price"                 : item.price,
+            "weight"                : item.weight,
             "image"                 : item.image,
+            "bigImage"              : item.bigImage,
             "unitName"              : item.unitName,
             "id"                    : item.id,
             "personalCartQuantity"  : item.personalCartQuantity,
             "sharedCartQuantity"    : item.sharedCartQuantity
         ])
         print("ADDED \(item.name)")
-        
     }
     
     /// Удаляет позицию из корзины
@@ -90,13 +91,54 @@ extension DatabaseManager {
         database.child(login).observeSingleEvent(of: .value) { snapshot in
             let value           = snapshot.value as? NSDictionary
             let login           = value?["login"] as? String ?? ""
-            let personalCart    = value?["personalCart"] as? [CatalogItemCellModel] ?? []
-            let sharedCart      = value?["sharedCart"] as? [CatalogItemCellModel] ?? []
-            let group           = value?["group"] as? [User] ?? []
+            let personalCart    = value?["personalCart"] as? [String: Any] ?? [:]
+            var personalCartItems = [CatalogItemCellModel]()
+            for (_, cartItem) in personalCart {
+                guard let item = cartItem as? [String: Any] else { return }
+                let newItem = CatalogItemCellModel(
+                    name: item["name"] as! String,
+                    price: item["price"] as! Double,
+                    weight: item["weight"] as! String,
+                    image: item["image"] as! String,
+                    bigImage: item["bigImage"] as! String,
+                    unitName: item["unitName"] as! String,
+                    id: item["id"] as! String,
+                    personalCartQuantity: item["personalCartQuantity"] as! Int,
+                    sharedCartQuantity: item["sharedCartQuantity"] as! Int
+                )
+                personalCartItems.append(newItem)
+            }
+            
+            let sharedCart      = value?["sharedCart"] as? [String: Any] ?? [:]
+            var sharedCartItems = [CatalogItemCellModel]()
+            for (_, cartItem) in sharedCart {
+                guard let item = cartItem as? [String: Any] else { return }
+                let newItem = CatalogItemCellModel(
+                    name: item["name"] as! String,
+                    price: item["price"] as! Double,
+                    weight: item["weight"] as! String,
+                    image: item["image"] as! String,
+                    bigImage: item["bigImage"] as! String,
+                    unitName: item["unitName"] as! String,
+                    id: item["id"] as! String,
+                    personalCartQuantity: item["personalCartQuantity"] as! Int,
+                    sharedCartQuantity: item["sharedCartQuantity"] as! Int
+                )
+                sharedCartItems.append(newItem)
+            }
+            
+            let group           = value?["group"] as? [String: String] ?? [:]
+            var friends = [User]()
+            for (_, groupMember) in group {
+                // переделать, но я хз как - по идее нужно фетчить для друга всю инфу?
+                let newFriend = User(login: groupMember, personalCart: [], sharedCart: [], group: [])
+                friends.append(newFriend)
+            }
+            
             user                = User(login: login,
-                                       personalCart: personalCart,
-                                       sharedCart: sharedCart,
-                                       group: group)
+                                       personalCart: personalCartItems,
+                                       sharedCart: sharedCartItems,
+                                       group: friends)
             completion(user)
         }
     }
