@@ -25,7 +25,8 @@ class LoginVC: UIViewController {
         self.modalPresentationStyle = .fullScreen
         setUpUI()
         setUpConstraints()
-        loginButton.addTarget(self, action: #selector(loginButtonWasTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(loginButtonWasTapped),
+                              for: .touchUpInside)
         loginTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -40,13 +41,15 @@ class LoginVC: UIViewController {
             return
         }
         let email = login + "@mail.ru"
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) {
+            [weak self] result, error in
             guard let strongSelf = self else { return }
             guard result != nil, error == nil else {
                 print("Failed to log in.")
                 return
             }
-            DatabaseManager.shared.fetchUserData(login: login) { [weak self] user in
+            DatabaseManager.shared.fetchUserData(login: login) {
+                [weak self] user in
                 guard let self = self, let user = user else { return }
                 //DatabaseManager.shared.addUser(with: user)
                 strongSelf.delegate?.setNewUser(user)
@@ -87,7 +90,8 @@ extension LoginVC {
         loginTextField.autocapitalizationType   = .none
         loginTextField.textAlignment            = .center
         loginTextField.textColor                = .black
-        loginTextField.font                     = UIFont.systemFont(ofSize: 20, weight: .regular)
+        loginTextField.font                     = UIFont.systemFont(ofSize: 20,
+                                                                    weight: .regular)
         loginTextField.layer.borderColor        = UIColor.lightGray.cgColor
         loginTextField.layer.borderWidth        = 1
         loginTextField.layer.cornerRadius       = 8
@@ -98,7 +102,8 @@ extension LoginVC {
         passwordTextField.isSecureTextEntry     = true
         passwordTextField.textAlignment         = .center
         passwordTextField.textColor             = .black
-        passwordTextField.font                  = UIFont.systemFont(ofSize: 20, weight: .regular)
+        passwordTextField.font                  = UIFont.systemFont(ofSize: 20,
+                                                                    weight: .regular)
         passwordTextField.layer.borderColor     = UIColor.lightGray.cgColor
         passwordTextField.layer.borderWidth     = 1
         passwordTextField.layer.cornerRadius    = 8
@@ -108,7 +113,8 @@ extension LoginVC {
         
         loginButton.setTitle("Войти", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
-        loginButton.titleLabel?.font            = UIFont.systemFont(ofSize: 22, weight: .medium)
+        loginButton.titleLabel?.font            = UIFont.systemFont(ofSize: 22,
+                                                                    weight: .medium)
         loginButton.layer.cornerRadius          = 6.0
         loginButton.backgroundColor             = UIColor(named: "MainColor")
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -124,19 +130,22 @@ extension LoginVC {
 extension LoginVC {
     
     private func setUpConstraints() {
-        let loginStackView              = UIStackView(arrangedSubviews: [loginTextField, passwordTextField])
+        let loginStackView              = UIStackView(arrangedSubviews: [loginTextField,
+                                                                         passwordTextField])
         loginStackView.axis             = .vertical
         loginStackView.distribution     = .equalSpacing
         loginStackView.spacing          = 20
         loginStackView.alignment        = .fill
         
-        let buttonStackView             = UIStackView(arrangedSubviews: [loginButton, forgotPasswordLabel])
+        let buttonStackView             = UIStackView(arrangedSubviews: [loginButton,
+                                                                         forgotPasswordLabel])
         buttonStackView.axis            = .vertical
         buttonStackView.distribution    = .fillEqually
         buttonStackView.spacing         = 40
         buttonStackView.alignment       = .center
         
-        let stackView                   = UIStackView(arrangedSubviews: [loginStackView, buttonStackView])
+        let stackView                   = UIStackView(arrangedSubviews: [loginStackView,
+                                                                         buttonStackView])
         stackView.axis                  = .vertical
         stackView.distribution          = .equalSpacing
         stackView.spacing               = 30

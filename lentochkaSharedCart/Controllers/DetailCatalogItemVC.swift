@@ -43,8 +43,8 @@ class DetailCatalogItemVC: UIViewController {
         let image           = try! Data(contentsOf: imageUrl)
         itemImageView.image = UIImage(data: image)
         
-        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
-        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
+        leftButtonsView.buttonsStackView.quantityLabel.text = "\(self.item.personalCartQuantity)"
+        rightButtonsView.buttonsStackView.quantityLabel.text = "\(self.item.sharedCartQuantity)"
     }
     
     override func viewDidLoad() {
@@ -69,32 +69,32 @@ class DetailCatalogItemVC: UIViewController {
     }
     // нужно, чтобы кол-во товаров плюсовалось отдельно для общей корзины и для личной
     @objc func addToPersonalCart(_ sender: CatalogButton) {
-        item.quantity += 1
+        item.personalCartQuantity += 1
         user.personalCart.append(item)
         DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
-        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
+        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("ADD TO PERSONAL CART")
     }
     
     @objc func removeFromPersonalCart(_ sender: CatalogButton) {
-        item.quantity -= 1
+        item.personalCartQuantity -= 1
         DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
-        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
+        leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("REMOVE FROM PERSONAL CART")
     }
     
     @objc func addToGroupCart(_ sender: CatalogButton) {
-        item.quantity += 1
+        item.sharedCartQuantity += 1
         user.sharedCart.append(item)
         DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "sharedCart")
-        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
+        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("ADD TO GROUP CART")
     }
     
     @objc func removeFromGroupCart(_ sender: CatalogButton) {
-        item.quantity -= 1
+        item.sharedCartQuantity -= 1
         DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "sharedCart")
-        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.quantity)"
+        rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("REMOVE FROM GROUP CART")
     }
     

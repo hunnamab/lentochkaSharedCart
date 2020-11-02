@@ -40,16 +40,16 @@ class FriendsVC: UITableViewController {
     func configureBarButtonItems() {
         guard let navigationBar = navigationController?.navigationBar else { return }
         
-        let image = UIImage(named: "AddFriend")
-        let imageView = UIImageView(image: image)
-        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+        let image           = UIImage(named: "AddFriend")
+        let imageView       = UIImageView(image: image)
+        imageView.image     = imageView.image?.withRenderingMode(.alwaysTemplate)
         imageView.tintColor = UIColor(named: "MainColor")
         navigationBar.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        let rightPadding: CGFloat = 20
-        let bottomPadding: CGFloat = 12
-        let imageSize: CGFloat = 25
+        let rightPadding: CGFloat   = 20
+        let bottomPadding: CGFloat  = 12
+        let imageSize: CGFloat      = 25
         NSLayoutConstraint.activate([
             imageView.rightAnchor.constraint(equalTo: navigationController!.navigationBar.rightAnchor, constant: -rightPadding),
             imageView.bottomAnchor.constraint(equalTo: navigationController!.navigationBar.bottomAnchor, constant: -bottomPadding),
@@ -64,15 +64,13 @@ class FriendsVC: UITableViewController {
     
     @objc func addFriendTapped() {
         // будем добавлять по email или по имени?
-        let alertController = UIAlertController(title: "Добавить друга", message: "Добавьте друга, чтобы пользоваться общей корзиной🛍", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Добавить друга", message: "Добавьте друга, чтобы пользоваться общей корзиной 🛍", preferredStyle: .alert)
         alertController.addTextField(configurationHandler: nil)
         
         let addFriend = UIAlertAction(title: "Добавить", style: .default) { [weak self] _ in
             guard let self = self else { return }
             // здесь логика для проверки, есть ли у нас в базе такой пользователь
             // если нет, можно вывести еще один alert с ошибкой
-            // по идее, если пользователь есть, здесь надо с сервера подтянуть всю информацию о нем в
-            // свойство friends
             
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }

@@ -44,8 +44,14 @@ class CartVC: UITableViewController {
         
         let controlHeight: CGFloat = 40
         let padding: CGFloat = 20
-        segmentedControl.frame = CGRect(x: 40, y: -controlHeight, width: tableView.frame.width - 80, height: controlHeight)
-        tableView.contentInset = UIEdgeInsets(top: controlHeight + padding, left: 0, bottom: 0, right: 0)
+        segmentedControl.frame = CGRect(x: 40,
+                                        y: -controlHeight,
+                                        width: tableView.frame.width - 80,
+                                        height: controlHeight)
+        tableView.contentInset = UIEdgeInsets(top: controlHeight + padding,
+                                              left: 0,
+                                              bottom: 0,
+                                              right: 0)
         view.addSubview(segmentedControl)
         print(segmentedControl.frame)
         segmentedControl.addTarget(self, action: #selector(changeCart), for: .valueChanged)

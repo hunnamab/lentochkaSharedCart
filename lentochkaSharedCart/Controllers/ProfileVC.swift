@@ -82,8 +82,10 @@ extension ProfileVC {
 
         addAvatarButton.setTitle("Изменить фото", for: .normal)
         addAvatarButton.setTitleColor(.blue, for: .normal)
-        addAvatarButton.addTarget(self, action: #selector(addAvatar), for: .touchUpInside)
-        addAvatarButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        addAvatarButton.addTarget(self, action: #selector(addAvatar),
+                                  for: .touchUpInside)
+        addAvatarButton.titleLabel?.font = UIFont.systemFont(ofSize: 18,
+                                                             weight: .regular)
         
 //        avatarImageView.image = UIImage(named: "Friends") // поменять дефолтную фотку в placeholder'е
         avatarImageView.backgroundColor     = UIColor(named: "MainColor")
@@ -94,7 +96,8 @@ extension ProfileVC {
         
         logoutButton.setTitle("Выйти", for: .normal)
         logoutButton.setTitleColor(.white, for: .normal)
-        logoutButton.titleLabel?.font   = UIFont.systemFont(ofSize: 22, weight: .medium)
+        logoutButton.titleLabel?.font   = UIFont.systemFont(ofSize: 22,
+                                                            weight: .medium)
         logoutButton.layer.cornerRadius = 6.0
         logoutButton.backgroundColor    = UIColor(named: "MainColor")
         logoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true

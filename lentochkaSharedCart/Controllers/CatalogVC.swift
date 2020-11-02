@@ -89,8 +89,8 @@ extension CatalogVC {
         cell.buttonStackView.removeButton.tag = indexPath.row
         cell.buttonStackView.addButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
         cell.buttonStackView.removeButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
-        cell.buttonStackView.quantityLabel.text = "\(item.quantity)"
-        if item.quantity > 0 {
+        cell.buttonStackView.quantityLabel.text = "\(item.personalCartQuantity)"
+        if item.personalCartQuantity > 0 {
             cell.buttonStackView.removeButton.isHidden = false
         } else {
             cell.buttonStackView.removeButton.isHidden = true
@@ -104,10 +104,10 @@ extension CatalogVC {
         switch sender.currentState {
         case .add:
             if isSearching {
-                filteredItems[sender.tag].quantity += 1
+                filteredItems[sender.tag].personalCartQuantity += 1
                 filteredExtendedItems[sender.tag].quantity += 1
             } else {
-                catalogItems[sender.tag].quantity += 1
+                catalogItems[sender.tag].personalCartQuantity += 1
                 extendedCatalogItems[sender.tag].quantity += 1
             }
             //item.quantity += 1
@@ -116,10 +116,10 @@ extension CatalogVC {
             DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
         case .remove:
             if isSearching {
-                filteredItems[sender.tag].quantity -= 1
+                filteredItems[sender.tag].personalCartQuantity -= 1
                 filteredExtendedItems[sender.tag].quantity -= 1
             } else {
-                catalogItems[sender.tag].quantity -= 1
+                catalogItems[sender.tag].personalCartQuantity -= 1
                 extendedCatalogItems[sender.tag].quantity -= 1
             }
             //item.quantity -= 1
