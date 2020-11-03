@@ -17,8 +17,6 @@ class CartVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
-        
-        //setUpSegmentedControl()
         setUpViewController()
     }
     
@@ -39,7 +37,23 @@ class CartVC: UITableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+//        setUpSegmentedControl()
+    }
+    
+    private func setUpSegmentedControlView() -> UIView {
         setUpSegmentedControl()
+        let segmentedControlView = UIView()
+        segmentedControlView.addSubview(segmentedControl)
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        let sidePadding: CGFloat = 40
+        let topPadding: CGFloat = 30
+        NSLayoutConstraint.activate([
+            segmentedControl.leadingAnchor.constraint(equalTo: segmentedControlView.leadingAnchor, constant: sidePadding),
+            segmentedControl.trailingAnchor.constraint(equalTo: segmentedControlView.trailingAnchor, constant: -sidePadding),
+            segmentedControl.topAnchor.constraint(equalTo: segmentedControlView.topAnchor, constant: topPadding),
+            segmentedControl.bottomAnchor.constraint(equalTo: segmentedControlView.bottomAnchor)
+        ])
+        return segmentedControlView
     }
     
     private func setUpSegmentedControl() {
@@ -48,19 +62,6 @@ class CartVC: UITableViewController {
         segmentedControl.backgroundColor = color
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .selected)
-        
-        let controlHeight: CGFloat = 40
-        let padding: CGFloat = 20
-        segmentedControl.frame = CGRect(x: 40,
-                                        y: -controlHeight,
-                                        width: tableView.frame.width - 80,
-                                        height: controlHeight)
-        tableView.contentInset = UIEdgeInsets(top: controlHeight + padding,
-                                              left: 0,
-                                              bottom: 0,
-                                              right: 0)
-        view.addSubview(segmentedControl)
-        print(segmentedControl.frame)
         segmentedControl.addTarget(self, action: #selector(changeCart), for: .valueChanged)
     }
     
@@ -77,15 +78,12 @@ class CartVC: UITableViewController {
         navigationItem.title = "Корзина"
         
         tableView.allowsSelection = false //
-        tableView.register(CatalogItemCell.self, forCellReuseIdentifier: CatalogItemCell.reuseID)
+        tableView.register(CartItemCell.self, forCellReuseIdentifier: CartItemCell.reuseID)
         tableView.register(CartCell.self, forCellReuseIdentifier: CartCell.reuseID)
     }
     
     @objc private func changeCart() {
         cartState.toggle()
-        print(cartState)
-        // здесь заменим dataSource: товары из личной корзины -> товары из общей корзины и наоборот
-        print("!!!")
         tableView.reloadData()
     }
     
@@ -96,16 +94,16 @@ class CartVC: UITableViewController {
 extension CartVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return countCartItems()
         case 1:
-            return 1
+            return countCartItems()
         case 2:
+            return 1
+        case 3:
             return 1
         default:
             return 0
@@ -123,16 +121,15 @@ extension CartVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CatalogItemCell.reuseID, for: indexPath) as! CatalogItemCell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CartItemCell.reuseID, for: indexPath) as! CartItemCell
             let item = getCartItem(forRow: indexPath.row)
-            cell.setUp(withItem: item)
-            cell.buttonStackView.isHidden = true
-            cell.accessoryType = .none
+            print(item.name, item.personalCartQuantity, item.sharedCartQuantity)
+            cell.setUp(withItem: item, forCart: cartState)
             return cell
-        case let x where x == 1 || x == 2:
+        case let x where x == 2 || x == 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as! CartCell
-            if x == 1 {
+            if x == 2 {
                 cell.setUp(cellType: .price, detailInfo: countTotalPrice())
             } else {
                 cell.setUp(cellType: .weight, detailInfo: countTotalWeight())
@@ -180,11 +177,11 @@ extension CartVC {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
-            return "Список товаров"
         case 1:
-            return "Сумма заказа"
+            return "Список товаров"
         case 2:
+            return "Сумма заказа"
+        case 3:
             return "Общий вес"
         default:
             return nil
@@ -197,8 +194,20 @@ extension CartVC {
 
 extension CartVC {
     
-    //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        //
-    //    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 70
+        } else {
+            return tableView.sectionHeaderHeight
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return setUpSegmentedControlView()
+        } else {
+            return nil
+        }
+    }
     
 }

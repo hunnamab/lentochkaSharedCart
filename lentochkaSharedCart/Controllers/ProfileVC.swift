@@ -28,7 +28,7 @@ class ProfileVC: UIViewController {
         imageView.layer.masksToBounds   = true
         return imageView
     }()
-    
+    private let loginLabel      = UILabel()
     private let addAvatarButton = UIButton(type: .system)
     private var logoutButton    = UIButton(type: .system)
     
@@ -57,12 +57,7 @@ class ProfileVC: UIViewController {
             return
         }
         if FirebaseAuth.Auth.auth().currentUser == nil {
-            let rootVC = LoginVC()
-            rootVC.modalPresentationStyle = .fullScreen
-            guard let tabBarController = tabBarController,
-                tabBarController.viewControllers != nil else { return }
-            tabBarController.selectedViewController = tabBarController.viewControllers![0] //
-            present(rootVC, animated: false)
+            AppDelegate.shared.rootViewController.showLoginScreen()
         }
     }
     
@@ -94,10 +89,14 @@ extension ProfileVC {
         avatarImageView.layer.masksToBounds = true
         avatarImageView.clipsToBounds       = true
         
+        loginLabel.text = user.login
+        loginLabel.textColor = .black
+        loginLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        
         logoutButton.setTitle("Выйти", for: .normal)
         logoutButton.setTitleColor(.white, for: .normal)
         logoutButton.titleLabel?.font   = UIFont.systemFont(ofSize: 22,
-                                                            weight: .medium)
+                                                        weight: .medium)
         logoutButton.layer.cornerRadius = 6.0
         logoutButton.backgroundColor    = UIColor(named: "MainColor")
         logoutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -119,6 +118,9 @@ extension ProfileVC {
         view.addSubview(avatarImageView)
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(loginLabel)
+        loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -128,7 +130,10 @@ extension ProfileVC {
             avatarImageView.heightAnchor.constraint(equalToConstant: 200),
             avatarImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
             
-            stackView.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 10),
+            loginLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 20),
+            
+            stackView.topAnchor.constraint(equalTo: loginLabel.bottomAnchor),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7)
         ])

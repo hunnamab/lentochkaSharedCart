@@ -7,7 +7,8 @@
 
 import Foundation
 
-class CatalogItemCellModel {
+class CatalogItemCellModel: Equatable {
+
     let name: String
     let price: Double
     let weight: String
@@ -29,4 +30,9 @@ class CatalogItemCellModel {
         self.personalCartQuantity = personalCartQuantity
         self.sharedCartQuantity   = sharedCartQuantity
     }
+    
+    static func == (lhs: CatalogItemCellModel, rhs: CatalogItemCellModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
 }

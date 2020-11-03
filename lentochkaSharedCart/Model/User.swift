@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User {
+class User: Equatable {
     var login: String
     var personalCart: [CatalogItemCellModel]
     var sharedCart: [CatalogItemCellModel]
@@ -20,5 +20,9 @@ class User {
         self.sharedCart = sharedCart
         self.group = group
         self.groupHost = groupHost
+    }
+    
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.login == rhs.login
     }
 }

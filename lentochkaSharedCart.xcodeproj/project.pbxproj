@@ -35,6 +35,9 @@
 		E5EEF945254DA705004C5EB1 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF944254DA705004C5EB1 /* CartCell.swift */; };
 		E5EEF949254F1C3E004C5EB1 /* CatalogButtonsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF948254F1C3E004C5EB1 /* CatalogButtonsStackView.swift */; };
 		E5EEF94B254F22B2004C5EB1 /* DetailButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF94A254F22B1004C5EB1 /* DetailButtonsView.swift */; };
+		E5EEF94F2551F9D1004C5EB1 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF94E2551F9D1004C5EB1 /* CartItemCell.swift */; };
+		E5EEF9532552143A004C5EB1 /* LaunchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF9522552143A004C5EB1 /* LaunchVC.swift */; };
+		E5EEF955255214C2004C5EB1 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEF954255214C2004C5EB1 /* SplashVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,9 @@
 		E5EEF944254DA705004C5EB1 /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		E5EEF948254F1C3E004C5EB1 /* CatalogButtonsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogButtonsStackView.swift; sourceTree = "<group>"; };
 		E5EEF94A254F22B1004C5EB1 /* DetailButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailButtonsView.swift; sourceTree = "<group>"; };
+		E5EEF94E2551F9D1004C5EB1 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
+		E5EEF9522552143A004C5EB1 /* LaunchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchVC.swift; sourceTree = "<group>"; };
+		E5EEF954255214C2004C5EB1 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 				E5EEF944254DA705004C5EB1 /* CartCell.swift */,
 				E52464B62549F655004E76CF /* CatalogButton.swift */,
 				2D92FDDB2549C33600E777EF /* FriendCell.swift */,
+				E5EEF94E2551F9D1004C5EB1 /* CartItemCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,13 +127,15 @@
 		2D92FDBF2549A95B00E777EF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E5EEF9522552143A004C5EB1 /* LaunchVC.swift */,
+				E5EEF954255214C2004C5EB1 /* SplashVC.swift */,
 				2DF744DC25475F9400532B99 /* LoginVC.swift */,
+				2D5F2503254C5E2D00742B73 /* TabBarVC.swift */,
 				2D5DEACB2548A1FC009C1C6F /* CatalogVC.swift */,
+				E52464B42549EE7F004E76CF /* DetailCatalogItemVC.swift */,
 				2D5DEABF25485263009C1C6F /* FriendsVC.swift */,
 				2D5DEAC225485270009C1C6F /* CartVC.swift */,
 				2D5DEAC525485282009C1C6F /* ProfileVC.swift */,
-				E52464B42549EE7F004E76CF /* DetailCatalogItemVC.swift */,
-				2D5F2503254C5E2D00742B73 /* TabBarVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -315,11 +324,14 @@
 				2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */,
 				2DF744DD25475F9400532B99 /* LoginVC.swift in Sources */,
 				2DF744D925475F9400532B99 /* AppDelegate.swift in Sources */,
+				E5EEF9532552143A004C5EB1 /* LaunchVC.swift in Sources */,
+				E5EEF955255214C2004C5EB1 /* SplashVC.swift in Sources */,
 				E52464B32549D155004E76CF /* CatalogItemCellModel.swift in Sources */,
 				E5EEF94B254F22B2004C5EB1 /* DetailButtonsView.swift in Sources */,
 				2D497409254A949D001253C2 /* CatalogVM.swift in Sources */,
 				E5EEF949254F1C3E004C5EB1 /* CatalogButtonsStackView.swift in Sources */,
 				2D49855E25513EB200F1CA4F /* CartState.swift in Sources */,
+				E5EEF94F2551F9D1004C5EB1 /* CartItemCell.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2D92FDD92549C2E900E777EF /* CatalogItemCell.swift in Sources */,
 				2D5F2507254C61A400742B73 /* DatabaseManager.swift in Sources */,

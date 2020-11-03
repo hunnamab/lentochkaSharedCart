@@ -14,13 +14,10 @@ class CatalogVC: UITableViewController {
     private var filteredItems   = [CatalogItemCellModel]()
 
     private var isSearching = false
-    private var id: String?
     
     private var viewModel: CatalogVM!
     
     var user: User
-    
-    weak var delegate: CreateUser?
     
     init(withUser user: User) {
         self.user = user
@@ -29,6 +26,14 @@ class CatalogVC: UITableViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        for item in user.personalCart {
+            print("{\(item.name) - \(item.personalCartQuantity)}")
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -101,14 +106,30 @@ extension CatalogVC {
         let indexPath = IndexPath(row: sender.tag, section: 0)
         switch sender.currentState {
         case .add:
+            if item.personalCartQuantity == 0 {
+                user.personalCart.append(item)
+            }
             item.personalCartQuantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
-            user.personalCart.append(item) // нннада?
+            let indexToAdd = user.personalCart.firstIndex(of: item) // вынести в отдельную функцию / разделить add/remove
+            if let index = indexToAdd { //
+                user.personalCart[index].personalCartQuantity += 1 //
+            } //
             DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
         case .remove:
-            item.personalCartQuantity -= 1
+            if item.personalCartQuantity > 0 {
+                item.personalCartQuantity -= 1
+            }
             tableView.reloadRows(at: [indexPath], with: .automatic)
-//            let itemToRemove = user.personalCart.filter { $0.id == item.id } // удалить, если кол-во 0
+            let indexToRemove = user.personalCart.firstIndex(of: item) //
+            if let index = indexToRemove { //
+                user.personalCart[index].personalCartQuantity -= 1 //
+            } //
+            if item.personalCartQuantity == 0 {
+                if let index = indexToRemove {
+                    user.personalCart.remove(at: index)
+                }
+            }
             DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
         }
     }
@@ -129,7 +150,6 @@ extension CatalogVC {
         let detailCatalogItemVC = DetailCatalogItemVC(withItem: item, atIndexPath: indexPath, forUser: user)
         detailCatalogItemVC.delegate = self
         present(detailCatalogItemVC, animated: true)
-//        navigationController?.pushViewController(detailCatalogItemVC, animated: true)
     }
     
 }

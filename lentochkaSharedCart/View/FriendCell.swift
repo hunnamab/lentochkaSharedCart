@@ -8,16 +8,18 @@
 import UIKit
 
 class FriendCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    static let reuseID = "FriendCell"
+    
+    func setUp(forUser user: User, andFriend friend: String) {
+        if user.groupHost == friend {
+            let hostImageView = UIImageView(image: UIImage(named: "Host"))
+            hostImageView.image = hostImageView.image?.withRenderingMode(.alwaysTemplate)
+            hostImageView.tintColor = UIColor(named: "MainColor")
+            accessoryView = hostImageView
+        }
+        textLabel?.font = UIFont.systemFont(ofSize: 22, weight: .medium)
+        textLabel?.textColor = UIColor(named: "MainColor") ?? .blue
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }

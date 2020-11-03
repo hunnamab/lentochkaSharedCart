@@ -42,7 +42,7 @@ class CatalogVM {
                 price: item.goodsUnitList[0].price,
                 weight: weight,
                 image: item.imageSmallURL,
-                bigImage: item.imageBigURL,
+                bigImage: item.imageHighURL,
                 unitName: item.goodsUnitList[0].unitName,
                 id: item.id
             )

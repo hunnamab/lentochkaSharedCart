@@ -8,64 +8,21 @@
 import UIKit
 import FirebaseAuth
 
-protocol CreateUser: AnyObject {
-    func setNewUser(_ user: User)
-}
-
 class TabBarVC: UITabBarController {
     
-    var user: User?
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        validateAuth()
+    let user: User
+
+    init(withUser user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+        self.presentTabBar()
     }
     
-    private func validateAuth() {
-        print(FirebaseAuth.Auth.auth().currentUser?.email)
-        if FirebaseAuth.Auth.auth().currentUser == nil {
-            let rootVC = LoginVC()
-            rootVC.modalPresentationStyle = .fullScreen
-            rootVC.delegate = self
-            present(rootVC, animated: false)
-        } else {
-            showLoadingVC()
-            let currentUser = FirebaseAuth.Auth.auth().currentUser
-            let login = String(currentUser?.email?.split(separator: "@")[0] ?? "")
-            DatabaseManager.shared.fetchUserData(login: login) { [weak self] user in
-                guard let self = self, let user = user else { return }
-                self.user = user
-                print(self.user?.login)
-                self.presentTabBar()
-            }
-        }
-    }
-    
-    private func showLoadingVC() {
-        let loadingVC                       = UIViewController()
-        loadingVC.view.backgroundColor      = .white
-        loadingVC.modalPresentationStyle    = .fullScreen
-        
-        let activityIndicator               = UIActivityIndicatorView()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        loadingVC.view.addSubview(activityIndicator)
-        
-        let transfrom                       = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
-        activityIndicator.transform         = transfrom
-        activityIndicator.color             = UIColor(named: "MainColor")
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerYAnchor.constraint(equalTo: loadingVC.view.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: loadingVC.view.centerXAnchor),
-            activityIndicator.widthAnchor.constraint(equalToConstant: 300),
-            activityIndicator.heightAnchor.constraint(equalToConstant: 300)
-        ])
-        activityIndicator.startAnimating()
-        self.viewControllers = [loadingVC]
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func presentTabBar() {
-        guard let user = user else { return }
         
         print("tab bar \(user.login)")
         
@@ -99,11 +56,4 @@ class TabBarVC: UITabBarController {
         self.modalPresentationStyle = .fullScreen
     }
     
-}
-
-extension TabBarVC: CreateUser {
-    func setNewUser(_ user: User) {
-        self.user = user
-        presentTabBar()
-    }
 }

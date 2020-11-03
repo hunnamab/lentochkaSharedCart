@@ -14,7 +14,6 @@ class LoginVC: UIViewController {
     private var passwordTextField   = UITextField()
     private var loginButton         = UIButton(type: .system)
     private var forgotPasswordLabel = UILabel()
-    weak    var delegate: CreateUser?
     
     var viewModel: LoginVM!
 
@@ -42,21 +41,17 @@ class LoginVC: UIViewController {
             return
         }
         let email = login + "@mail.ru"
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) {
-            [weak self] result, error in
-            guard let strongSelf = self else { return }
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { result, error in
             guard result != nil, error == nil else {
                 print("Failed to log in.")
                 return
             }
-            DatabaseManager.shared.fetchUserData(login: login) {
-                [weak self] user in
-                guard let self = self, let user = user else { return }
+            DatabaseManager.shared.fetchUserData(login: login) { user in
+                guard let user = user else { return }
                 //DatabaseManager.shared.addUser(with: user)
-                strongSelf.delegate?.setNewUser(user)
                 print("login screen \(user.login)")
+                AppDelegate.shared.rootViewController.showMainScreen(withUser: user)
             }
-            strongSelf.self.dismiss(animated: true, completion: nil)
         }
     }
     

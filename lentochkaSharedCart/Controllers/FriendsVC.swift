@@ -9,7 +9,7 @@ import UIKit
 
 class FriendsVC: UITableViewController {
     
-    let reuseIdentifier = "TableViewCell"
+//    let reuseIdentifier = "TableViewCell"
     var user: User
     
     init(withUser user: User) {
@@ -33,7 +33,7 @@ class FriendsVC: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = "Люди"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(FriendCell.self, forCellReuseIdentifier: FriendCell.reuseID)
     }
     
     func configureBarButtonItems() {
@@ -67,41 +67,52 @@ class FriendsVC: UITableViewController {
         
         let addFriend = UIAlertAction(title: "Добавить", style: .default) { [weak self] _ in
             guard let self = self else { return }
-            // здесь логика для проверки, есть ли у нас в базе такой пользователь
-            // если нет, можно вывести еще один alert с ошибкой
-            
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-//            if {
-//                let errorAlert = UIAlertController(title: "Ошибка", message: "Пользователь не найден", preferredStyle: .alert)
-//                let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//                errorAlert.addAction(okAction)
-//                self.present(errorAlert, animated: true)
-//            } else {
             if self.user.groupHost.isEmpty {
                 DatabaseManager.shared.addHost(login: self.user.login, to: self.user.login)
                 DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
-                    guard let self = self, let friend = friend else { return }
+                    guard let self = self else { return }
+                    guard let friend = friend, !friend.login.isEmpty else {
+                        self.presentUserNotFoundAlert()
+                        return
+                    }
                     DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.login)
                     DatabaseManager.shared.addHost(login: self.user.login, to: friend.login)
                     //friend.group = DatabaseManager.shared.addHostGroupRef(to: friend.group, user: friend.login)
                     //friend.sharedCart = DatabaseManager.shared.addHostCartRef(to: friend.sharedCart)
-                    self.user.group.append(friend)
+                    if self.user.group.firstIndex(of: friend) == nil {
+                        self.user.group.append(friend)
+                    }
+                    self.tableView.reloadData()
                 }
             } else {
                 DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
-                    guard let self = self, let friend = friend else { return }
-                    self.user.group.append(friend)
+                    guard let self = self else { return }
+                    guard let friend = friend, !friend.login.isEmpty else {
+                        self.presentUserNotFoundAlert()
+                        return
+                    }
+                    if self.user.group.firstIndex(of: friend) == nil {
+                        self.user.group.append(friend)
+                    }
                     DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.groupHost)
                     DatabaseManager.shared.addHost(login: self.user.groupHost, to: friend.login)
+                    self.tableView.reloadData()
                 }
             }
         }
-        self.tableView.reloadData()
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
         alertController.addAction(addFriend)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
+    }
+    
+    func presentUserNotFoundAlert() {
+        let errorAlert = UIAlertController(title: "Ошибка", message: "Пользователь не найден🥺", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        errorAlert.addAction(okAction)
+        self.present(errorAlert, animated: true)
     }
     
 }
@@ -115,10 +126,12 @@ extension FriendsVC {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseID, for: indexPath) as! FriendCell
+        let friend = user.group[indexPath.row].login
         cell.textLabel?.text = user.group[indexPath.row].login
         print(user.group[indexPath.row].login)
         cell.isUserInteractionEnabled = false
+        cell.setUp(forUser: user, andFriend: friend)
         return cell
     }
     
