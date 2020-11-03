@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D497409254A949D001253C2 /* CatalogVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D497408254A949D001253C2 /* CatalogVM.swift */; };
+		2D49855E25513EB200F1CA4F /* CartState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D49855D25513EB200F1CA4F /* CartState.swift */; };
 		2D5DEAC025485263009C1C6F /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEABF25485263009C1C6F /* FriendsVC.swift */; };
 		2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC225485270009C1C6F /* CartVC.swift */; };
 		2D5DEAC625485282009C1C6F /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DEAC525485282009C1C6F /* ProfileVC.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		1396C3BCBBFB98E89A33AA60 /* Pods_lentochkaSharedCart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lentochkaSharedCart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D497408254A949D001253C2 /* CatalogVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogVM.swift; sourceTree = "<group>"; };
+		2D49855D25513EB200F1CA4F /* CartState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartState.swift; sourceTree = "<group>"; };
 		2D5DEABF25485263009C1C6F /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		2D5DEAC225485270009C1C6F /* CartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartVC.swift; sourceTree = "<group>"; };
 		2D5DEAC525485282009C1C6F /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				E52464AE25497405004E76CF /* CatalogItemModel.swift */,
 				E52464B22549D155004E76CF /* CatalogItemCellModel.swift */,
 				2D92FDCB2549B26F00E777EF /* User.swift */,
+				2D49855D25513EB200F1CA4F /* CartState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				E5EEF94B254F22B2004C5EB1 /* DetailButtonsView.swift in Sources */,
 				2D497409254A949D001253C2 /* CatalogVM.swift in Sources */,
 				E5EEF949254F1C3E004C5EB1 /* CatalogButtonsStackView.swift in Sources */,
+				2D49855E25513EB200F1CA4F /* CartState.swift in Sources */,
 				2D5DEAC325485270009C1C6F /* CartVC.swift in Sources */,
 				2D92FDD92549C2E900E777EF /* CatalogItemCell.swift in Sources */,
 				2D5F2507254C61A400742B73 /* DatabaseManager.swift in Sources */,

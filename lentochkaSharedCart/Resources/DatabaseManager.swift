@@ -15,19 +15,25 @@ final class DatabaseManager {
     
     private let database = Database.database().reference()
     
+    private var hostRef: DatabaseReference?
+    
 }
 
 // MARK: - Управление аккаунтом
 extension DatabaseManager {
-    // пока непонятно, нужна ли нам все же эта функция
-    /// Добавляет нового юзера в базу данных Firebase
-    public func addUser(with user: User) {
-        
-        let email = user.login + "@mail.ru"
-        database.child(user.login).setValue([
-            "login":user.login,
-        ])
-        
+    /// установление хоста и ссылки на него от других юзеров
+    public func addHost(login: String, to user: String) {
+        database.child(user).child("groupHost").setValue(login)
+        hostRef = database.child(login)
+        print("host reference = \(hostRef?.key)")
+    }
+    
+    public func addHostCartRef(to userCart: [CatalogItemCellModel]) -> [CatalogItemCellModel] {
+        return userCart
+    }
+    
+    public func addHostGroupRef(to userGroup: [User], user: String) -> [User] {
+        return userGroup
     }
 }
 
@@ -89,56 +95,65 @@ extension DatabaseManager {
     public func fetchUserData(login: String, completion: @escaping (User?) -> Void) {
         var user: User? = nil
         database.child(login).observeSingleEvent(of: .value) { snapshot in
-            let value           = snapshot.value as? NSDictionary
-            let login           = value?["login"] as? String ?? ""
-            let personalCart    = value?["personalCart"] as? [String: Any] ?? [:]
-            var personalCartItems = [CatalogItemCellModel]()
+            
+            let value               = snapshot.value as? NSDictionary
+            let login               = value?["login"] as? String ?? ""
+            let personalCart        = value?["personalCart"] as? [String: Any] ?? [:]
+            var personalCartItems   = [CatalogItemCellModel]()
+            
             for (_, cartItem) in personalCart {
                 guard let item = cartItem as? [String: Any] else { return }
                 let newItem = CatalogItemCellModel(
-                    name: item["name"] as! String,
-                    price: item["price"] as! Double,
-                    weight: item["weight"] as! String,
-                    image: item["image"] as! String,
-                    bigImage: item["bigImage"] as! String,
-                    unitName: item["unitName"] as! String,
-                    id: item["id"] as! String,
-                    personalCartQuantity: item["personalCartQuantity"] as! Int,
-                    sharedCartQuantity: item["sharedCartQuantity"] as! Int
+                    name:                   item["name"] as! String,
+                    price:                  item["price"] as! Double,
+                    weight:                 item["weight"] as! String,
+                    image:                  item["image"] as! String,
+                    bigImage:               item["bigImage"] as! String,
+                    unitName:               item["unitName"] as! String,
+                    id:                     item["id"] as! String,
+                    personalCartQuantity:   item["personalCartQuantity"] as! Int,
+                    sharedCartQuantity:     item["sharedCartQuantity"] as! Int
                 )
                 personalCartItems.append(newItem)
             }
             
             let sharedCart      = value?["sharedCart"] as? [String: Any] ?? [:]
             var sharedCartItems = [CatalogItemCellModel]()
+            
             for (_, cartItem) in sharedCart {
                 guard let item = cartItem as? [String: Any] else { return }
                 let newItem = CatalogItemCellModel(
-                    name: item["name"] as! String,
-                    price: item["price"] as! Double,
-                    weight: item["weight"] as! String,
-                    image: item["image"] as! String,
-                    bigImage: item["bigImage"] as! String,
-                    unitName: item["unitName"] as! String,
-                    id: item["id"] as! String,
-                    personalCartQuantity: item["personalCartQuantity"] as! Int,
-                    sharedCartQuantity: item["sharedCartQuantity"] as! Int
+                    name:                   item["name"] as! String,
+                    price:                  item["price"] as! Double,
+                    weight:                 item["weight"] as! String,
+                    image:                  item["image"] as! String,
+                    bigImage:               item["bigImage"] as! String,
+                    unitName:               item["unitName"] as! String,
+                    id:                     item["id"] as! String,
+                    personalCartQuantity:   item["personalCartQuantity"] as! Int,
+                    sharedCartQuantity:     item["sharedCartQuantity"] as! Int
                 )
                 sharedCartItems.append(newItem)
             }
             
-            let group           = value?["group"] as? [String: String] ?? [:]
-            var friends = [User]()
+            let group       = value?["group"] as? [String: String] ?? [:]
+            let groupHost   = value?["groupHost"] as? String ?? ""
+            var friends     = [User]()
+            
             for (_, groupMember) in group {
                 // переделать, но я хз как - по идее нужно фетчить для друга всю инфу?
-                let newFriend = User(login: groupMember, personalCart: [], sharedCart: [], group: [])
+                let newFriend = User(login: groupMember,
+                                     personalCart: [],
+                                     sharedCart: [],
+                                     group: [],
+                                     groupHost: groupHost)
                 friends.append(newFriend)
             }
             
-            user                = User(login: login,
-                                       personalCart: personalCartItems,
-                                       sharedCart: sharedCartItems,
-                                       group: friends)
+            user = User(login: login,
+                        personalCart: personalCartItems,
+                        sharedCart: sharedCartItems,
+                        group: friends, groupHost: groupHost)
             completion(user)
         }
     }

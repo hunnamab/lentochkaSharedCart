@@ -20,8 +20,8 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginTextField.text         = "alex"
-        passwordTextField.text      = "123456"
+        //loginTextField.text         = "alex"
+        //passwordTextField.text      = "123456"
         self.modalPresentationStyle = .fullScreen
         setUpUI()
         setUpConstraints()
@@ -54,6 +54,7 @@ class LoginVC: UIViewController {
                 guard let self = self, let user = user else { return }
                 //DatabaseManager.shared.addUser(with: user)
                 strongSelf.delegate?.setNewUser(user)
+                print("login screen \(user.login)")
             }
             strongSelf.self.dismiss(animated: true, completion: nil)
         }

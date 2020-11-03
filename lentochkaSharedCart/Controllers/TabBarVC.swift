@@ -22,6 +22,7 @@ class TabBarVC: UITabBarController {
     }
     
     private func validateAuth() {
+        print(FirebaseAuth.Auth.auth().currentUser?.email)
         if FirebaseAuth.Auth.auth().currentUser == nil {
             let rootVC = LoginVC()
             rootVC.modalPresentationStyle = .fullScreen
@@ -34,6 +35,7 @@ class TabBarVC: UITabBarController {
             DatabaseManager.shared.fetchUserData(login: login) { [weak self] user in
                 guard let self = self, let user = user else { return }
                 self.user = user
+                print(self.user?.login)
                 self.presentTabBar()
             }
         }
@@ -65,7 +67,9 @@ class TabBarVC: UITabBarController {
     func presentTabBar() {
         guard let user = user else { return }
         
-        print(user)
+        print("tab bar \(user.login)")
+        
+        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
         
         let catalogVC = CatalogVC(withUser: user)
         let navVC = UINavigationController(rootViewController: catalogVC)
@@ -93,7 +97,6 @@ class TabBarVC: UITabBarController {
         
         self.viewControllers = [navVC, secondNavVC, thirdNavVC, fourthNavVC]
         self.modalPresentationStyle = .fullScreen
-        UITabBar.appearance().tintColor = UIColor(named: "MainColor")
     }
     
 }

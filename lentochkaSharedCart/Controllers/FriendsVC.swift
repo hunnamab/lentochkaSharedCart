@@ -62,7 +62,6 @@ class FriendsVC: UITableViewController {
     }
     
     @objc func addFriendTapped() {
-        // будем добавлять по email или по имени?
         let alertController = UIAlertController(title: "Добавить друга", message: "Добавьте друга, чтобы пользоваться общей корзиной 🛍", preferredStyle: .alert)
         alertController.addTextField(configurationHandler: nil)
         
@@ -73,13 +72,32 @@ class FriendsVC: UITableViewController {
             
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-            DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
-                guard let self = self, let friend = friend else { return }
-                self.user.group.append(friend)
-                DatabaseManager.shared.addFriendToCart(friend: friend, to: "alex")
-                self.tableView.reloadData()
+//            if {
+//                let errorAlert = UIAlertController(title: "Ошибка", message: "Пользователь не найден", preferredStyle: .alert)
+//                let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//                errorAlert.addAction(okAction)
+//                self.present(errorAlert, animated: true)
+//            } else {
+            if self.user.groupHost.isEmpty {
+                DatabaseManager.shared.addHost(login: self.user.login, to: self.user.login)
+                DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
+                    guard let self = self, let friend = friend else { return }
+                    DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.login)
+                    DatabaseManager.shared.addHost(login: self.user.login, to: friend.login)
+                    //friend.group = DatabaseManager.shared.addHostGroupRef(to: friend.group, user: friend.login)
+                    //friend.sharedCart = DatabaseManager.shared.addHostCartRef(to: friend.sharedCart)
+                    self.user.group.append(friend)
+                }
+            } else {
+                DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
+                    guard let self = self, let friend = friend else { return }
+                    self.user.group.append(friend)
+                    DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.groupHost)
+                    DatabaseManager.shared.addHost(login: self.user.groupHost, to: friend.login)
+                }
             }
         }
+        self.tableView.reloadData()
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
         alertController.addAction(addFriend)
         alertController.addAction(cancelAction)

@@ -82,7 +82,7 @@ class DetailCatalogItemVC: UIViewController {
             user.personalCart.append(item)
         }
         item.personalCartQuantity += 1
-        DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
+        DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("ADD TO PERSONAL CART")
     }
@@ -91,7 +91,7 @@ class DetailCatalogItemVC: UIViewController {
         if item.personalCartQuantity > 0 {
             item.personalCartQuantity -= 1
         }
-        DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
+        DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("REMOVE FROM PERSONAL CART")
     }
@@ -101,7 +101,7 @@ class DetailCatalogItemVC: UIViewController {
             user.sharedCart.append(item)
         }
         item.sharedCartQuantity += 1
-        DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "sharedCart")
+        DatabaseManager.shared.addItemInCart(with: item, to: user.groupHost, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("ADD TO GROUP CART")
     }
@@ -110,7 +110,7 @@ class DetailCatalogItemVC: UIViewController {
         if item.sharedCartQuantity > 0 {
             item.sharedCartQuantity -= 1
         }
-        DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "sharedCart")
+        DatabaseManager.shared.removeItemFromCart(with: item, from: user.groupHost, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("REMOVE FROM GROUP CART")
     }

@@ -7,23 +7,9 @@
 
 import UIKit
 
-enum CartState: Int {
-    case personal
-    case shared
-    
-    mutating func toggle() {
-        switch self {
-        case .personal:
-            self = .shared
-        case .shared:
-            self = .personal
-        }
-    }
-}
-
 class CartVC: UITableViewController {
     
-    let user: User
+    var user: User
     var cartState: CartState
     
     let segmentedControl = UISegmentedControl(items: ["Личная", "Общая"])
@@ -34,6 +20,11 @@ class CartVC: UITableViewController {
         
         //setUpSegmentedControl()
         setUpViewController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     init(style: UITableView.Style, withUser user: User) {

@@ -20,6 +20,8 @@ class CatalogVC: UITableViewController {
     
     var user: User
     
+    weak var delegate: CreateUser?
+    
     init(withUser user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
@@ -102,12 +104,12 @@ extension CatalogVC {
             item.personalCartQuantity += 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
             user.personalCart.append(item) // нннада?
-            DatabaseManager.shared.addItemInCart(with: item, to: "alex", cart: "personalCart")
+            DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
         case .remove:
             item.personalCartQuantity -= 1
             tableView.reloadRows(at: [indexPath], with: .automatic)
 //            let itemToRemove = user.personalCart.filter { $0.id == item.id } // удалить, если кол-во 0
-            DatabaseManager.shared.removeItemFromCart(with: item, from: "alex", cart: "personalCart")
+            DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
         }
     }
     
