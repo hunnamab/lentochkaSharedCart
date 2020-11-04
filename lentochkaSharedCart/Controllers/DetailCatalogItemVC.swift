@@ -107,7 +107,9 @@ class DetailCatalogItemVC: UIViewController {
             return
         }
         if item.sharedCartQuantity == 0 {
-            user.sharedCart[user.login]?.append(item) //
+            var items = user.sharedCart[user.login] ?? [CatalogItemCellModel]()
+            items.append(item)
+            user.sharedCart[user.login] = items
         }
         item.sharedCartQuantity += 1
         if let indexToAdd = user.sharedCart[user.login]?.firstIndex(of: item) {

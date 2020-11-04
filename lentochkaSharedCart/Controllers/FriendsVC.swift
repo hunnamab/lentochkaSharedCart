@@ -15,7 +15,6 @@ enum FriendsError: String {
 
 class FriendsVC: UITableViewController {
     
-//    let reuseIdentifier = "TableViewCell"
     var user: User
     
     init(withUser user: User) {
@@ -94,7 +93,7 @@ class FriendsVC: UITableViewController {
                     DatabaseManager.shared.addHost(login: self.user.login, to: friend.login)
                     self.user.groupHost = self.user.login
                     if self.user.group.firstIndex(of: friend) == nil {
-                        self.user.group.append(self.user) // ????
+                        self.user.group.append(self.user)
                         self.user.group.append(friend)
                     }
                     DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.login)
@@ -161,15 +160,29 @@ extension FriendsVC {
         if user.login == user.groupHost {
             let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] action, sourceView, completionHandler in
                 guard let self = self else { return }
-                DatabaseManager.shared.removeFriendFromCart(friend: self.user.group[indexPath.row], from: "alex")
-                self.user.group.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.deleteUser(atIndexPath: indexPath)
                 completionHandler(true)
             }
             deleteAction.backgroundColor = .orange
             return UISwipeActionsConfiguration(actions: [deleteAction])
         } else {
             return nil
+        }
+    }
+    
+    private func deleteUser(atIndexPath indexPath: IndexPath) {
+        let friend = self.user.group[indexPath.row]
+        if friend.login == self.user.login {
+            for person in self.user.group {
+                DatabaseManager.shared.removeFriendFromCart(friend: person, from: self.user)
+            }
+            DatabaseManager.shared.removeFriendFromCart(friend: self.user.group[indexPath.row], from: self.user)
+            self.user.group.removeAll()
+            tableView.reloadData()
+        } else {
+            DatabaseManager.shared.removeFriendFromCart(friend: self.user.group[indexPath.row], from: self.user)
+            self.user.group.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
 }

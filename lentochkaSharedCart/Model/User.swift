@@ -13,7 +13,6 @@ class User: Equatable {
     var sharedCart: [String: [CatalogItemCellModel]] //[CatalogItemCellModel]
     var group: [User]
     var groupHost: String
-    var profileImage: URL?
     
     init(login: String, personalCart: [CatalogItemCellModel], sharedCart: [String: [CatalogItemCellModel]], group: [User], groupHost: String) {
         self.login = login

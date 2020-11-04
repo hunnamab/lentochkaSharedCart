@@ -82,9 +82,11 @@ extension DatabaseManager {
     }
     
     /// Удаляет человека из корзины
-    public func removeFriendFromCart(friend: User, from login: String) {
-        database.child(friend.groupHost).child("sharedCart").child(friend.login).removeValue()
-        database.child(login).child("group").child(friend.login).removeValue()
+    public func removeFriendFromCart(friend: User, from user: User) {
+        if user.sharedCart[friend.login] != nil {
+            database.child(friend.groupHost).child("sharedCart").child(friend.login).removeValue()
+        }
+        database.child(user.login).child("group").child(friend.login).removeValue()
         database.child(friend.login).child("groupHost").removeValue()
         print("REMOVED FRIEND")
     }
