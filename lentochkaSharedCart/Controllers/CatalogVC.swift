@@ -44,7 +44,8 @@ class CatalogVC: UITableViewController {
         setUpSearchBar()
         viewModel = CatalogVM(catalogItems: catalogItems, forUser: user)
         viewModel.parseJSON()
-        catalogItems = viewModel.catalogItems
+        catalogItems = viewModel.catalogItems // лучше из json'а возвращать
+        
     }
     
     private func setUpViewController() {
@@ -91,7 +92,7 @@ extension CatalogVC {
         cell.buttonStackView.addButton.tag = indexPath.row
         cell.buttonStackView.removeButton.tag = indexPath.row
         cell.buttonStackView.addButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
-        cell.buttonStackView.removeButton.addTarget(self, action: #selector(addButtonTapped(_:)), for: .touchUpInside)
+        cell.buttonStackView.removeButton.addTarget(self, action: #selector(removeButtonTapped(_:)), for: .touchUpInside)
         cell.buttonStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         if item.personalCartQuantity > 0 {
             cell.buttonStackView.removeButton.isHidden = false
@@ -104,34 +105,33 @@ extension CatalogVC {
     @objc func addButtonTapped(_ sender: CatalogButton) {
         let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
         let indexPath = IndexPath(row: sender.tag, section: 0)
-        switch sender.currentState {
-        case .add:
-            if item.personalCartQuantity == 0 {
-                user.personalCart.append(item)
-            }
-            item.personalCartQuantity += 1
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-            let indexToAdd = user.personalCart.firstIndex(of: item) // вынести в отдельную функцию / разделить add/remove
-            if let index = indexToAdd { //
-                user.personalCart[index].personalCartQuantity += 1 //
-            } //
-            DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
-        case .remove:
-            if item.personalCartQuantity > 0 {
-                item.personalCartQuantity -= 1
-            }
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-            let indexToRemove = user.personalCart.firstIndex(of: item) //
-            if let index = indexToRemove { //
-                user.personalCart[index].personalCartQuantity -= 1 //
-            } //
-            if item.personalCartQuantity == 0 {
-                if let index = indexToRemove {
-                    user.personalCart.remove(at: index)
-                }
-            }
-            DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
+        if item.personalCartQuantity == 0 {
+            user.personalCart.append(item)
         }
+        let indexToAdd = user.personalCart.firstIndex(of: item)
+        if let index = indexToAdd {
+            user.personalCart[index].personalCartQuantity += 1
+            item.personalCartQuantity = user.personalCart[index].personalCartQuantity
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
+    }
+    
+    @objc func removeButtonTapped(_ sender: CatalogButton) {
+        let item = isSearching ? filteredItems[sender.tag] : catalogItems[sender.tag]
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        let indexToRemove = user.personalCart.firstIndex(of: item)
+        if let index = indexToRemove, item.personalCartQuantity > 0 {
+            user.personalCart[index].personalCartQuantity -= 1
+            item.personalCartQuantity = user.personalCart[index].personalCartQuantity
+        }
+        if item.personalCartQuantity == 0 {
+            if let index = indexToRemove {
+                user.personalCart.remove(at: index)
+            }
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
     }
     
 }
