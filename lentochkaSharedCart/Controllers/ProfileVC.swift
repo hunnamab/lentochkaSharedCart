@@ -29,6 +29,7 @@ class ProfileVC: UIViewController {
         imageView.layer.masksToBounds   = true
         return imageView
     }()
+    
     private let loginLabel      = UILabel()
     private let addAvatarButton = UIButton(type: .system)
     private var logoutButton    = UIButton(type: .system)
