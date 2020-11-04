@@ -43,12 +43,12 @@ class LaunchVC: UIViewController {
     
     func showMainScreen(withUser user: User) {
         let tabBarVC = TabBarVC(withUser: user)
-//        addChild(tabBarVC)
-//        tabBarVC.view.frame = view.bounds
-//        view.addSubview(tabBarVC.view)
-//        tabBarVC.didMove(toParent: self)
-//        current.willMove(toParent: nil)
-        animateFadeTransition(to: tabBarVC)
+        addChild(tabBarVC)
+        tabBarVC.view.frame = view.bounds
+        view.addSubview(tabBarVC.view)
+        tabBarVC.didMove(toParent: self)
+        current.willMove(toParent: nil)
+//        animateFadeTransition(to: tabBarVC)
         current.view.removeFromSuperview()
         current.removeFromParent()
         

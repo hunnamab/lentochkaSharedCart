@@ -81,7 +81,6 @@ class DetailCatalogItemVC: UIViewController {
         if item.personalCartQuantity == 0 {
             user.personalCart.append(item)
         }
-        let indexToAdd = user.personalCart.firstIndex(of: item)
         item.personalCartQuantity += 1
         DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
@@ -108,9 +107,12 @@ class DetailCatalogItemVC: UIViewController {
             return
         }
         if item.sharedCartQuantity == 0 {
-            user.sharedCart.append(item)
+            user.sharedCart[user.login]?.append(item) //
         }
         item.sharedCartQuantity += 1
+        if let indexToAdd = user.sharedCart[user.login]?.firstIndex(of: item) {
+            user.sharedCart[user.login]![indexToAdd].sharedCartQuantity = item.sharedCartQuantity
+        }
         DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("ADD TO GROUP CART")
@@ -123,10 +125,12 @@ class DetailCatalogItemVC: UIViewController {
         }
         if item.sharedCartQuantity > 0 {
             item.sharedCartQuantity -= 1
-            let indexToRemove = user.sharedCart.firstIndex(of: item)
-            if item.sharedCartQuantity == 0,
-                let index = indexToRemove {
-                user.sharedCart.remove(at: index)
+            let indexToRemove = user.sharedCart[user.login]?.firstIndex(of: item)
+            if let indexToRemove = indexToRemove {
+                user.sharedCart[user.login]?[indexToRemove].sharedCartQuantity = item.sharedCartQuantity
+                if item.sharedCartQuantity == 0 {
+                    user.sharedCart[user.login]?.remove(at: indexToRemove) //
+                }
             }
         }
         DatabaseManager.shared.removeItemFromCart(with: item, from: user, cart: "sharedCart")

@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseStorage
 
 class ProfileVC: UIViewController {
     
@@ -81,8 +82,11 @@ extension ProfileVC {
                                   for: .touchUpInside)
         addAvatarButton.titleLabel?.font = UIFont.systemFont(ofSize: 18,
                                                              weight: .regular)
-        
-//        avatarImageView.image = UIImage(named: "Friends") // поменять дефолтную фотку в placeholder'е
+
+        DatabaseManager().fetchProfileImage(forUser: user.login) { (url) in
+            let imageData = try! Data(contentsOf: url)
+            self.avatarImageView.image = UIImage(data: imageData)
+        }
         avatarImageView.backgroundColor     = UIColor(named: "MainColor")
         avatarImageView.contentMode         = .scaleAspectFit
         avatarImageView.layer.cornerRadius  = 100
@@ -146,8 +150,8 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         avatarImageView.image = image
+        DatabaseManager().uploadProfileImage(forUser: user.login, photo: image)
         dismiss(animated: true, completion: nil)
-        // надо будет хранить image data на сервере, чтобы подгружать все время?
     }
     
 }

@@ -10,11 +10,12 @@ import Foundation
 class User: Equatable {
     var login: String
     var personalCart: [CatalogItemCellModel]
-    var sharedCart: [CatalogItemCellModel]
+    var sharedCart: [String: [CatalogItemCellModel]] //[CatalogItemCellModel]
     var group: [User]
     var groupHost: String
+    var profileImage: URL?
     
-    init(login: String, personalCart: [CatalogItemCellModel], sharedCart: [CatalogItemCellModel], group: [User], groupHost: String) {
+    init(login: String, personalCart: [CatalogItemCellModel], sharedCart: [String: [CatalogItemCellModel]], group: [User], groupHost: String) {
         self.login = login
         self.personalCart = personalCart
         self.sharedCart = sharedCart

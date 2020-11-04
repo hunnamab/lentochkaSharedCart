@@ -11,6 +11,7 @@ class CartVC: UITableViewController {
     
     var user: User
     var cartState: CartState
+    var numberOfSections = 1
     
     let segmentedControl = UISegmentedControl(items: ["Личная", "Общая"])
     
@@ -94,16 +95,31 @@ class CartVC: UITableViewController {
 extension CartVC {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        let segmentedControlSections = 1
+        let totalSections = 2
+        var totalUsers = 0
+        switch cartState {
+        case .personal:
+            totalUsers = 1
+        case .shared:
+            totalUsers = user.sharedCart.keys.count
+        }
+        numberOfSections = segmentedControlSections + totalSections + totalUsers
+        return numberOfSections
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 1:
-            return countCartItems()
-        case 2:
+        case let x where x > 0 && x < numberOfSections - 2:
+            if cartState == .personal {
+                return countCartItems()
+            } else {
+                let key = user.sharedCart.keys.sorted()[x-1]
+                return user.sharedCart[key]!.count
+            }
+        case numberOfSections - 2:
             return 1
-        case 3:
+        case numberOfSections - 1:
             return 1
         default:
             return 0
@@ -121,73 +137,106 @@ extension CartVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 1:
+        case let x where x > 0 && x < numberOfSections - 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: CartItemCell.reuseID, for: indexPath) as! CartItemCell
-            let item = getCartItem(forRow: indexPath.row)
-            print(item.name, item.personalCartQuantity, item.sharedCartQuantity)
+            let item = getCartItem(forIndexPath: indexPath)
             cell.setUp(withItem: item, forCart: cartState)
             return cell
-        case let x where x == 2 || x == 3:
+        case let x where x == numberOfSections - 2 || x == numberOfSections - 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as! CartCell
-            if x == 2 {
+            if x == numberOfSections - 2 {
                 cell.setUp(cellType: .price, detailInfo: countTotalPrice())
             } else {
                 cell.setUp(cellType: .weight, detailInfo: countTotalWeight())
             }
             return cell
         default:
-            fatalError()
+            let cell = tableView.dequeueReusableCell(withIdentifier: CartCell.reuseID, for: indexPath) as! CartCell
+            return cell
         }
     }
     
-    private func getCartItem(forRow row: Int) -> CatalogItemCellModel {
+    private func getCartItem(forIndexPath indexPath: IndexPath) -> CatalogItemCellModel {
         switch cartState {
         case .personal:
-            return user.personalCart[row]
+            return user.personalCart[indexPath.row]
         case .shared:
-            return user.sharedCart[row]
+            let x = indexPath.section
+            let key = user.sharedCart.keys.sorted()[x-1]
+            return user.sharedCart[key]![indexPath.row]
         }
     }
     
     private func countTotalPrice() -> String {
-        let cart = (cartState == .personal) ? user.personalCart : user.sharedCart
         var total: Double = 0
-        for item in cart {
-            let quantity = (cartState == .personal) ? item.personalCartQuantity : item.sharedCartQuantity
-            total += item.price * Double(quantity)
+        switch cartState {
+        case .personal:
+            let cart = user.personalCart
+            for item in cart {
+                let quantity = item.personalCartQuantity
+                total += item.price * Double(quantity)
+            }
+        case .shared:
+            let cart = user.sharedCart
+            for (_, items) in cart {
+                for item in items {
+                    let quantity = item.sharedCartQuantity
+                    total += item.price * Double(quantity)
+                }
+            }
         }
         let isInteger = floor(total) == total
-        return isInteger ? "\(Int(total)) ₽" : "\(total) ₽"
+        return isInteger ? "\(Int(total)) ₽" : "\(String(format: "%.2f", total)) ₽"
     }
     
     private func countTotalWeight() -> String {
-        let cart = (cartState == .personal) ? user.personalCart : user.sharedCart
         var total: Double = 0
-        for item in cart {
-            let quantity = (cartState == .personal) ? item.personalCartQuantity : item.sharedCartQuantity
-            let weight = Double(Array(item.weight) // переделать
-                .compactMap { Int(String($0)) }
-                .map { String($0) }
-                .joined()) ?? 0
-            total += weight * Double(quantity)
+        switch cartState {
+        case .personal:
+            let cart = user.personalCart
+            for item in cart {
+                let quantity = item.personalCartQuantity
+                let weight = splitWeight(weight: item.weight)
+                total += weight * Double(quantity)
+            }
+        case .shared:
+            let cart = user.sharedCart
+            for (_, items) in cart {
+                for item in items {
+                    let quantity = item.sharedCartQuantity
+                    let weight = splitWeight(weight: item.weight)
+                    total += weight * Double(quantity)
+                }
+            }
         }
         let isInteger = floor(total) == total
-        return isInteger ? "\(Int(total)) г" : "\(total) г"
+        return isInteger ? "\(Int(total)) г" : "\(String(format: "%.2f", total)) г"
+    }
+    
+    private func splitWeight(weight: String) -> Double {
+        Double(Array(weight)
+            .compactMap { Int(String($0)) }
+            .map { String($0) }
+            .joined()) ?? 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 1:
-            return "Список товаров"
-        case 2:
+        case let x where x > 0 && x < numberOfSections - 2:
+            if cartState == .personal {
+                return "Список товаров"
+            } else {
+                return user.sharedCart.keys.sorted()[x-1]
+            }
+        case numberOfSections - 2:
             return "Сумма заказа"
-        case 3:
+        case numberOfSections - 1:
             return "Общий вес"
         default:
             return nil
         }
     }
-    
+   
 }
 
 // MARK: - TableViewDelegate:

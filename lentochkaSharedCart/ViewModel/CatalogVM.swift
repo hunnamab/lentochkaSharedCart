@@ -58,7 +58,8 @@ class CatalogVM {
                     item.personalCartQuantity = personalItem.personalCartQuantity
                 }
             }
-            for sharedItem in user.sharedCart {
+            guard user.sharedCart[user.login] != nil else { continue } //
+            for sharedItem in user.sharedCart[user.login]! {
                 if item.id == sharedItem.id {
                     item.sharedCartQuantity = sharedItem.sharedCartQuantity
                 }
