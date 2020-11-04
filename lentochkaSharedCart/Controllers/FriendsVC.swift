@@ -92,7 +92,9 @@ class FriendsVC: UITableViewController {
                 if self.user.groupHost.isEmpty {
                     DatabaseManager.shared.addHost(login: self.user.login, to: self.user.login)
                     DatabaseManager.shared.addHost(login: self.user.login, to: friend.login)
+                    self.user.groupHost = self.user.login
                     if self.user.group.firstIndex(of: friend) == nil {
+                        self.user.group.append(self.user) // ????
                         self.user.group.append(friend)
                     }
                     DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.login)

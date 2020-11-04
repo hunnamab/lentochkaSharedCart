@@ -114,7 +114,7 @@ extension CatalogVC {
             item.personalCartQuantity = user.personalCart[index].personalCartQuantity
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
-        DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
+        DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "personalCart")
     }
     
     @objc func removeButtonTapped(_ sender: CatalogButton) {
@@ -131,7 +131,7 @@ extension CatalogVC {
             }
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
-        DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
+        DatabaseManager.shared.removeItemFromCart(with: item, from: user, cart: "personalCart")
     }
     
 }

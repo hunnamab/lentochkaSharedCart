@@ -82,11 +82,8 @@ class DetailCatalogItemVC: UIViewController {
             user.personalCart.append(item)
         }
         let indexToAdd = user.personalCart.firstIndex(of: item)
-//        if let index = indexToAdd {
-//            user.personalCart[index].personalCartQuantity += 1
-//        }
         item.personalCartQuantity += 1
-        DatabaseManager.shared.addItemInCart(with: item, to: user.login, cart: "personalCart")
+        DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("ADD TO PERSONAL CART")
     }
@@ -98,44 +95,50 @@ class DetailCatalogItemVC: UIViewController {
             if item.personalCartQuantity == 0,
                 let index = indexToRemove {
                 user.personalCart.remove(at: index)
-//            } else if let index = indexToRemove {
-//                user.personalCart[index].personalCartQuantity -= 1
             }
         }
-        DatabaseManager.shared.removeItemFromCart(with: item, from: user.login, cart: "personalCart")
+        DatabaseManager.shared.removeItemFromCart(with: item, from: user, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
         print("REMOVE FROM PERSONAL CART")
     }
     
     @objc func addToSharedCart(_ sender: CatalogButton) {
+        guard !user.groupHost.isEmpty else {
+            presentErrorAlert()
+            return
+        }
         if item.sharedCartQuantity == 0 {
             user.sharedCart.append(item)
         }
-        let indexToAdd = user.sharedCart.firstIndex(of: item)
-//        if let index = indexToAdd {
-//            user.sharedCart[index].sharedCartQuantity += 1
-//        }
         item.sharedCartQuantity += 1
-        DatabaseManager.shared.addItemInCart(with: item, to: user.groupHost, cart: "sharedCart")
+        DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("ADD TO GROUP CART")
     }
     
     @objc func removeFromSharedCart(_ sender: CatalogButton) {
+        guard !user.groupHost.isEmpty else {
+            presentErrorAlert()
+            return
+        }
         if item.sharedCartQuantity > 0 {
             item.sharedCartQuantity -= 1
             let indexToRemove = user.sharedCart.firstIndex(of: item)
             if item.sharedCartQuantity == 0,
                 let index = indexToRemove {
                 user.sharedCart.remove(at: index)
-//            } else if let index = indexToRemove {
-//                user.sharedCart[index].sharedCartQuantity -= 1
-//            }
             }
         }
-        DatabaseManager.shared.removeItemFromCart(with: item, from: user.groupHost, cart: "sharedCart")
+        DatabaseManager.shared.removeItemFromCart(with: item, from: user, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
         print("REMOVE FROM GROUP CART")
+    }
+    
+    func presentErrorAlert() {
+        let errorAlert = UIAlertController(title: "Ошибка", message: "Добавьте друзей, чтобы пользоваться общей корзиной🛒", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        errorAlert.addAction(okAction)
+        self.present(errorAlert, animated: true)
     }
     
     private func setUpButtons() {

@@ -24,37 +24,14 @@ extension DatabaseManager {
     /// установление хоста и ссылки на него от других юзеров
     public func addHost(login: String, to user: String) {
         database.child(user).child("groupHost").setValue(login)
-        hostRef = database.child(login)
-        print("host reference = \(hostRef?.key)")
-    }
-    
-    public func addGroup(from user: User, to newFriend: String) {
-        guard user.login != newFriend else { return }
-        database.child(newFriend).child("group").child(user.login).setValue(user.login)
-        for person in user.group {
-            database.child(newFriend).child("group").child(person.login).setValue(person.login)
-            database.child(person.login).child("group").child(newFriend).setValue(newFriend)
-        }
-//        database.child(user.login).child("sharedCart").observeSingleEvent(of: .value) { [weak self] snapshot in
-//            guard let self = self else { return }
-//            self.database.child(newFriend).child("sharedCart").setValue(snapshot.value)
-//        }
-    }
-    
-    public func addHostCartRef(to userCart: [CatalogItemCellModel]) -> [CatalogItemCellModel] {
-        return userCart
-    }
-    
-    public func addHostGroupRef(to userGroup: [User], user: String) -> [User] {
-        return userGroup
     }
 }
 
 extension DatabaseManager {
     
     /// Добавляет новую позицию товара в корзину
-    public func addItemInCart(with item: CatalogItemCellModel, to login: String, cart: String) {
-        database.child(login).child(cart).child(item.id).setValue([
+    public func addItemInCart(with item: CatalogItemCellModel, to user: User, cart: String) {
+        let value: [String: Any] = [
             "name"                  : item.name,
             "price"                 : item.price,
             "weight"                : item.weight,
@@ -64,27 +41,43 @@ extension DatabaseManager {
             "id"                    : item.id,
             "personalCartQuantity"  : item.personalCartQuantity,
             "sharedCartQuantity"    : item.sharedCartQuantity
-        ])
+        ]
+        if cart == "sharedCart" { // сделать enum
+            database.child(user.groupHost).child(cart).child(user.login).child(item.id).setValue(value)
+        } else {
+            database.child(user.login).child(cart).child(item.id).setValue(value)
+        }
+        
+        
+//        database.child(login).child(cart).child(item.id).setValue([
+//            "name"                  : item.name,
+//            "price"                 : item.price,
+//            "weight"                : item.weight,
+//            "image"                 : item.image,
+//            "bigImage"              : item.bigImage,
+//            "unitName"              : item.unitName,
+//            "id"                    : item.id,
+//            "personalCartQuantity"  : item.personalCartQuantity,
+//            "sharedCartQuantity"    : item.sharedCartQuantity
+//        ])
         print("ADDED \(item.name)")
     }
     
     /// Удаляет позицию из корзины
-    public func removeItemFromCart(with item: CatalogItemCellModel, from login: String, cart: String) {
-        
+    public func removeItemFromCart(with item: CatalogItemCellModel, from user: User, cart: String) {
         if cart == "sharedCart" {
             if item.sharedCartQuantity < 1 {
-                database.child(login).child(cart).child(item.id).removeValue()
+                database.child(user.groupHost).child(cart).child(user.login).child(item.id).removeValue()
             } else {
-                addItemInCart(with: item, to: login, cart: cart)
+                addItemInCart(with: item, to: user, cart: cart)
             }
         } else if cart == "personalCart" {
             if item.personalCartQuantity < 1 {
-                database.child(login).child(cart).child(item.id).removeValue()
+                database.child(user.login).child(cart).child(item.id).removeValue()
             } else {
-                addItemInCart(with: item, to: login, cart: cart)
+                addItemInCart(with: item, to: user, cart: cart)
             }
         }
-        
         print("REMOVED \(item.name)")
     }
     
@@ -100,7 +93,9 @@ extension DatabaseManager {
     
     /// Удаляет человека из корзины
     public func removeFriendFromCart(friend: User, from login: String) {
+        database.child(friend.groupHost).child("sharedCart").child(friend.login).removeValue()
         database.child(login).child("group").child(friend.login).removeValue()
+        database.child(friend.login).child("groupHost").removeValue()
         print("REMOVED FRIEND")
     }
     
@@ -132,21 +127,22 @@ extension DatabaseManager {
             
             let sharedCart      = value?["sharedCart"] as? [String: Any] ?? [:]
             var sharedCartItems = [CatalogItemCellModel]()
-            
+            print(sharedCart)
             for (_, cartItem) in sharedCart {
-                guard let item = cartItem as? [String: Any] else { return }
-                let newItem = CatalogItemCellModel(
-                    name:                   item["name"] as! String,
-                    price:                  item["price"] as! Double,
-                    weight:                 item["weight"] as! String,
-                    image:                  item["image"] as! String,
-                    bigImage:               item["bigImage"] as! String,
-                    unitName:               item["unitName"] as! String,
-                    id:                     item["id"] as! String,
-                    personalCartQuantity:   item["personalCartQuantity"] as! Int,
-                    sharedCartQuantity:     item["sharedCartQuantity"] as! Int
-                )
-                sharedCartItems.append(newItem)
+//                guard let item = cartItem as? [String: Any] else { return }
+//                let newItem = CatalogItemCellModel(
+//                    name:                   item["name"] as! String,
+//                    price:                  item["price"] as! Double,
+//                    weight:                 item["weight"] as! String,
+//                    image:                  item["image"] as! String,
+//                    bigImage:               item["bigImage"] as! String,
+//                    unitName:               item["unitName"] as! String,
+//                    id:                     item["id"] as! String,
+//                    personalCartQuantity:   item["personalCartQuantity"] as! Int,
+//                    sharedCartQuantity:     item["sharedCartQuantity"] as! Int
+//                )
+//                sharedCartItems.append(newItem)
+//                print(cartItem)
             }
             
             let groupHost   = value?["groupHost"] as? String ?? ""
