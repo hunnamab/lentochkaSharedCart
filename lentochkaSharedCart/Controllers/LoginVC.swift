@@ -41,9 +41,11 @@ class LoginVC: UIViewController {
             return
         }
         let email = login + "@mail.ru"
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { result, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
+                guard let self = self else { return }
                 print("Failed to log in.")
+                self.alertUserLoginError()
                 return
             }
             DatabaseManager.shared.fetchUserData(login: login) { user in
