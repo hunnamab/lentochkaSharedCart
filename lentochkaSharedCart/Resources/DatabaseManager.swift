@@ -28,6 +28,19 @@ extension DatabaseManager {
         print("host reference = \(hostRef?.key)")
     }
     
+    public func addGroup(from user: User, to newFriend: String) {
+        guard user.login != newFriend else { return }
+        database.child(newFriend).child("group").child(user.login).setValue(user.login)
+        for person in user.group {
+            database.child(newFriend).child("group").child(person.login).setValue(person.login)
+            database.child(person.login).child("group").child(newFriend).setValue(newFriend)
+        }
+//        database.child(user.login).child("sharedCart").observeSingleEvent(of: .value) { [weak self] snapshot in
+//            guard let self = self else { return }
+//            self.database.child(newFriend).child("sharedCart").setValue(snapshot.value)
+//        }
+    }
+    
     public func addHostCartRef(to userCart: [CatalogItemCellModel]) -> [CatalogItemCellModel] {
         return userCart
     }
@@ -136,25 +149,31 @@ extension DatabaseManager {
                 sharedCartItems.append(newItem)
             }
             
-            let group       = value?["group"] as? [String: String] ?? [:]
             let groupHost   = value?["groupHost"] as? String ?? ""
-            var friends     = [User]()
-            
-            for (_, groupMember) in group {
-                // переделать, но я хз как - по идее нужно фетчить для друга всю инфу?
-                let newFriend = User(login: groupMember,
-                                     personalCart: [],
-                                     sharedCart: [],
-                                     group: [],
-                                     groupHost: groupHost)
-                friends.append(newFriend)
+            self.fetchGroup(login: login, groupHost: groupHost) { group in
+                user = User(login: login,
+                            personalCart: personalCartItems,
+                            sharedCart: sharedCartItems,
+                            group: group, groupHost: groupHost)
+                completion(user)
             }
-            
-            user = User(login: login,
-                        personalCart: personalCartItems,
-                        sharedCart: sharedCartItems,
-                        group: friends, groupHost: groupHost)
-            completion(user)
         }
     }
+    
+    private func fetchGroup(login: String, groupHost: String, completion: @escaping ([User]) -> Void) {
+        var group = [User]()
+        if groupHost.isEmpty {
+            completion(group)
+            return
+        }
+        self.database.child(groupHost).child("group").observeSingleEvent(of: .value) { snapshot in
+            let users = snapshot.value as? [String: String] ?? [:]
+            for (_, user) in users {
+                let user = User(login: user, personalCart: [], sharedCart: [], group: [], groupHost: groupHost)
+                group.append(user)
+            }
+            completion(group)
+        }
+    }
+    
 }

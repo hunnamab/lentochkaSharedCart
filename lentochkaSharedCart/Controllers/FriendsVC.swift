@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum FriendsError: String {
+    case userNotFound = "Пользователь не найден🥺"
+    case userAlreadyInGroup = "Пользователь уже добавлен или состоит в другой группе🤯"
+    case userAlreadyLoggedIn = "Вы не можете добавить себя в группу🤔"
+}
+
 class FriendsVC: UITableViewController {
     
 //    let reuseIdentifier = "TableViewCell"
@@ -69,33 +75,35 @@ class FriendsVC: UITableViewController {
             guard let self = self else { return }
             guard let name = alertController.textFields?.first?.text,
                 !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-            if self.user.groupHost.isEmpty {
-                DatabaseManager.shared.addHost(login: self.user.login, to: self.user.login)
-                DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
-                    guard let self = self else { return }
-                    guard let friend = friend, !friend.login.isEmpty else {
-                        self.presentUserNotFoundAlert()
-                        return
+            DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
+                guard let self = self else { return }
+                guard let friend = friend, !friend.login.isEmpty else {
+                    self.presentErrorAlert(withError: .userNotFound)
+                    return
+                }
+                guard friend.login != self.user.login else {
+                    self.presentErrorAlert(withError: .userAlreadyLoggedIn)
+                    return
+                }
+                guard friend.groupHost.isEmpty else {
+                    self.presentErrorAlert(withError: .userAlreadyInGroup)
+                    return
+                }
+                if self.user.groupHost.isEmpty {
+                    DatabaseManager.shared.addHost(login: self.user.login, to: self.user.login)
+                    DatabaseManager.shared.addHost(login: self.user.login, to: friend.login)
+                    if self.user.group.firstIndex(of: friend) == nil {
+                        self.user.group.append(friend)
                     }
                     DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.login)
-                    DatabaseManager.shared.addHost(login: self.user.login, to: friend.login)
-                    //friend.group = DatabaseManager.shared.addHostGroupRef(to: friend.group, user: friend.login)
-                    //friend.sharedCart = DatabaseManager.shared.addHostCartRef(to: friend.sharedCart)
-                    if self.user.group.firstIndex(of: friend) == nil {
-                        self.user.group.append(friend)
-                    }
+                    DatabaseManager.shared.addFriendToCart(friend: self.user, to: self.user.login)
                     self.tableView.reloadData()
-                }
-            } else {
-                DatabaseManager.shared.fetchUserData(login: name) { [weak self] friend in
-                    guard let self = self else { return }
-                    guard let friend = friend, !friend.login.isEmpty else {
-                        self.presentUserNotFoundAlert()
+                } else {
+                    guard self.user.group.firstIndex(of: friend) == nil else {
+                        self.presentErrorAlert(withError: .userAlreadyInGroup)
                         return
                     }
-                    if self.user.group.firstIndex(of: friend) == nil {
-                        self.user.group.append(friend)
-                    }
+                    self.user.group.append(friend)
                     DatabaseManager.shared.addFriendToCart(friend: friend, to: self.user.groupHost)
                     DatabaseManager.shared.addHost(login: self.user.groupHost, to: friend.login)
                     self.tableView.reloadData()
@@ -105,11 +113,13 @@ class FriendsVC: UITableViewController {
         let cancelAction = UIAlertAction(title: "Отменить", style: .cancel, handler: nil)
         alertController.addAction(addFriend)
         alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+        if user.login == user.groupHost || user.groupHost.isEmpty {
+            present(alertController, animated: true)
+        }
     }
     
-    func presentUserNotFoundAlert() {
-        let errorAlert = UIAlertController(title: "Ошибка", message: "Пользователь не найден🥺", preferredStyle: .alert)
+    func presentErrorAlert(withError error: FriendsError) {
+        let errorAlert = UIAlertController(title: "Ошибка", message: error.rawValue, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         errorAlert.addAction(okAction)
         self.present(errorAlert, animated: true)
@@ -128,7 +138,11 @@ extension FriendsVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FriendCell.reuseID, for: indexPath) as! FriendCell
         let friend = user.group[indexPath.row].login
-        cell.textLabel?.text = user.group[indexPath.row].login
+        if friend == user.login {
+            cell.textLabel?.text = friend + " (вы)"
+        } else {
+            cell.textLabel?.text = friend
+        }
         print(user.group[indexPath.row].login)
         cell.isUserInteractionEnabled = false
         cell.setUp(forUser: user, andFriend: friend)
@@ -142,15 +156,18 @@ extension FriendsVC {
 extension FriendsVC {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] action, sourceView, completionHandler in
-            guard let self = self else { return }
-            DatabaseManager.shared.removeFriendFromCart(friend: self.user.group[indexPath.row], from: "alex")
-            self.user.group.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            completionHandler(true)
+        if user.login == user.groupHost {
+            let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { [weak self] action, sourceView, completionHandler in
+                guard let self = self else { return }
+                DatabaseManager.shared.removeFriendFromCart(friend: self.user.group[indexPath.row], from: "alex")
+                self.user.group.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                completionHandler(true)
+            }
+            deleteAction.backgroundColor = .orange
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        } else {
+            return nil
         }
-        deleteAction.backgroundColor = .orange
-        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
-    
 }
