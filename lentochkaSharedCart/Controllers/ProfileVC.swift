@@ -55,7 +55,6 @@ class ProfileVC: UIViewController {
         do {
             try FirebaseAuth.Auth.auth().signOut()
         } catch {
-            print("Error signing out.")
             return
         }
         if FirebaseAuth.Auth.auth().currentUser == nil {

@@ -154,7 +154,6 @@ extension FriendsVC {
         } else {
             cell.textLabel?.text = friend
         }
-        print(user.group[indexPath.row].login)
         cell.isUserInteractionEnabled = false
         cell.setUp(forUser: user, andFriend: friend)
         return cell

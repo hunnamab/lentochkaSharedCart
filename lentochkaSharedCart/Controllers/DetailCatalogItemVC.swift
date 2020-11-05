@@ -82,7 +82,6 @@ class DetailCatalogItemVC: UIViewController {
         item.personalCartQuantity += 1
         DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
-        print("ADD TO PERSONAL CART")
     }
     
     @objc func removeFromPersonalCart(_ sender: CatalogButton) {
@@ -96,7 +95,6 @@ class DetailCatalogItemVC: UIViewController {
         }
         DatabaseManager.shared.removeItemFromCart(with: item, from: user, cart: "personalCart")
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(item.personalCartQuantity)"
-        print("REMOVE FROM PERSONAL CART")
     }
     
     @objc func addToSharedCart(_ sender: CatalogButton) {
@@ -115,7 +113,6 @@ class DetailCatalogItemVC: UIViewController {
         }
         DatabaseManager.shared.addItemInCart(with: item, to: user, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
-        print("ADD TO GROUP CART")
     }
     
     @objc func removeFromSharedCart(_ sender: CatalogButton) {
@@ -135,7 +132,6 @@ class DetailCatalogItemVC: UIViewController {
         }
         DatabaseManager.shared.removeItemFromCart(with: item, from: user, cart: "sharedCart")
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(item.sharedCartQuantity)"
-        print("REMOVE FROM GROUP CART")
     }
     
     func presentErrorAlert() {

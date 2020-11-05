@@ -17,6 +17,8 @@ class FriendCell: UITableViewCell {
             hostImageView.image = hostImageView.image?.withRenderingMode(.alwaysTemplate)
             hostImageView.tintColor = UIColor(named: "MainColor")
             accessoryView = hostImageView
+        } else {
+            accessoryView = .none
         }
         textLabel?.font = UIFont.systemFont(ofSize: 22, weight: .medium)
         textLabel?.textColor = UIColor(named: "MainColor") ?? .blue

@@ -23,9 +23,6 @@ class TabBarVC: UITabBarController {
     }
     
     func presentTabBar() {
-        
-        print("tab bar \(user.login)")
-        
         UITabBar.appearance().tintColor = UIColor(named: "MainColor")
         
         let catalogVC = CatalogVC(withUser: user)

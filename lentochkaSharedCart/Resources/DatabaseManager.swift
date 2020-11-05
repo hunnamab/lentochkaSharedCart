@@ -50,7 +50,6 @@ extension DatabaseManager {
         } else {
             database.child(user.login).child(cart).child(item.id).setValue(value)
         }
-        print("ADDED \(item.name)")
     }
     
     /// Удаляет позицию из корзины
@@ -68,7 +67,6 @@ extension DatabaseManager {
                 addItemInCart(with: item, to: user, cart: cart)
             }
         }
-        print("REMOVED \(item.name)")
     }
     
 }
@@ -78,7 +76,6 @@ extension DatabaseManager {
     /// Добавляет нового человека в корзину
     public func addFriendToCart(friend: User, to login: String) {
         database.child(login).child("group").child(friend.login).setValue(friend.login)
-        print("ADDED FRIENDS")
     }
     
     /// Удаляет человека из корзины
@@ -88,7 +85,6 @@ extension DatabaseManager {
         }
         database.child(user.login).child("group").child(friend.login).removeValue()
         database.child(friend.login).child("groupHost").removeValue()
-        print("REMOVED FRIEND")
     }
     
     /// Получение данных какого-либо юзера из базы

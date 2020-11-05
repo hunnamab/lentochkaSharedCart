@@ -28,14 +28,6 @@ class CatalogVC: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        for item in user.personalCart {
-            print("{\(item.name) - \(item.personalCartQuantity)}")
-        }
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen

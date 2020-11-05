@@ -19,8 +19,6 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //loginTextField.text         = "alex"
-        //passwordTextField.text      = "123456"
         self.modalPresentationStyle = .fullScreen
         setUpUI()
         setUpConstraints()
@@ -28,7 +26,6 @@ class LoginVC: UIViewController {
                               for: .touchUpInside)
         loginTextField.delegate = self
         passwordTextField.delegate = self
-        print("")
     }
     
     @objc private func loginButtonWasTapped () {
@@ -44,7 +41,6 @@ class LoginVC: UIViewController {
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
                 guard let self = self else { return }
-                print("Failed to log in.")
                 self.alertUserLoginError()
                 return
             }
