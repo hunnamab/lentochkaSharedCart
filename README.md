@@ -1,4 +1,6 @@
 # lentochkaSharedCart
+<img src="https://ai.github.io/size-limit/logo.svg" align="right"
+     alt="Size Limit logo by Anton Lovchikov" width="120" height="178">
 
 Это приложение предназначено для совершения совместных покупок между пользователями.
 
