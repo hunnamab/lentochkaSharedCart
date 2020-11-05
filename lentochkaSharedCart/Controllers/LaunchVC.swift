@@ -48,25 +48,10 @@ class LaunchVC: UIViewController {
         view.addSubview(tabBarVC.view)
         tabBarVC.didMove(toParent: self)
         current.willMove(toParent: nil)
-//        animateFadeTransition(to: tabBarVC)
         current.view.removeFromSuperview()
         current.removeFromParent()
         
         current = tabBarVC
-    }
-    
-    // можно убрать анимацию
-    private func animateFadeTransition(to new: UIViewController, completion: (() -> Void)? = nil) {
-        current.willMove(toParent: nil)
-        addChild(new)
-        
-        transition(from: current, to: new, duration: 0.5, options: [.transitionCrossDissolve, .curveEaseOut], animations: {
-        }) { completed in
-            self.current.removeFromParent()
-            new.didMove(toParent: self)
-            self.current = new
-            completion?()
-        }
     }
 
 }

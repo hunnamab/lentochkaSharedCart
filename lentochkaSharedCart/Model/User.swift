@@ -10,7 +10,7 @@ import Foundation
 class User: Equatable {
     var login: String
     var personalCart: [CatalogItemCellModel]
-    var sharedCart: [String: [CatalogItemCellModel]] //[CatalogItemCellModel]
+    var sharedCart: [String: [CatalogItemCellModel]]
     var group: [User]
     var groupHost: String
     

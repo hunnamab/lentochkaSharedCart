@@ -44,7 +44,7 @@ class CatalogVC: UITableViewController {
         setUpSearchBar()
         viewModel = CatalogVM(catalogItems: catalogItems, forUser: user)
         viewModel.parseJSON()
-        catalogItems = viewModel.catalogItems // лучше из json'а возвращать
+        catalogItems = viewModel.catalogItems
         
     }
     
@@ -86,8 +86,6 @@ extension CatalogVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CatalogItemCell.reuseID, for: indexPath) as! CatalogItemCell
         let item = isSearching ? filteredItems[indexPath.row] : catalogItems[indexPath.row]
-        // создать в фабрике модель (добавить в нее поле "добавлено в корзину"
-        // - отдельный метод, который берет инфу с сервера и проверяет)
         cell.setUp(withItem: item)
         cell.buttonStackView.addButton.tag = indexPath.row
         cell.buttonStackView.removeButton.tag = indexPath.row

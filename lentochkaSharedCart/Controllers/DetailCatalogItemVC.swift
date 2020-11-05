@@ -46,8 +46,6 @@ class DetailCatalogItemVC: UIViewController {
         let imageUrl        = URL(string: item.bigImage)!
         let image           = try! Data(contentsOf: imageUrl)
         itemImageView.image = UIImage(data: image)
-//        print(item.personalCartQuantity)
-//        print(item.sharedCartQuantity)
         leftButtonsView.buttonsStackView.quantityLabel.text = "\(self.item.personalCartQuantity)"
         rightButtonsView.buttonsStackView.quantityLabel.text = "\(self.item.sharedCartQuantity)"
     }
@@ -87,7 +85,7 @@ class DetailCatalogItemVC: UIViewController {
         print("ADD TO PERSONAL CART")
     }
     
-    @objc func removeFromPersonalCart(_ sender: CatalogButton) { // удалить из юзера, если кол-во 0
+    @objc func removeFromPersonalCart(_ sender: CatalogButton) {
         if item.personalCartQuantity > 0 {
             item.personalCartQuantity -= 1
             let indexToRemove = user.personalCart.firstIndex(of: item)
@@ -131,7 +129,7 @@ class DetailCatalogItemVC: UIViewController {
             if let indexToRemove = indexToRemove {
                 user.sharedCart[user.login]?[indexToRemove].sharedCartQuantity = item.sharedCartQuantity
                 if item.sharedCartQuantity == 0 {
-                    user.sharedCart[user.login]?.remove(at: indexToRemove) //
+                    user.sharedCart[user.login]?.remove(at: indexToRemove)
                 }
             }
         }

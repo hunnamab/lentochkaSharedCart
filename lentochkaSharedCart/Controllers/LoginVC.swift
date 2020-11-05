@@ -50,8 +50,6 @@ class LoginVC: UIViewController {
             }
             DatabaseManager.shared.fetchUserData(login: login) { user in
                 guard let user = user else { return }
-                //DatabaseManager.shared.addUser(with: user)
-                print("login screen \(user.login)")
                 AppDelegate.shared.rootViewController.showMainScreen(withUser: user)
             }
         }

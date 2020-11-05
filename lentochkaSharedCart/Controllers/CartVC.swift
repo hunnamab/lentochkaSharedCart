@@ -41,11 +41,6 @@ class CartVC: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        setUpSegmentedControl()
-    }
-    
     private func setUpSegmentedControlView() -> UIView {
         setUpSegmentedControl()
         let segmentedControlView = UIView()
@@ -73,7 +68,7 @@ class CartVC: UITableViewController {
     
     private func setUpViewController() {
         navigationController?.navigationBar.backgroundColor = .white
-        // status bar не белый -> костыль:
+
         let statusBar =  UIView()
         statusBar.frame = UIApplication.shared.statusBarFrame
         statusBar.backgroundColor = .white

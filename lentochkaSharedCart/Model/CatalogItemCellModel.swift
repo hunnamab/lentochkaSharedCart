@@ -19,7 +19,17 @@ class CatalogItemCellModel: Equatable {
     var personalCartQuantity: Int
     var sharedCartQuantity: Int
     
-    init(name: String, price: Double, weight: String, image: String, bigImage: String, unitName: String, id: String, personalCartQuantity: Int = 0, sharedCartQuantity: Int = 0) {
+    init(
+        name: String,
+         price: Double,
+         weight: String,
+         image: String,
+         bigImage: String,
+         unitName: String,
+         id: String,
+         personalCartQuantity: Int = 0,
+         sharedCartQuantity: Int = 0
+    ) {
         self.name                 = name
         self.price                = price
         self.weight               = weight

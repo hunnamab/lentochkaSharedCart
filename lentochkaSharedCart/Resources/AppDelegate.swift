@@ -22,9 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        
-        UINavigationBar.appearance().tintColor = UIColor(named: "MainColor") // для вкладки "Люди"
-        
+        UINavigationBar.appearance().tintColor = UIColor(named: "MainColor")
+        setWindow()
+        return true
+    }
+    
+    private func setWindow() {
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         if #available(iOS 13.0, *) {
@@ -32,9 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         self.window?.rootViewController = LaunchVC()
         self.window?.makeKeyAndVisible()
-        return true
     }
-    
 }
 
 extension AppDelegate {

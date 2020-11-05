@@ -131,6 +131,7 @@ extension DatabaseManager {
         }
     }
     
+    /// Получение общей группы пользователей
     private func fetchGroup(login: String, groupHost: String, completion: @escaping ([User]) -> Void) {
         var group = [User]()
         if groupHost.isEmpty {
@@ -147,6 +148,7 @@ extension DatabaseManager {
         }
     }
     
+    /// Получение общей корзины
     private func fetchSharedCart(for user: User, completion: @escaping (User?) -> Void) {
         if user.groupHost.isEmpty {
             completion(user)
@@ -177,6 +179,7 @@ extension DatabaseManager {
         }
     }
     
+    /// Загрузка на сервер картинки профиля пользоавтеля
     public func uploadProfileImage(forUser user: String, photo: UIImage) {
         let ref = storage.child(user)
         guard let imageData = photo.jpegData(compressionQuality: 0.4) else { return }
@@ -185,6 +188,7 @@ extension DatabaseManager {
         ref.putData(imageData, metadata: metaData, completion: nil)
     }
     
+    /// Получение картинки профиля пользователя
     public func fetchProfileImage(forUser user: String, completion: @escaping (URL) -> Void) {
         let ref = self.storage.child(user)
         ref.downloadURL { (url, error) in

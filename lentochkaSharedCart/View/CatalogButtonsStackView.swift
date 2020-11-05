@@ -9,8 +9,8 @@ import UIKit
 
 class CatalogButtonsStackView: UIStackView {
     
-    let removeButton    = CatalogButton(currentState: .remove(.small), title: "﹣") //
-    let quantityLabel   = UILabel() //
+    let removeButton    = CatalogButton(currentState: .remove(.small), title: "﹣")
+    let quantityLabel   = UILabel()
     let addButton       = CatalogButton(currentState: .add(.small), title: "+")
     
     init() {
