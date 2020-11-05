@@ -15,9 +15,14 @@ class CartVC: UITableViewController {
     
     let segmentedControl = UISegmentedControl(items: ["Личная", "Общая"])
     
+    var swipeDown = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
+        swipeDown.attributedTitle = NSAttributedString(string: "Обновляется")
+        swipeDown.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.refreshControl = swipeDown
         setUpViewController()
     }
     
@@ -86,6 +91,23 @@ class CartVC: UITableViewController {
     @objc private func changeCart() {
         cartState.toggle()
         tableView.reloadData()
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        switch cartState {
+        case .personal:
+            self.refreshControl?.endRefreshing()
+        case .shared:
+            if self.user.groupHost != self.user.login {
+                DatabaseManager.shared.fetchUserData(login: self.user.login, completion: { [weak self] user in
+                    guard let self = self else { return }
+                    guard let user = user else { return }
+                    self.user = user
+                    self.tableView.reloadData()
+                }
+            )}
+            self.refreshControl?.endRefreshing()
+        }
     }
     
 }

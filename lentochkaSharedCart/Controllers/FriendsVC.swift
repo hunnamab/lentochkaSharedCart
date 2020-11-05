@@ -11,6 +11,8 @@ class FriendsVC: UITableViewController {
     
     var user: User
     
+    var swipeDown = UIRefreshControl()
+    
     init(withUser user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
@@ -22,7 +24,9 @@ class FriendsVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        swipeDown.attributedTitle = NSAttributedString(string: "Обновляется")
+        swipeDown.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        self.refreshControl = swipeDown
         setUpViewController()
         configureBarButtonItems()
     }
@@ -111,6 +115,18 @@ class FriendsVC: UITableViewController {
         if user.login == user.groupHost || user.groupHost.isEmpty {
             present(alertController, animated: true)
         }
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        if self.user.groupHost != self.user.login {
+            DatabaseManager.shared.fetchUserData(login: user.login) { [weak self] user in
+                guard let self = self else { return }
+                guard let user = user else { return }
+                self.user = user
+                self.tableView.reloadData()
+            }
+        }
+        self.refreshControl?.endRefreshing()
     }
     
     func presentErrorAlert(withError error: FriendsError) {
