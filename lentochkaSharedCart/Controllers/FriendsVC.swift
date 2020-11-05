@@ -24,11 +24,11 @@ class FriendsVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpViewController()
+        configureBarButtonItems()
         swipeDown.attributedTitle = NSAttributedString(string: "Обновляется")
         swipeDown.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         self.refreshControl = swipeDown
-        setUpViewController()
-        configureBarButtonItems()
     }
     
     private func setUpViewController() {

@@ -13,9 +13,9 @@ class CartVC: UITableViewController {
     var cartState: CartState
     var numberOfSections = 1
     
-    let segmentedControl = UISegmentedControl(items: ["Личная", "Общая"])
-    
-    var swipeDown = UIRefreshControl()
+    let segmentedControl    = UISegmentedControl(items: ["Личная", "Общая"])
+    var swipeDown           = UIRefreshControl()
+    private var orderButton = UIButton(type: .system)
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -131,7 +131,7 @@ extension DatabaseManager {
         }
     }
     
-    public func fetchGroup(login: String, groupHost: String, completion: @escaping ([User]) -> Void) {
+    private func fetchGroup(login: String, groupHost: String, completion: @escaping ([User]) -> Void) {
         var group = [User]()
         if groupHost.isEmpty {
             completion(group)
@@ -147,7 +147,7 @@ extension DatabaseManager {
         }
     }
     
-    public func fetchSharedCart(for user: User, completion: @escaping (User?) -> Void) {
+    private func fetchSharedCart(for user: User, completion: @escaping (User?) -> Void) {
         if user.groupHost.isEmpty {
             completion(user)
         } else {
