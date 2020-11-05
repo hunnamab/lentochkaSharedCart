@@ -168,9 +168,9 @@ class DetailCatalogItemVC: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         buttonsView.translatesAutoresizingMaskIntoConstraints = false
         leftButtonsView.translatesAutoresizingMaskIntoConstraints = false
-        leftButtonsView.backgroundColor = .systemYellow //
+        leftButtonsView.backgroundColor = .systemYellow
         rightButtonsView.translatesAutoresizingMaskIntoConstraints = false
-        rightButtonsView.backgroundColor = .systemTeal //
+        rightButtonsView.backgroundColor = .systemTeal
 
         let padding: CGFloat = 50
         let bottomInset = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
