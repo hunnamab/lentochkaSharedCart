@@ -1,3 +1,5 @@
+<img src="https://i.ibb.co/BnsRT2P/logo.png" align="right"
+     alt="Lentochka Shared Cart Logo" width="120" height="120">
 # lentochkaSharedCart
 
 Это приложение предназначено для совершения совместных покупок между пользователями.
